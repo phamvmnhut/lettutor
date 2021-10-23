@@ -1,16 +1,18 @@
 # lettutor
 
-A new Flutter project.
+### Cấu trúc thư mục code
+1. UI : là nhóm màn hình chức năng tương ứng
+2. 
 
-## Getting Started
+1. Xác thực và phân quyền
+- Đăng nhập tài khoản
+- Đăng ký tài khoản: 
+- 
 
-This project is a starting point for a Flutter application.
+#### Tham khảo cấu trúc dự án ở
+https://github.com/zubairehman/flutter-boilerplate-project
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+https://hampusborgos.github.io/country-flags/
+```
+Danh sách cờ các quốc gia

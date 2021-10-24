@@ -12,6 +12,7 @@ import 'package:lettutor/ui/profile/setting.dart';
 import 'package:lettutor/ui/profile/user_profile.dart';
 import 'package:lettutor/ui/schedule/schedule.dart';
 import 'package:lettutor/ui/test/test.dart';
+import 'package:lettutor/ui/tutor_detail/tutor_calendar.dart';
 import 'package:lettutor/ui/tutor_detail/tutor_detail.dart';
 import 'package:lettutor/ui/tutor_gen/tutor_gen.dart';
 import 'package:lettutor/ui/tutor_gen/tutor_reg.dart';
@@ -30,6 +31,7 @@ class Routes {
   static const String tutor_reg = '/tutor_reg';
   static const String tutor_search = '/tutor_search';
   static const String tutor_detail = '/tutor_detail';
+  static const String tutor_calendar = '/tutor_calendar';
   static const String user_profile = '/user_profile';
   static const String schedule = '/schedule';
   static const String course = '/course';
@@ -49,6 +51,7 @@ class Routes {
     tutor_reg: (BuildContext context) => TutorRegUI(),
     tutor_search: (BuildContext context) => TutorSearchUI(),
     tutor_detail: (BuildContext context) => TutorDetailUI(),
+    tutor_calendar: (BuildContext context) => TutorCalendarUI(),
     user_profile: (BuildContext context) => ProfileUI(),
     schedule: (BuildContext context) => ScheduleUI(),
     course: (BuildContext context) => CourseGenUI(),

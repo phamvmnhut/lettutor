@@ -10,14 +10,14 @@ class _AppointmentDataSource extends CalendarDataSource {
   }
 }
 
-class TutorCalendar extends StatefulWidget {
-  const TutorCalendar({Key? key}) : super(key: key);
+class TutorCalendarDialog extends StatefulWidget {
+  const TutorCalendarDialog({Key? key}) : super(key: key);
 
   @override
-  _TutorCalendarState createState() => _TutorCalendarState();
+  _TutorCalendarDialogState createState() => _TutorCalendarDialogState();
 }
 
-class _TutorCalendarState extends State<TutorCalendar> {
+class _TutorCalendarDialogState extends State<TutorCalendarDialog> {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;

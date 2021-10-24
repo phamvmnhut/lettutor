@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:lettutor/datas/local.dart';
 import 'package:lettutor/models/tutor.dart';
-import 'package:lettutor/ui/tutor_detail/comp/tutor_schedule.dart';
+import 'package:lettutor/ui/tutor_detail/comp/tutor_calendar.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 import 'comp/info_more_tutor.dart';
@@ -21,7 +21,7 @@ class TutorDetailUI extends StatelessWidget {
 
     void _onPressBookBtn() => showDialog(
       context: context,
-      builder: (context) => TutorSchedule(),
+      builder: (context) => TutorCalendar(),
     );
     return Material(
       child: CustomScrollView(

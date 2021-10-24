@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
       title: Strings.appName,
       theme: themeData,
       darkTheme: themeDataDark,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       routes: Routes.routes,
-      home: TutorDetailUI(),
+      home: TutorRegUI(),
     );
   }
 }

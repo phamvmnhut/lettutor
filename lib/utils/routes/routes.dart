@@ -6,6 +6,8 @@ import 'package:lettutor/ui/auth/sign_up.dart';
 import 'package:lettutor/ui/auth/forgot_pw.dart';
 import 'package:lettutor/ui/learn/video_learning.dart';
 import 'package:lettutor/ui/learn/wating_room.dart';
+import 'package:lettutor/ui/message/message_chat.dart';
+import 'package:lettutor/ui/message/message_gen.dart';
 import 'package:lettutor/ui/profile/setting.dart';
 import 'package:lettutor/ui/profile/user_profile.dart';
 import 'package:lettutor/ui/schedule/schedule.dart';
@@ -34,6 +36,8 @@ class Routes {
   static const String setting = '/setting';
   static const String waiting_room = '/waiting_room';
   static const String video_learning = '/video_learning';
+  static const String message_gen = '/message_gen';
+  static const String message_chat = '/message_chat';
 
   static final routes = <String, WidgetBuilder>{
     sign_in: (BuildContext context) => SignInUI(),
@@ -51,5 +55,7 @@ class Routes {
     setting: (BuildContext context) => SettingUI(),
     waiting_room: (BuildContext context) => WaitingRoomUI(),
     video_learning: (BuildContext context) => VideoLearingUI(),
+    message_gen: (BuildContext context) => MessageGenUI(),
+    message_chat: (BuildContext context) => MessageChatUI(),
   };
 }

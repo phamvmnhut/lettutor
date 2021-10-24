@@ -6,6 +6,7 @@ import 'package:lettutor/ui/course/course_gen.dart';
 import 'package:lettutor/ui/home/home.dart';
 import 'package:lettutor/ui/auth/sign_up.dart';
 import 'package:lettutor/ui/learn/wating_room.dart';
+import 'package:lettutor/ui/message/message_gen.dart';
 import 'package:lettutor/ui/profile/setting.dart';
 import 'package:lettutor/ui/profile/user_profile.dart';
 import 'package:lettutor/ui/schedule/schedule.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       darkTheme: themeDataDark,
       themeMode: ThemeMode.dark,
       routes: Routes.routes,
-      home: TutorRegUI(),
+      home: TutorDetailUI(),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor/datas/local.dart';
 import 'package:lettutor/models/tutor.dart';
+import 'package:lettutor/utils/routes/routes.dart';
 
 import 'report_dialog.dart';
 import 'review_dialog.dart';
@@ -99,7 +100,7 @@ class IntroTutorInfo extends StatelessWidget {
                 padding: const EdgeInsets.all(2.0),
                 child: ElevatedButton.icon(
                     onPressed: () {
-                      print("Chat");
+                      Navigator.pushNamed(context, Routes.message_chat);
                     },
                     icon: Icon(Icons.chat_outlined, size: 16),
                     label: Text(

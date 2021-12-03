@@ -25,25 +25,39 @@ class LocalData {
 
   static List<TutorModel> TutorListExample = [
     TutorModel(
-        avtUrl:
-            "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80",
-        name: "Giáo viên 1",
-        isFav: true,
-        country: Country(code: 'vn', name: "Việt Nam"),
-        rate: 3.5,
-        specList: ["PET", "Tiếng anh cho người mất gốc"],
-        des:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"),
+      avtUrl:
+          "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80",
+      name: "Giáo viên 1",
+      isFav: true,
+      country: Country(code: 'vn', name: "Việt Nam"),
+      rate: 3.5,
+      specList: ["PET", "Tiếng anh cho người mất gốc"],
+      des:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      langs: ["English"],
+      majors: ["Tiếng Anh cho trẻ em", "Giao tiếp", "Tiếng Anh cho công việc"],
+      hobby:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus orci, auctor a metus vitae, ullamcorper molestie lacus. Maecenas tristique.",
+      exp:
+          "Duis nec orci nisl. Morbi varius ex non libero mollis, sollicitudin gravida ex tincidunt. Cras hendrerit sed orci ut bibendum. Nunc ultrices viverra nunc, at ultricies leo mollis tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porta risus in dolor pellentesque mollis. In ut sem sollicitudin, eleifend turpis ac, mattis felis. Maecenas in congue turpis, facilisis sollicitudin erat. Nullam at lectus vitae felis vestibulum mollis eget at lacus. Nam condimentum at ex a ullamcorper. Curabitur non vehicula est. Mauris pretium justo non risus tempor feugiat a a tortor. Fusce finibus rutrum vulputate.",
+    ),
     TutorModel(
-        avtUrl:
-            "https://images.unsplash.com/photo-1633114127188-99b4dd741180?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80",
-        name: "Giáo viên 2",
-        isFav: false,
-        country: Country(code: 'vn', name: "Việt Nam"),
-        rate: 4,
-        specList: ["Tiếng anh cho người mất gốc"],
-        des:
-            "Đây là đoạn text cực dài hoặc là cực ngắn nhưng nó sẽ chỉ hạn định ở 1 số dòng nhất định"),
+      avtUrl:
+          "https://images.unsplash.com/photo-1633114127188-99b4dd741180?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80",
+      name: "Giáo viên 2",
+      isFav: false,
+      country: Country(code: 'vn', name: "Việt Nam"),
+      rate: 4,
+      specList: ["Tiếng anh cho người mất gốc"],
+      des:
+          "Đây là đoạn text cực dài hoặc là cực ngắn nhưng nó sẽ chỉ hạn định ở 1 số dòng nhất định",
+      langs: ["English"],
+      majors: ["Tiếng Anh cho trẻ em", "Giao tiếp", "Tiếng Anh cho công việc"],
+      hobby:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus orci, auctor a metus vitae, ullamcorper molestie lacus. Maecenas tristique.",
+      exp:
+          "Duis nec orci nisl. Morbi varius ex non libero mollis, sollicitudin gravida ex tincidunt. Cras hendrerit sed orci ut bibendum. Nunc ultrices viverra nunc, at ultricies leo mollis tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porta risus in dolor pellentesque mollis. In ut sem sollicitudin, eleifend turpis ac, mattis felis. Maecenas in congue turpis, facilisis sollicitudin erat. Nullam at lectus vitae felis vestibulum mollis eget at lacus. Nam condimentum at ex a ullamcorper. Curabitur non vehicula est. Mauris pretium justo non risus tempor feugiat a a tortor. Fusce finibus rutrum vulputate.",
+    ),
     TutorModel(
       avtUrl:
           "https://images.unsplash.com/photo-1634685468530-528507cde3b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=464&q=80",
@@ -106,17 +120,30 @@ class LocalData {
       specList: ["Tiếng anh full"],
       des:
           "Đây là đoạn text cực dài hoặc là cực ngắn nhưng nó sẽ chỉ hạn định ở 1 số dòng nhất định",
+      langs: ["English"],
+      majors: ["Tiếng Anh cho trẻ em", "Giao tiếp", "Tiếng Anh cho công việc"],
+      hobby:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus orci, auctor a metus vitae, ullamcorper molestie lacus. Maecenas tristique.",
+      exp:
+          "Duis nec orci nisl. Morbi varius ex non libero mollis, sollicitudin gravida ex tincidunt. Cras hendrerit sed orci ut bibendum. Nunc ultrices viverra nunc, at ultricies leo mollis tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porta risus in dolor pellentesque mollis. In ut sem sollicitudin, eleifend turpis ac, mattis felis. Maecenas in congue turpis, facilisis sollicitudin erat. Nullam at lectus vitae felis vestibulum mollis eget at lacus. Nam condimentum at ex a ullamcorper. Curabitur non vehicula est. Mauris pretium justo non risus tempor feugiat a a tortor. Fusce finibus rutrum vulputate.",
     ),
     TutorModel(
-        avtUrl:
-            "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80",
-        name: "Giáo viên 9",
-        isFav: true,
-        country: Country(code: 'vn', name: "Việt Nam"),
-        rate: 3,
-        specList: ["PET", "Tiếng anh cho người mất gốc"],
-        des:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+      avtUrl:
+          "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80",
+      name: "Giáo viên 9",
+      isFav: true,
+      country: Country(code: 'vn', name: "Việt Nam"),
+      rate: 3,
+      specList: ["PET", "Tiếng anh cho người mất gốc"],
+      des:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      langs: ["English"],
+      majors: ["Tiếng Anh cho trẻ em", "Giao tiếp", "Tiếng Anh cho công việc"],
+      hobby:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus orci, auctor a metus vitae, ullamcorper molestie lacus. Maecenas tristique.",
+      exp:
+          "Duis nec orci nisl. Morbi varius ex non libero mollis, sollicitudin gravida ex tincidunt. Cras hendrerit sed orci ut bibendum. Nunc ultrices viverra nunc, at ultricies leo mollis tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porta risus in dolor pellentesque mollis. In ut sem sollicitudin, eleifend turpis ac, mattis felis. Maecenas in congue turpis, facilisis sollicitudin erat. Nullam at lectus vitae felis vestibulum mollis eget at lacus. Nam condimentum at ex a ullamcorper. Curabitur non vehicula est. Mauris pretium justo non risus tempor feugiat a a tortor. Fusce finibus rutrum vulputate.",
+    ),
     TutorModel(
       avtUrl:
           "https://images.unsplash.com/photo-1634685468530-528507cde3b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=464&q=80",
@@ -127,20 +154,25 @@ class LocalData {
       specList: ["Tiếng anh full"],
       des:
           "Đây là đoạn text cực dài hoặc là cực ngắn nhưng nó sẽ chỉ hạn định ở 1 số dòng nhất định",
+      langs: ["English"],
+      majors: ["Tiếng Anh cho trẻ em", "Giao tiếp", "Tiếng Anh cho công việc"],
+      hobby:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus orci, auctor a metus vitae, ullamcorper molestie lacus. Maecenas tristique.",
+      exp:
+          "Duis nec orci nisl. Morbi varius ex non libero mollis, sollicitudin gravida ex tincidunt. Cras hendrerit sed orci ut bibendum. Nunc ultrices viverra nunc, at ultricies leo mollis tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porta risus in dolor pellentesque mollis. In ut sem sollicitudin, eleifend turpis ac, mattis felis. Maecenas in congue turpis, facilisis sollicitudin erat. Nullam at lectus vitae felis vestibulum mollis eget at lacus. Nam condimentum at ex a ullamcorper. Curabitur non vehicula est. Mauris pretium justo non risus tempor feugiat a a tortor. Fusce finibus rutrum vulputate.",
     ),
   ];
 
   static TutorModel tutorDetail = TutorModel(
     avtUrl:
-    "https://images.unsplash.com/photo-1634685468530-528507cde3b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=464&q=80",
+        "https://images.unsplash.com/photo-1634685468530-528507cde3b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=464&q=80",
     name: "Giáo viên 10",
     isFav: false,
     country: Country(code: 'us', name: "American"),
     rate: 2,
     specList: ["Tiếng anh full"],
     des:
-    "Đây là đoạn text cực dài hoặc là cực ngắn nhưng nó sẽ chỉ hạn định ở 1 số dòng nhất định",
-
+        "Đây là đoạn text cực dài hoặc là cực ngắn nhưng nó sẽ chỉ hạn định ở 1 số dòng nhất định",
     langs: ["English"],
     majors: ["Tiếng Anh cho trẻ em", "Giao tiếp", "Tiếng Anh cho công việc"],
     hobby:
@@ -221,7 +253,8 @@ class LocalData {
   static List<CourseModel> courseListExample = [
     CourseModel(
       id: "1",
-      image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80",
+      image:
+          "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80",
       title: "This is title ebook",
       des:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus orci, auctor a metus vitae, ullamcorper molestie lacus. Maecenas tristique.",
@@ -229,7 +262,8 @@ class LocalData {
     ),
     CourseModel(
       id: "2",
-      image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=388&q=80",
+      image:
+          "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=388&q=80",
       title: "E",
       des: "Lorem ipsum dolor sit amet,",
       level: "beginner",

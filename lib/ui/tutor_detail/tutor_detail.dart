@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:lettutor/datas/local.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/ui/tutor_detail/comp/tutor_calendar_dialog.dart';
 import 'package:lettutor/utils/routes/routes.dart';
@@ -10,14 +9,14 @@ import 'comp/intro_tutor_info.dart';
 import 'comp/intro_tutor_video.dart';
 
 class TutorDetailUI extends StatelessWidget {
-  TutorDetailUI({Key? key}) : super(key: key);
-  TutorModel tutorDetail = LocalData.tutorDetail;
+  TutorDetailUI({Key? key,required this.tutorDetail}) : super(key: key);
+  final TutorModel tutorDetail;
 
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
 
-    List<Widget> listW1 = [IntroTutorInfo(), IntroTutorVideo()];
+    List<Widget> listW1 = [IntroTutorInfo(tutorDetail: tutorDetail,), IntroTutorVideo()];
 
     void _onPressBookBtn() => showDialog(
       context: context,
@@ -56,7 +55,7 @@ class TutorDetailUI extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: InfoMoreTutor(),
+            child: InfoMoreTutor(tutorDetail: tutorDetail,),
           ),
         ],
       ),

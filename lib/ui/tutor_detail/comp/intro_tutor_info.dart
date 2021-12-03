@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor/datas/local.dart';
+import 'package:get/get.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
@@ -9,8 +9,8 @@ import 'report_dialog.dart';
 import 'review_dialog.dart';
 
 class IntroTutorInfo extends StatelessWidget {
-  IntroTutorInfo({Key? key}) : super(key: key);
-  TutorModel tutorDetail = LocalData.tutorDetail;
+  IntroTutorInfo({Key? key, required this.tutorDetail}) : super(key: key);
+  final TutorModel tutorDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,15 @@ class IntroTutorInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 10),
+        Row(
+          children: [
+            IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: Icon(Icons.arrow_back_ios))
+          ],
+        ),
         Row(
           children: [
             ClipRRect(
@@ -71,8 +80,7 @@ class IntroTutorInfo extends StatelessWidget {
                       height: 20,
                       width: 30,
                       child: SvgPicture.asset(
-                          flagString.replaceAll(
-                              "vn", tutorDetail.country.code),
+                          flagString.replaceAll("vn", tutorDetail.country.code),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),

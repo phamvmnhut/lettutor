@@ -50,7 +50,6 @@ class Routes {
     tutor_gen: (BuildContext context) => TutorGenUI(),
     tutor_reg: (BuildContext context) => TutorRegUI(),
     tutor_search: (BuildContext context) => TutorSearchUI(),
-    tutor_detail: (BuildContext context) => TutorDetailUI(),
     tutor_calendar: (BuildContext context) => TutorCalendarUI(),
     user_profile: (BuildContext context) => ProfileUI(),
     schedule: (BuildContext context) => ScheduleUI(),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/datas/local.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 
 class InfoMoreTutor extends StatelessWidget {
-  InfoMoreTutor({Key? key}) : super(key: key);
-  TutorModel tutorDetail = LocalData.tutorDetail;
+  InfoMoreTutor({Key? key, required this.tutorDetail}) : super(key: key);
+  final TutorModel tutorDetail;
 
   @override
   Widget build(BuildContext context) {

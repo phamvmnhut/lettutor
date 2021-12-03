@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 
+import 'package:lettutor/features/tutor.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
-import 'package:lettutor/utils/ex.dart';
-import 'package:lettutor/utils/routes/routes.dart';
 
-class TutorCard extends StatefulWidget {
+class TutorCard extends StatelessWidget {
   TutorCard({Key? key, required this.tutor}) : super(key: key);
   final TutorModel tutor;
+  final _tutorCtrl = Get.put(TutorCtrl());
+  late var isFav = tutor.isFav.obs;
 
-  @override
-  _State createState() => _State();
-}
-
-class _State extends State<TutorCard> {
   @override
   Widget build(BuildContext context) {
     Color priColor = Theme.of(context).primaryColor;
@@ -35,13 +32,17 @@ class _State extends State<TutorCard> {
             right: 0,
             top: 0,
             child: IconButton(
-              icon: Icon(
-                Icons.favorite_border_outlined,
-                color: widget.tutor.isFav ? Colors.red : null,
+              icon: Obx(
+                () => Icon(
+                  Icons.favorite_border_outlined,
+                  color: isFav.value ? Colors.red : null,
+                ),
               ),
               tooltip: 'Favorite',
               onPressed: () {
                 print("favorite click");
+                // _tutorCtrl.
+                isFav = RxBool(isFav.value == false);
               },
             ),
           ),
@@ -60,7 +61,7 @@ class _State extends State<TutorCard> {
                       height: 50,
                       width: 50,
                       placeholder: 'assets/images/indicator.gif',
-                      image: widget.tutor.avtUrl,
+                      image: tutor.avtUrl,
                       imageErrorBuilder: (context, intance, strace) =>
                           Image.asset("assets/images/indicator.gif",
                               height: 50, width: 50, fit: BoxFit.cover),
@@ -68,11 +69,10 @@ class _State extends State<TutorCard> {
                   ),
                   title: TextButton(
                     onPressed: () {
-                      print("go to tutor detail");
-                      Navigator.pushNamed(context, Routes.tutor_detail);
+                      _tutorCtrl.navigateDetail(tutor);
                     },
                     child: Text(
-                      widget.tutor.name,
+                      tutor.name,
                       style: textTheme.headline3,
                     ),
                   ),
@@ -84,19 +84,18 @@ class _State extends State<TutorCard> {
                       height: 20,
                       width: 30,
                       child: SvgPicture.asset(
-                          flagString.replaceAll(
-                              "vn", widget.tutor.country.code),
+                          flagString.replaceAll("vn", tutor.country.code),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      widget.tutor.country.name,
+                      tutor.country.name,
                       style: textTheme.caption
                           ?.copyWith(fontStyle: FontStyle.italic),
                     ),
                     Spacer(),
                     RatingBar.builder(
-                      initialRating: widget.tutor.rate,
+                      initialRating: tutor.rate,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
@@ -114,13 +113,11 @@ class _State extends State<TutorCard> {
                 ),
                 SizedBox(height: 10),
                 Row(
-                  children: [
-                    SpecicalitiesList()..listSpec = widget.tutor.specList
-                  ],
+                  children: [SpecicalitiesList()..listSpec = tutor.specList],
                 ),
                 SizedBox(height: 10),
                 Text(
-                  widget.tutor.des,
+                  tutor.des,
                   style: Theme.of(context).textTheme.caption,
                   maxLines: 5,
                 ),

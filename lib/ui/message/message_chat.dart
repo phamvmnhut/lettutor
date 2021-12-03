@@ -24,7 +24,7 @@ class MessageChatUI extends StatelessWidget {
     _MessageModel(text: "OkE, i can help you"),
   ];
 
-  TutorModel tutor = LocalData.tutorDetail.tutor;
+  TutorModel tutor = LocalData.tutorDetail;
 
   @override
   Widget build(BuildContext context) {

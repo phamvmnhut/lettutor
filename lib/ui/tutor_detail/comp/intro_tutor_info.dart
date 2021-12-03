@@ -10,7 +10,7 @@ import 'review_dialog.dart';
 
 class IntroTutorInfo extends StatelessWidget {
   IntroTutorInfo({Key? key}) : super(key: key);
-  TutorDetailModel tutorDetail = LocalData.tutorDetail;
+  TutorModel tutorDetail = LocalData.tutorDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class IntroTutorInfo extends StatelessWidget {
                 height: 100,
                 width: 100,
                 placeholder: 'assets/images/indicator.gif',
-                image: tutorDetail.tutor.avtUrl,
+                image: tutorDetail.avtUrl,
                 imageErrorBuilder: (context, intance, strace) => Image.asset(
                     "assets/images/indicator.gif",
                     height: 100,
@@ -48,9 +48,9 @@ class IntroTutorInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(tutorDetail.tutor.name, style: textTheme.headline2),
+                Text(tutorDetail.name, style: textTheme.headline2),
                 RatingBar.builder(
-                  initialRating: tutorDetail.tutor.rate,
+                  initialRating: tutorDetail.rate,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
@@ -72,12 +72,12 @@ class IntroTutorInfo extends StatelessWidget {
                       width: 30,
                       child: SvgPicture.asset(
                           flagString.replaceAll(
-                              "vn", tutorDetail.tutor.country.code),
+                              "vn", tutorDetail.country.code),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      tutorDetail.tutor.country.name,
+                      tutorDetail.country.name,
                       style: textTheme.caption
                           ?.copyWith(fontStyle: FontStyle.italic),
                     ),
@@ -90,7 +90,7 @@ class IntroTutorInfo extends StatelessWidget {
         SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(tutorDetail.tutor.des, style: textTheme.caption),
+          child: Text(tutorDetail.des, style: textTheme.caption),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

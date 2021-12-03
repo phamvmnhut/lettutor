@@ -9,6 +9,11 @@ class TutorModel {
   final List<String> specList;
   final String des;
 
+  List<String> langs;
+  List<String> majors;
+  String hobby;
+  String exp;
+
   TutorModel(
       {required this.isFav,
       required this.avtUrl,
@@ -16,22 +21,12 @@ class TutorModel {
       required this.country,
       required this.rate,
       required this.specList,
-      required this.des});
-}
-
-class TutorDetailModel {
-  final TutorModel tutor;
-  final List<String> langs;
-  final List<String> majors;
-  final String hobby;
-  final String exp;
-
-  TutorDetailModel(
-      {required this.tutor,
-      required this.langs,
-      required this.majors,
-      required this.hobby,
-      required this.exp});
+      required this.des,
+      this.langs = const [],
+      this.majors = const [],
+      this.hobby = "",
+      this.exp = ""
+      });
 }
 
 class ReviewModel {

@@ -130,8 +130,17 @@ class LocalData {
     ),
   ];
 
-  static TutorDetailModel tutorDetail = TutorDetailModel(
-    tutor: TutorListExample[1],
+  static TutorModel tutorDetail = TutorModel(
+    avtUrl:
+    "https://images.unsplash.com/photo-1634685468530-528507cde3b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=464&q=80",
+    name: "Giáo viên 10",
+    isFav: false,
+    country: Country(code: 'us', name: "American"),
+    rate: 2,
+    specList: ["Tiếng anh full"],
+    des:
+    "Đây là đoạn text cực dài hoặc là cực ngắn nhưng nó sẽ chỉ hạn định ở 1 số dòng nhất định",
+
     langs: ["English"],
     majors: ["Tiếng Anh cho trẻ em", "Giao tiếp", "Tiếng Anh cho công việc"],
     hobby:

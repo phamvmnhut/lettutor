@@ -11,7 +11,7 @@ import 'comp/intro_tutor_video.dart';
 
 class TutorDetailUI extends StatelessWidget {
   TutorDetailUI({Key? key}) : super(key: key);
-  TutorDetailModel tutorDetail = LocalData.tutorDetail;
+  TutorModel tutorDetail = LocalData.tutorDetail;
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 
 class InfoMoreTutor extends StatelessWidget {
   InfoMoreTutor({Key? key}) : super(key: key);
-  TutorDetailModel tutorDetail = LocalData.tutorDetail;
+  TutorModel tutorDetail = LocalData.tutorDetail;
 
   @override
   Widget build(BuildContext context) {

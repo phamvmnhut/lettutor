@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lettutor/constants/app_theme.dart';
 import 'package:lettutor/constants/strings.dart';
+import 'package:lettutor/ui/auth/loading_auth.dart';
 import 'package:lettutor/ui/auth/sign_in.dart';
 import 'package:lettutor/ui/course/course_gen.dart';
 import 'package:lettutor/ui/home/home.dart';
@@ -18,17 +20,24 @@ import 'package:lettutor/ui/tutor_gen/tutor_search.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 class MyApp extends StatelessWidget {
-  final bool isLoggedIn = false;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: Strings.appName,
-      theme: themeData,
-      darkTheme: themeDataDark,
-      themeMode: ThemeMode.dark,
-      routes: Routes.routes,
-      home: TutorDetailUI(),
+    return Listener(
+      onPointerDown: (_) {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.focusedChild?.unfocus();
+        }
+      },
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: Strings.appName,
+        theme: themeData,
+        darkTheme: themeDataDark,
+        themeMode: ThemeMode.dark,
+        routes: Routes.routes,
+        home: LoadingAuthUI(),
+      ),
     );
   }
 }

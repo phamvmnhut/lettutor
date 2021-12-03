@@ -12,6 +12,9 @@
 #### Tham khảo cấu trúc dự án ở
 https://github.com/zubairehman/flutter-boilerplate-project
 
+tham khảo sử dụng getx cho authentication
+https://medium.com/@suatozkaya/flutter-getx-basic-authentication-flow-de3d0313d5ae
+
 ```bash
 https://hampusborgos.github.io/country-flags/
 ```

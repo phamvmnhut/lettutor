@@ -1,12 +1,14 @@
-class UserModel {
-  final String name;
-  final String email;
-  final String? avatar;
-  final DateTime dayOfBirth;
-  final String? phoneNumber;
-  final String? country;
-  final String? lever;
-  final String? wantToLearn;
+import 'package:get/get.dart';
+
+class UserModel extends GetxController {
+  String name;
+  String email;
+  String? avatar;
+  DateTime dayOfBirth;
+  String? phoneNumber;
+  String? country;
+  String? lever;
+  String? wantToLearn;
 
   UserModel({
     required this.name,
@@ -18,4 +20,9 @@ class UserModel {
     this.lever,
     this.wantToLearn,
   });
+
+  updateUser( {required String name, required String avatar}){
+    this.name = name;
+    this.avatar = avatar;
+  }
 }

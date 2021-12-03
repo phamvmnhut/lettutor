@@ -38,6 +38,7 @@ dependencies:
   intl: ^0.17.0
   material_floating_search_bar: ^0.3.6
   expandable: ^5.0.1
+  get:
 
 dev_dependencies:
   flutter_test:

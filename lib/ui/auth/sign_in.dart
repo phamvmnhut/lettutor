@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:lettutor/features/auth.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 import '../components/background.dart';
@@ -8,11 +10,18 @@ import 'comp/or_divider.dart';
 import 'comp/social_network.dart';
 import '../components/custom_text_form_field.dart';
 
-class SignInUI extends StatelessWidget {
-  final TextEditingController _pwdController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+class SignInUI extends StatefulWidget {
 
-  //final snackBar = SnackBar(content: Text('email ou mot de passe incorrect'));
+  @override
+  _SignInUIState createState() => _SignInUIState();
+}
+
+class _SignInUIState extends State<SignInUI> {
+  AuthCtrl _viewCtrl = Get.put(AuthCtrl());
+  
+  final TextEditingController _pwdCtrl = TextEditingController();
+  final TextEditingController _emailCtrl = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -55,7 +64,7 @@ class SignInUI extends StatelessWidget {
           child: Column(
             children: [
               CustomTextFormField(
-                  controller: _emailController,
+                  controller: _emailCtrl,
                   labelText: "Email address",
                   icon: Icons.email,
                   obscureText: false,
@@ -64,7 +73,7 @@ class SignInUI extends StatelessWidget {
                 height: 12.0,
               ),
               CustomTextFormField(
-                  controller: _pwdController,
+                  controller: _pwdCtrl,
                   labelText: "Password",
                   icon: Icons.lock,
                   obscureText: true,
@@ -115,6 +124,7 @@ class SignInUI extends StatelessWidget {
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     print("Sign In is not validated");
+                    await _viewCtrl.loginUser(_emailCtrl.text, _pwdCtrl.text);
                   }
                   //Get.to(ChoiceScreen());
                 },

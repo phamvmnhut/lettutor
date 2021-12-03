@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/services/auth/auth.dart';
 import 'package:lettutor/services/auth/model.dart';
+import './cache_manager.dart';
 
-class AuthCtrl extends GetxController{
+class AuthCtrl extends GetxController with CacheManager{
   final isLogged = false.obs;
 
   late final AuthService _loginService;
@@ -16,21 +17,18 @@ class AuthCtrl extends GetxController{
 
   void logOut() {
     isLogged.value = false;
-    // TODO removeToken
-    // removeToken();
+    removeToken();
   }
 
   void login(String? token) async {
     isLogged.value = true;
     //Token is cached
-    // TODO saveToken
-    // await saveToken(token);
+    await saveToken(token);
   }
 
   void checkLoginStatus() {
     // TODO getToken
-    // final token = getToken();
-    final token = null;
+    final token = getToken();
     if (token != null) {
       isLogged.value = true;
     }

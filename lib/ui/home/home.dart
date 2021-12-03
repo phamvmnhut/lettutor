@@ -1,127 +1,66 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor/ui/components/background.dart';
+import 'package:lettutor/ui/course/course_gen.dart';
+import 'package:lettutor/ui/message/message_gen.dart';
+import 'package:lettutor/ui/profile/setting.dart';
+import 'package:lettutor/ui/schedule/schedule.dart';
+import 'package:lettutor/ui/tutor_gen/tutor_gen.dart';
 
-class HomeUI extends StatelessWidget {
+class HomeUI extends StatefulWidget {
   const HomeUI({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
-    Color cardColor = Theme.of(context).cardColor;
-    Color priColor = Theme.of(context).primaryColor;
-    Color hlColor = Theme.of(context).highlightColor;
-    Color btnColor = Theme.of(context).buttonColor;
-    return Material(
-      child: Background(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Card(
-                child: Container(
-                  width: double.infinity,
-                  child: Column(
+  _HomeUIState createState() => _HomeUIState();
+}
 
-                    children: [
-                      Text(
-                        "Welcome to Let Tutor",
-                        style: Theme.of(context).textTheme.headline2,
-                      ),
-                      Text(
-                        "Get your room by booking now",
-                        style: Theme.of(context).textTheme.headline3,
-                      ),
-                      SizedBox(height: 10),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          print("Book now click");
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(24)),
-                          ),
-                        ),
-                        label: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Book Now", style: textTheme.button),
-                        ),
-                        icon: Icon(Icons.library_add_check_outlined,
-                            size: 20.0, color: btnColor),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                childAspectRatio: 3 / 2,
-                children: [
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    color: Colors.amber,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.bookmarks_outlined),
-                        SizedBox(height: 10),
-                        Text("Tutor", style: textTheme.headline3)
-                      ],
-                    ),
-                  ),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    color: Colors.redAccent,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.schedule_send),
-                        SizedBox(height: 10),
-                        Text("Schedule", style: textTheme.headline3)
-                      ],
-                    ),
-                  ),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    color: Colors.blue,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.my_library_books_outlined),
-                        SizedBox(height: 10),
-                        Text("Course", style: textTheme.headline3)
-                      ],
-                    ),
-                  ),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    color: Colors.grey,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.settings),
-                        SizedBox(height: 10),
-                        Text("Settings", style: textTheme.headline3)
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ],
+class _HomeUIState extends State<HomeUI> {
+  int _selectedIndex = 0;
+
+  static List<Widget>_widgetOptions= <Widget>[
+    TutorGenUI(),
+    MessageGenUI(),
+    ScheduleUI(),
+    CourseGenUI(),
+    SettingUI(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child:_widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'Message',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Schedule',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.source_outlined),
+            label: 'Course',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Setting',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }

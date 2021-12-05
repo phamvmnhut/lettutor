@@ -3,7 +3,7 @@ import 'package:lettutor/models/index.dart';
 class TutorModel {
   final String avtUrl;
   final String name;
-  final bool isFav;
+  bool isFav;
   final Country country;
   final double rate;
   final List<String> specList;

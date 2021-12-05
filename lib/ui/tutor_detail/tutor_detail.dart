@@ -9,14 +9,14 @@ import 'comp/intro_tutor_info.dart';
 import 'comp/intro_tutor_video.dart';
 
 class TutorDetailUI extends StatelessWidget {
-  TutorDetailUI({Key? key,required this.tutorDetail}) : super(key: key);
-  final TutorModel tutorDetail;
+  TutorDetailUI({Key? key,required this.tutorIndex}) : super(key: key);
+  final int tutorIndex;
 
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
 
-    List<Widget> listW1 = [IntroTutorInfo(tutorDetail: tutorDetail,), IntroTutorVideo()];
+    List<Widget> listW1 = [IntroTutorInfo(tutorIndex: tutorIndex), IntroTutorVideo()];
 
     void _onPressBookBtn() => showDialog(
       context: context,
@@ -55,7 +55,7 @@ class TutorDetailUI extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: InfoMoreTutor(tutorDetail: tutorDetail,),
+            child: InfoMoreTutor(tutorIndex: tutorIndex),
           ),
         ],
       ),

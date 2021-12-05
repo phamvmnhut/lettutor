@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:lettutor/features/tutor.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
@@ -9,8 +10,9 @@ import 'report_dialog.dart';
 import 'review_dialog.dart';
 
 class IntroTutorInfo extends StatelessWidget {
-  IntroTutorInfo({Key? key, required this.tutorDetail}) : super(key: key);
-  final TutorModel tutorDetail;
+  IntroTutorInfo({Key? key, required this.tutorIndex}) : super(key: key);
+  final int tutorIndex;
+  final TutorCtrl _tutorCtrl = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class IntroTutorInfo extends StatelessWidget {
                 height: 100,
                 width: 100,
                 placeholder: 'assets/images/indicator.gif',
-                image: tutorDetail.avtUrl,
+                image: _tutorCtrl.tutors[tutorIndex].avtUrl,
                 imageErrorBuilder: (context, intance, strace) => Image.asset(
                     "assets/images/indicator.gif",
                     height: 100,
@@ -57,9 +59,10 @@ class IntroTutorInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(tutorDetail.name, style: textTheme.headline2),
+                Text(_tutorCtrl.tutors[tutorIndex].name,
+                    style: textTheme.headline2),
                 RatingBar.builder(
-                  initialRating: tutorDetail.rate,
+                  initialRating: _tutorCtrl.tutors[tutorIndex].rate,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
@@ -80,12 +83,13 @@ class IntroTutorInfo extends StatelessWidget {
                       height: 20,
                       width: 30,
                       child: SvgPicture.asset(
-                          flagString.replaceAll("vn", tutorDetail.country.code),
+                          flagString.replaceAll(
+                              "vn", _tutorCtrl.tutors[tutorIndex].country.code),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      tutorDetail.country.name,
+                      _tutorCtrl.tutors[tutorIndex].country.name,
                       style: textTheme.caption
                           ?.copyWith(fontStyle: FontStyle.italic),
                     ),
@@ -98,7 +102,8 @@ class IntroTutorInfo extends StatelessWidget {
         SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(tutorDetail.des, style: textTheme.caption),
+          child:
+              Text(_tutorCtrl.tutors[tutorIndex].des, style: textTheme.caption),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -119,14 +124,23 @@ class IntroTutorInfo extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: ElevatedButton.icon(
-                    onPressed: () {
-                      print("Love");
-                    },
-                    icon: Icon(Icons.favorite_border_outlined, size: 16),
-                    label: Text(
-                      "Love",
-                      style: textTheme.bodyText2,
-                    )),
+                  onPressed: () {
+                    print("Love");
+                    _tutorCtrl.toggleFav(tutorIndex);
+                  },
+                  icon: Obx(
+                    () => Icon(
+                      Icons.favorite_border_outlined,
+                      color: _tutorCtrl.tutors[tutorIndex].isFav
+                          ? Colors.red
+                          : null,
+                    ),
+                  ),
+                  label: Text(
+                    "Love",
+                    style: textTheme.bodyText2,
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(2.0),

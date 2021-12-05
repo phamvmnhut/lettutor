@@ -25,7 +25,7 @@ class TutorGrid extends StatelessWidget {
       staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
       itemBuilder: (context, index) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: new TutorCard(tutor: tutorCtrl.tutors.toList()[index]),
+        child: new TutorCard(tutorIndex: index),
       ),
       itemCount: tutorCtrl.tutors.length,
       mainAxisSpacing: 16,

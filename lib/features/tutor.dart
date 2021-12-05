@@ -8,7 +8,7 @@ import 'package:lettutor/ui/tutor_detail/tutor_detail.dart';
 class TutorCtrl extends GetxController {
 
   late final TutorService _service;
-  final tutors = <TutorModel>[].obs;
+  var tutors = <TutorModel>[].obs;
   var isLoading = false.obs;
 
   @override
@@ -17,6 +17,7 @@ class TutorCtrl extends GetxController {
     _service = Get.put(TutorService());
     // for offline
     tutors.addAll(LocalData.TutorListExample);
+
     isLoading.listen((loading) {
       if (loading) {
         Get.dialog(Center(child: CircularProgressIndicator()),
@@ -25,6 +26,12 @@ class TutorCtrl extends GetxController {
         Get.back();
       }
     });
+  }
+
+  toggleFav(int tutorIndex){
+    var changed = tutors[tutorIndex];
+    changed.isFav = !changed.isFav;
+    tutors[tutorIndex] = changed;
   }
 
   filterBySpecify(String s) {
@@ -43,9 +50,9 @@ class TutorCtrl extends GetxController {
     isLoading.value = false;
   }
 
-  navigateDetail(TutorModel tutor) {
+  navigateDetail(int tutorIndex) {
     Get.to(
-        TutorDetailUI(tutorDetail: tutor,),
+        ()=> TutorDetailUI(tutorIndex: tutorIndex,),
         preventDuplicates: false);
   }
 }

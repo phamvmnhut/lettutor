@@ -4,17 +4,16 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
 import 'package:lettutor/features/tutor.dart';
-import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 
-class TutorCard extends StatelessWidget {
-  TutorCard({Key? key, required this.tutor}) : super(key: key);
-  final TutorModel tutor;
-  final _tutorCtrl = Get.put(TutorCtrl());
-  late var isFav = tutor.isFav.obs;
+class TutorCard extends StatelessWidget  {
+  TutorCard({Key? key, required this.tutorIndex}) : super(key: key);
+  final int tutorIndex;
 
   @override
   Widget build(BuildContext context) {
+    final TutorCtrl _tutorCtrl = Get.find();
+
     Color priColor = Theme.of(context).primaryColor;
     Color bgColor = Theme.of(context).backgroundColor;
     Color cardColor = Theme.of(context).cardColor;
@@ -32,17 +31,14 @@ class TutorCard extends StatelessWidget {
             right: 0,
             top: 0,
             child: IconButton(
-              icon: Obx(
-                () => Icon(
-                  Icons.favorite_border_outlined,
-                  color: isFav.value ? Colors.red : null,
-                ),
-              ),
+              icon: Obx(()=>Icon(
+                Icons.favorite_border_outlined,
+                color: _tutorCtrl.tutors[tutorIndex].isFav ? Colors.red : null,
+              ),),
               tooltip: 'Favorite',
               onPressed: () {
                 print("favorite click");
-                // _tutorCtrl.
-                isFav = RxBool(isFav.value == false);
+                _tutorCtrl.toggleFav(tutorIndex);
               },
             ),
           ),
@@ -61,7 +57,7 @@ class TutorCard extends StatelessWidget {
                       height: 50,
                       width: 50,
                       placeholder: 'assets/images/indicator.gif',
-                      image: tutor.avtUrl,
+                      image: _tutorCtrl.tutors[tutorIndex].avtUrl,
                       imageErrorBuilder: (context, intance, strace) =>
                           Image.asset("assets/images/indicator.gif",
                               height: 50, width: 50, fit: BoxFit.cover),
@@ -69,10 +65,10 @@ class TutorCard extends StatelessWidget {
                   ),
                   title: TextButton(
                     onPressed: () {
-                      _tutorCtrl.navigateDetail(tutor);
+                      _tutorCtrl.navigateDetail(tutorIndex);
                     },
                     child: Text(
-                      tutor.name,
+                      _tutorCtrl.tutors[tutorIndex].name,
                       style: textTheme.headline3,
                     ),
                   ),
@@ -84,18 +80,18 @@ class TutorCard extends StatelessWidget {
                       height: 20,
                       width: 30,
                       child: SvgPicture.asset(
-                          flagString.replaceAll("vn", tutor.country.code),
+                          flagString.replaceAll("vn", _tutorCtrl.tutors[tutorIndex].country.code),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      tutor.country.name,
+                      _tutorCtrl.tutors[tutorIndex].country.name,
                       style: textTheme.caption
                           ?.copyWith(fontStyle: FontStyle.italic),
                     ),
                     Spacer(),
                     RatingBar.builder(
-                      initialRating: tutor.rate,
+                      initialRating: _tutorCtrl.tutors[tutorIndex].rate,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
@@ -113,11 +109,11 @@ class TutorCard extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Row(
-                  children: [SpecicalitiesList()..listSpec = tutor.specList],
+                  children: [SpecicalitiesList()..listSpec = _tutorCtrl.tutors[tutorIndex].specList],
                 ),
                 SizedBox(height: 10),
                 Text(
-                  tutor.des,
+                  _tutorCtrl.tutors[tutorIndex].des,
                   style: Theme.of(context).textTheme.caption,
                   maxLines: 5,
                 ),

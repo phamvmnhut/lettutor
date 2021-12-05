@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lettutor/features/tutor.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 import 'package:lettutor/ui/tutor_gen/comp/tutor_grid.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -60,6 +62,8 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
 
   late FloatingSearchBarController controller;
 
+  final TutorCtrl _tutorCtrl = Get.put(TutorCtrl());
+
   @override
   void initState() {
     super.initState();
@@ -102,10 +106,11 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
                           SizedBox(height: 20),
                           Row(
                             children: [
-                              Text("Search Result",
-                                  style: textTheme.headline3),
+                              Text("Search Result", style: textTheme.headline3),
                               SizedBox(width: 10),
-                              Text("10 make", style: textTheme.headline4?.copyWith(fontStyle: FontStyle.italic))
+                              Obx(() => Text("${_tutorCtrl.tutors.length} make",
+                                  style: textTheme.headline4
+                                      ?.copyWith(fontStyle: FontStyle.italic)))
                             ],
                           ),
                           SizedBox(height: 5),
@@ -133,12 +138,15 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
           setState(() {
             filteredSearchHistory = filterSearchTerms(filter: query);
           });
+          print("filtered $query");
         },
         onSubmitted: (query) {
           setState(() {
             addSearchTerm(query);
             selectedTerm = query;
           });
+          print("search: $query");
+          _tutorCtrl.searchTutor(query);
           controller.close();
         },
         builder: (context, transition) {
@@ -146,12 +154,10 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
             color: cardColor,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
-                side: BorderSide(width: 0.5, color: priColor)
-            ),
+                side: BorderSide(width: 0.5, color: priColor)),
             child: Builder(
               builder: (context) {
-                if (filteredSearchHistory.isEmpty &&
-                    controller.query.isEmpty) {
+                if (filteredSearchHistory.isEmpty && controller.query.isEmpty) {
                   return Container(
                     height: 45,
                     width: double.infinity,
@@ -172,6 +178,7 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
                         addSearchTerm(controller.query);
                         selectedTerm = controller.query;
                       });
+                      _tutorCtrl.searchTutor(controller.query);
                       controller.close();
                     },
                   );
@@ -181,30 +188,31 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
                     children: filteredSearchHistory
                         .map(
                           (term) => ListTile(
-                        title: Text(
-                          term,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: textTheme.caption,
-                        ),
-                        leading: Icon(Icons.history, color: hlColor),
-                        trailing: IconButton(
-                          icon: Icon(Icons.clear, color: hlColor),
-                          onPressed: () {
-                            setState(() {
-                              deleteSearchTerm(term);
-                            });
-                          },
-                        ),
-                        onTap: () {
-                          setState(() {
-                            putSearchTermFirst(term);
-                            selectedTerm = term;
-                          });
-                          controller.close();
-                        },
-                      ),
-                    )
+                            title: Text(
+                              term,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: textTheme.caption,
+                            ),
+                            leading: Icon(Icons.history, color: hlColor),
+                            trailing: IconButton(
+                              icon: Icon(Icons.clear, color: hlColor),
+                              onPressed: () {
+                                setState(() {
+                                  deleteSearchTerm(term);
+                                });
+                              },
+                            ),
+                            onTap: () {
+                              setState(() {
+                                putSearchTermFirst(term);
+                                selectedTerm = term;
+                              });
+                              controller.close();
+                              _tutorCtrl.searchTutor(term);
+                            },
+                          ),
+                        )
                         .toList(),
                   );
                 }

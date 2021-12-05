@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lettutor/features/tutor.dart';
 
 import 'comp/tutor_gen_header.dart';
 import 'comp/tutor_grid.dart';
@@ -6,6 +8,8 @@ import 'comp/specialities_list.dart';
 
 class TutorGenUI extends StatelessWidget {
   TutorGenUI({Key? key}) : super(key: key);
+
+  final tutorCtrl = Get.put(TutorCtrl());
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +29,17 @@ class TutorGenUI extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text("Find Tutor",
-                          style: Theme.of(context).textTheme.headline2),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Find Tutor",
+                              style: Theme.of(context).textTheme.headline2),
+                          TextButton(
+                              onPressed: () {
+                                tutorCtrl.navigateSearch("");
+                              }, child: Text("Search more"))
+                        ],
+                      ),
                       SizedBox(height: 10),
                       SpecicalitiesList(),
                       SizedBox(height: 10),

@@ -8,7 +8,7 @@ import 'tutor_card.dart';
 
 class TutorGrid extends StatelessWidget {
   TutorGrid({Key? key}) : super(key: key);
-  final tutorCtrl = Get.put(TutorCtrl());
+  final TutorCtrl tutorCtrl = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +20,15 @@ class TutorGrid extends StatelessWidget {
                 : 3
             : 2
         : 1;
-    return SliverStaggeredGrid.countBuilder(
-      crossAxisCount: count,
-      staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
-      itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: new TutorCard(tutorIndex: index),
-      ),
-      itemCount: tutorCtrl.tutors.length,
-      mainAxisSpacing: 16,
-    );
+    return Obx(() => SliverStaggeredGrid.countBuilder(
+              crossAxisCount: count,
+              staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: new TutorCard(tutorIndex: index),
+              ),
+              itemCount: tutorCtrl.tutors.length,
+              mainAxisSpacing: 16,
+            ));
   }
 }

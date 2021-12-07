@@ -26,11 +26,12 @@ class _ScheduleRowState extends State<ScheduleRow> {
           builder: (context) => ScheduleDialog(sch: widget.sche),
         );
     void _onPressViewBtn() => showDialog(
-      context: context,
-      builder: (context) => ScheduleDialog(sch: widget.sche),
-    );
-    return Container(
-      child: Row(
+          context: context,
+          builder: (context) => ScheduleDialog(sch: widget.sche),
+        );
+    return Column(children: [
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
             children: [
@@ -40,42 +41,88 @@ class _ScheduleRowState extends State<ScheduleRow> {
                   style: textTheme.headline4)
             ],
           ),
-          SizedBox(width: 10),
+          SizedBox(width: 5),
           TutorShortInfo(tutor: widget.sche.tutor),
-          Spacer(),
-          widget.sche.isHistory ? Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  _onPressViewBtn();
-                },
-                child: Text("View", style: textTheme.caption),
-              ),
-              SizedBox(height: 5),
-            ],
-          ): Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  print("Goto Start lession");
-                },
-                child: Text("Start", style: textTheme.caption),
-              ),
-              SizedBox(height: 5),
-              ElevatedButton(
-                onPressed: () {
-                  _onPressEditBtn();
-                },
-                child: Text("Edit", style: textTheme.caption),
-              ),
-              SizedBox(height: 5),
-            ],
-          ),
-          SizedBox(width: 10)
         ],
       ),
-    );
+      Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              print("Chat");
+            },
+            child: Text("Chat", style: textTheme.caption),
+          ),
+          SizedBox(width: 5),
+          widget.sche.isHistory
+              ? Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        print("Goto Start lession");
+                      },
+                      child: Text("Start", style: textTheme.caption),
+                    ),
+                    SizedBox(width: 5),
+                    ElevatedButton(
+                      onPressed: () {
+                        _onPressEditBtn();
+                      },
+                      child: Text("Edit", style: textTheme.caption),
+                    ),
+                  ],
+                )
+              : ElevatedButton(
+                  onPressed: () {
+                    _onPressEditBtn();
+                  },
+                  child: Text("View", style: textTheme.caption),
+                ),
+          SizedBox(width: 5),
+        ],
+      )
+    ]);
   }
 }
+//
+// widget.sche.isHistory ? Column(
+// children: [
+// ElevatedButton(
+// onPressed: () {
+// _onPressViewBtn();
+// },
+// style: ElevatedButton.styleFrom(
+// minimumSize: Size.zero, // <-- Add this
+// padding: EdgeInsets.fromLTRB(10, 6, 10, 6), // <-- and this
+// ),
+// child: Text("View", style: textTheme.caption),
+// ),
+// SizedBox(height: 5),
+// ],
+// ): Column(
+// children: [
+// ElevatedButton(
+// style: ElevatedButton.styleFrom(
+// minimumSize: Size.zero, // <-- Add this
+// padding: EdgeInsets.fromLTRB(10, 6, 10, 6), // <-- and this
+// ),
+// onPressed: () {
+// print("Goto Start lession");
+// },
+// child: Text("Start", style: textTheme.caption),
+// ),
+// // SizedBox(height: 5),
+// ElevatedButton(
+// style: ElevatedButton.styleFrom(
+// minimumSize: Size.zero, // <-- Add this
+// padding: EdgeInsets.fromLTRB(10, 6, 10, 6), // <-- and this
+// ),
+// onPressed: () {
+// _onPressEditBtn();
+// },
+// child: Text("Edit", style: textTheme.caption),
+// ),
+// SizedBox(height: 5),
+// ],
+// ),

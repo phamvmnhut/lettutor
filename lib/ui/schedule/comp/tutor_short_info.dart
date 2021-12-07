@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
@@ -22,6 +23,7 @@ class TutorShortInfo extends StatelessWidget {
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
@@ -39,33 +41,25 @@ class TutorShortInfo extends StatelessWidget {
               ),
             ),
             SizedBox(width: 5),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    print("go to tutor detail");
-                    Navigator.pushNamed(context, Routes.tutor_detail);
-                  },
-                  child: Text(
-                    tutor.name,
-                    style: textTheme.headline4,
-                  ),
-                ),
-                ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Chat", style: textTheme.caption)),
-              ],
+            TextButton(
+              onPressed: () {
+                print("go to tutor detail");
+                Navigator.pushNamed(context, Routes.tutor_detail);
+              },
+              child: Text(
+                tutor.name,
+                style: textTheme.headline4,
+                maxLines: 2,
+              ),
             ),
           ],
         ),
-        SizedBox(height: 10),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: 20,
-              width: 30,
+              height: 15,
+              width: 27.5,
               child: SvgPicture.asset(
                   flagString.replaceAll("vn", tutor.country.code),
                   package: 'country_icons'),

@@ -39,7 +39,7 @@ class _ScheduleUIState extends State<ScheduleUI> {
               view: CalendarView.schedule,
               showDatePickerButton: true,
               scheduleViewSettings: ScheduleViewSettings(
-                appointmentItemHeight: 100,
+                appointmentItemHeight: 120,
                 hideEmptyScheduleWeek: true,
                 dayHeaderSettings: DayHeaderSettings(
                   dayFormat: 'EEE',

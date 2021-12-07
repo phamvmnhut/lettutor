@@ -223,7 +223,7 @@ class LocalData {
   static List<ScheduleModel> scheduleList = [
     ScheduleModel(
       id: "1",
-      tutor: TutorListExample[1],
+      tutor: TutorListExample[0],
       startTime: DateTime.now().add(Duration(hours: 1)),
       endTime: DateTime.now().add(Duration(hours: 1, minutes: 30)),
       requirement: "Chủ đề: anh văn giao tiếp xã hội",
@@ -241,7 +241,7 @@ class LocalData {
     ),
     ScheduleModel(
       id: "2",
-      tutor: TutorListExample[1],
+      tutor: TutorListExample[2],
       startTime: DateTime.now().add(Duration(hours: 4)),
       endTime: DateTime.now().add(Duration(hours: 4, minutes: 30)),
       requirement: "Tôi muốn buổi học thật hấp dẫn",

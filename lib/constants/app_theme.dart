@@ -108,7 +108,6 @@ final ThemeData themeDataDark = new ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       primary: AppColors.mainColor[900],
-      elevation: 0.0,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),

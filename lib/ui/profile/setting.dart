@@ -23,10 +23,17 @@ class SettingUI extends StatelessWidget {
     Color cardColor = Theme.of(context).cardColor;
     Color priColor = Theme.of(context).primaryColor;
     Color hlColor = Theme.of(context).highlightColor;
+    List<_ItemSetting> accSettingList = [
+      _ItemSetting(
+          name: "Account", iconData: Icons.account_circle_outlined, onPress: () {
+      }),
+      _ItemSetting(
+          name: "Tutor", iconData: Icons.assignment_ind_outlined, onPress: () {}),
+    ];
     List<_ItemSetting> genSettingList = [
       _ItemSetting(
           name: "Feedback", iconData: Icons.feedback_outlined, onPress: () {
-            print("Feebback click");
+            print("Feedback click");
       }),
       _ItemSetting(
           name: "Booking", iconData: Icons.bookmarks_outlined, onPress: () {}),
@@ -57,6 +64,42 @@ class SettingUI extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
+                Text("Account", style: textTheme.headline3),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.builder(
+                      shrinkWrap: true,
+                      gridDelegate:
+                      const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 80,
+                          childAspectRatio: 1,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10),
+                      itemCount: accSettingList.length,
+                      itemBuilder: (BuildContext ctx, index) {
+                        _ItemSetting item = accSettingList[index];
+                        return InkWell(
+                          onTap: item.onPress,
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            height: 80,
+                            width: 80,
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(item.iconData),
+                                SizedBox(height: 5),
+                                Text(item.name, style: textTheme.caption)
+                              ],
+                            ),
+                            decoration: BoxDecoration(
+                                color: cardColor, borderRadius: BorderRadius.circular(10)),
+                          ),
+                        );
+                      }),
+                ),
+                SizedBox(height: 10),
                 Text("General", style: textTheme.headline3),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

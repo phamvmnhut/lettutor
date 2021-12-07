@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/features/auth.dart';
+import 'package:lettutor/features/setting.dart';
 import 'package:lettutor/ui/components/background.dart';
 
 class _ItemSetting {
@@ -13,9 +14,10 @@ class _ItemSetting {
 }
 
 class SettingUI extends StatelessWidget {
-  AuthCtrl _authCtrl = Get.put(AuthCtrl());
-
   SettingUI({Key? key}) : super(key: key);
+
+  final AuthCtrl _authCtrl = Get.find();
+  final SettingCtrl _settingCtrl = Get.put(SettingCtrl());
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +27,25 @@ class SettingUI extends StatelessWidget {
     Color hlColor = Theme.of(context).highlightColor;
     List<_ItemSetting> accSettingList = [
       _ItemSetting(
-          name: "Account", iconData: Icons.account_circle_outlined, onPress: () {
-      }),
+          name: "Account",
+          iconData: Icons.account_circle_outlined,
+          onPress: () {
+            _settingCtrl.navigateProfile();
+          }),
       _ItemSetting(
-          name: "Tutor", iconData: Icons.assignment_ind_outlined, onPress: () {}),
+          name: "Tutor",
+          iconData: Icons.assignment_ind_outlined,
+          onPress: () {
+            _settingCtrl.navigateRegisterTutor();
+          }),
     ];
     List<_ItemSetting> genSettingList = [
       _ItemSetting(
-          name: "Feedback", iconData: Icons.feedback_outlined, onPress: () {
+          name: "Feedback",
+          iconData: Icons.feedback_outlined,
+          onPress: () {
             print("Feedback click");
-      }),
+          }),
       _ItemSetting(
           name: "Booking", iconData: Icons.bookmarks_outlined, onPress: () {}),
       _ItemSetting(name: "History", iconData: Icons.history, onPress: () {}),
@@ -70,11 +81,11 @@ class SettingUI extends StatelessWidget {
                   child: GridView.builder(
                       shrinkWrap: true,
                       gridDelegate:
-                      const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 80,
-                          childAspectRatio: 1,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10),
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 80,
+                              childAspectRatio: 1,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10),
                       itemCount: accSettingList.length,
                       itemBuilder: (BuildContext ctx, index) {
                         _ItemSetting item = accSettingList[index];
@@ -94,7 +105,8 @@ class SettingUI extends StatelessWidget {
                               ],
                             ),
                             decoration: BoxDecoration(
-                                color: cardColor, borderRadius: BorderRadius.circular(10)),
+                                color: cardColor,
+                                borderRadius: BorderRadius.circular(10)),
                           ),
                         );
                       }),
@@ -130,7 +142,8 @@ class SettingUI extends StatelessWidget {
                               ],
                             ),
                             decoration: BoxDecoration(
-                                color: cardColor, borderRadius: BorderRadius.circular(10)),
+                                color: cardColor,
+                                borderRadius: BorderRadius.circular(10)),
                           ),
                         );
                       }),
@@ -166,7 +179,8 @@ class SettingUI extends StatelessWidget {
                               ],
                             ),
                             decoration: BoxDecoration(
-                                color: cardColor, borderRadius: BorderRadius.circular(10)),
+                                color: cardColor,
+                                borderRadius: BorderRadius.circular(10)),
                           ),
                         );
                       }),
@@ -178,5 +192,4 @@ class SettingUI extends StatelessWidget {
       ),
     );
   }
-
 }

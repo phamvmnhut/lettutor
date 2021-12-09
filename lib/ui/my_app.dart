@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lettutor/constants/app_theme.dart';
 import 'package:lettutor/constants/strings.dart';
+import 'package:lettutor/services/theme.dart';
 import 'package:lettutor/ui/auth/loading_auth.dart';
 import 'package:lettutor/ui/auth/sign_in.dart';
 import 'package:lettutor/ui/course/course_gen.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         title: Strings.appName,
         theme: themeData,
         darkTheme: themeDataDark,
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeService().theme,
         routes: Routes.routes,
         home: LoadingAuthUI(),
       ),

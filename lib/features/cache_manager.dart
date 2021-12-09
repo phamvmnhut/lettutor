@@ -7,9 +7,20 @@ mixin CacheManager {
     return true;
   }
 
+  Future<bool> saveDarkMode(bool isDarkMode) async {
+    final box = GetStorage();
+    await box.write(CacheManagerKey.DARK_MODE.toString(), isDarkMode);
+    return true;
+  }
+
   String? getToken() {
     final box = GetStorage();
     return box.read(CacheManagerKey.TOKEN.toString());
+  }
+
+  bool getDarkMode() {
+    final box = GetStorage();
+    return box.read<bool>(CacheManagerKey.DARK_MODE.toString()) ?? false;
   }
 
   Future<void> removeToken() async {
@@ -18,4 +29,7 @@ mixin CacheManager {
   }
 }
 
-enum CacheManagerKey { TOKEN }
+enum CacheManagerKey {
+  TOKEN,
+  DARK_MODE
+}

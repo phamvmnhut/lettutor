@@ -5,8 +5,7 @@ import './font_family.dart';
 
 import 'package:flutter/material.dart';
 
-final ThemeData themeData = new ThemeData(
-  fontFamily: FontFamily.productSans,
+final ThemeData themeData = ThemeData.light().copyWith(
   primaryColor: AppColors.mainColor[500],
   accentColor: AppColors.accentColor[500],
   primaryColorLight: AppColors.mainColor[200],
@@ -20,7 +19,6 @@ final ThemeData themeData = new ThemeData(
   buttonColor: Colors.white70,
   disabledColor: Colors.white30,
   backgroundColor: Colors.white54,
-  highlightColor: Colors.black54,
   indicatorColor: AppColors.mainColor[800],
 
   textTheme: TextTheme(
@@ -62,8 +60,7 @@ final ThemeData themeData = new ThemeData(
   ),
 );
 
-final ThemeData themeDataDark = new ThemeData(
-  fontFamily: FontFamily.productSans,
+final ThemeData themeDataDark = ThemeData.dark().copyWith(
   primaryColor: AppColors.mainColor[500],
   accentColor: AppColors.accentColor[500],
   primaryColorLight: AppColors.mainColor[200],

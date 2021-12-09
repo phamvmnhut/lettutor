@@ -49,7 +49,12 @@ class SettingUI extends StatelessWidget {
       _ItemSetting(
           name: "Booking", iconData: Icons.bookmarks_outlined, onPress: () {}),
       _ItemSetting(name: "History", iconData: Icons.history, onPress: () {}),
-      _ItemSetting(name: "Advance", iconData: Icons.add_road, onPress: () {}),
+      _ItemSetting(
+          name: "Advance",
+          iconData: Icons.add_road,
+          onPress: () {
+            _settingCtrl.navigateConfigUI();
+          }),
     ];
     List<_ItemSetting> aboutSettingList = [
       _ItemSetting(

@@ -1,27 +1,49 @@
 import 'package:get/get.dart';
 
 class UserModel extends GetxController {
-  String name;
+  String id;
   String email;
-  String? avatar;
-  DateTime dayOfBirth;
-  String? phoneNumber;
+  String name;
+  String avatar;
+  String phone;
+
+  DateTime? birthday;
   String? country;
   String? lever;
   String? wantToLearn;
+  List<String>? roles;
+  String? language;
+  List<String>? courses;
+  String? requireNote;
+  String? level;
+  List<String>? learnTopics;
+  List<String>? testPreparations;
+  bool isPhoneActivated = false;
+  int timezone = 7;
 
   UserModel({
-    required this.name,
+    required this.id,
     required this.email,
-    this.avatar,
-    required this.dayOfBirth,
-    this.phoneNumber,
+    required this.name,
+    required this.avatar,
+    required this.phone,
+    this.birthday,
     this.country,
     this.lever,
     this.wantToLearn,
   });
 
-  updateUser( {required String name, required String avatar}){
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'],
+      email: json['email'],
+      name: json['name'],
+      avatar: json['avatar'],
+      phone: json['phone'],
+    );
+  }
+
+  updateUser({required String name, required String avatar}) {
     this.name = name;
     this.avatar = avatar;
   }

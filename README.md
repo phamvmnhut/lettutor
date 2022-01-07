@@ -19,3 +19,6 @@ https://medium.com/@suatozkaya/flutter-getx-basic-authentication-flow-de3d0313d5
 https://hampusborgos.github.io/country-flags/
 ```
 Danh sách cờ các quốc gia
+
+### Reference
+- Parse Json : (link)[https://medium.com/flutter-community/parsing-complex-json-in-flutter-747c46655f51]

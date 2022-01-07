@@ -29,8 +29,10 @@ class _ProfileUIState extends State<ProfileUI> {
     // TODO: implement initState
     super.initState();
     _nameController.text = currentUser.name;
-    selectedDate = currentUser.dayOfBirth;
-    _phoneController.text = currentUser.phoneNumber ?? '';
+    // selectedDate = currentUser.birthday ?? DateTime.now();
+    // _phoneController.text = currentUser.phone ?? '';
+    selectedDate = DateTime.now();
+    _phoneController.text = '';
   }
 
   @override

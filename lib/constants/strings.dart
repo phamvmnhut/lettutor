@@ -3,5 +3,5 @@ class Strings {
 
   //General
   static const String appName = "Let Tutor";
-  static const String apiUrl = "this-is-a-url";
+  static const String apiUrl = "https://sandbox.api.lettutor.com";
 }

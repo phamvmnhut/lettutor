@@ -6,12 +6,13 @@ import 'package:lettutor/models/user.dart';
 
 class LocalData {
   static UserModel currentUser = UserModel(
+    id: "123",
     name: "phamvmnhut",
     email: 'phamvmnhut@gmail.com',
     avatar:
         'https://media.istockphoto.com/photos/funny-raccoon-in-green-sunglasses-showing-a-rock-gesture-isolated-on-picture-id1154370446?k=20&m=1154370446&s=612x612&w=0&h=2AWvof66ovB87P3b7C_cu0pCZlZhDDFYUFr2KQ2UnwQ=',
-    dayOfBirth: DateTime.utc(2000, 11, 5),
-    phoneNumber: "0338473427",
+    birthday: DateTime.utc(2000, 11, 5),
+    phone: "0338473427",
   );
 
   static List<String> Specialities = [

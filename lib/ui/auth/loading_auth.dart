@@ -9,9 +9,6 @@ class LoadingAuthUI extends StatelessWidget {
 
   Future<void> initializeSettings() async {
     _authCtrl.checkLoginStatus();
-
-    //Simulate other services for 3 seconds
-    await Future.delayed(Duration(seconds: 3));
   }
 
   @override

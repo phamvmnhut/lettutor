@@ -8,8 +8,7 @@ import 'package:lettutor/utils/ex.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 class CourseCard extends StatefulWidget {
-  CourseCard({Key? key, required this.course})
-      : super(key: key);
+  CourseCard({Key? key, required this.course}) : super(key: key);
   final CourseModel course;
 
   @override
@@ -78,8 +77,10 @@ class _State extends State<CourseCard> {
                       var controller =
                           ExpandableController.of(context, required: true)!;
                       return TextButton(
-                        child:
-                            Text(controller.expanded ? "Collapse" : "Expand"),
+                        child: Text(
+                          controller.expanded ? "Collapse" : "Expand",
+                          style: Theme.of(context).textTheme.caption,
+                        ),
                         onPressed: () {
                           controller.toggle();
                         },
@@ -91,7 +92,7 @@ class _State extends State<CourseCard> {
                       icon: Icon(Icons.library_add_check_outlined,
                           size: 16.0, color: bgColor),
                       label: Text('Learn'),
-                      onPressed: ( ){}),
+                      onPressed: () {}),
                 ],
               ),
               SizedBox(height: 10),

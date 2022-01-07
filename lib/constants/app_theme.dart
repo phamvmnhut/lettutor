@@ -15,12 +15,11 @@ final ThemeData themeData = ThemeData.light().copyWith(
   brightness: Brightness.light,
   primaryColorBrightness: Brightness.light,
   accentColorBrightness: Brightness.light,
-  cardColor: Colors.white,
+  cardColor: Colors.white70,
   buttonColor: Colors.white70,
-  disabledColor: Colors.white30,
+  disabledColor: Colors.black26,
   backgroundColor: Colors.white54,
   indicatorColor: AppColors.mainColor[800],
-
   textTheme: TextTheme(
     headline1: TextStyle(),
     headline2: TextStyle(fontSize: 22),
@@ -39,24 +38,28 @@ final ThemeData themeData = ThemeData.light().copyWith(
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
-    button: TextStyle(color: Colors.white, fontSize: 16),
+    button: TextStyle(color: Colors.white70, fontSize: 16),
     // normal
     bodyText2: TextStyle(
       // small button
       color: Colors.white70,
       fontSize: 14,
     ),
+  ).apply(
+    bodyColor: Colors.black87,
+    displayColor: Colors.black54,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: AppColors.mainColor[500],
-      elevation: 0.0,
+      primary: AppColors.mainColor[600],
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
-      shadowColor: AppColors.mainColor[700],
       textStyle: TextStyle(fontSize: 14),
     ),
+  ),
+  iconTheme: IconThemeData(
+    color: Colors.black45
   ),
 );
 
@@ -70,7 +73,7 @@ final ThemeData themeDataDark = ThemeData.dark().copyWith(
   brightness: Brightness.dark,
   primaryColorBrightness: Brightness.dark,
   accentColorBrightness: Brightness.dark,
-  cardColor: Colors.black,
+  cardColor: Colors.black87,
   buttonColor: Colors.black54,
   disabledColor: Colors.black45,
   backgroundColor: Colors.black38,
@@ -94,21 +97,27 @@ final ThemeData themeDataDark = ThemeData.dark().copyWith(
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
-    button: TextStyle(color: Colors.black, fontSize: 16),
+    button: TextStyle(color: Colors.black87, fontSize: 16),
     // normal
     bodyText2: TextStyle(
       // small button
       color: Colors.black87,
       fontSize: 14,
     ),
+  ).apply(
+    bodyColor: Colors.white54,
+    displayColor: Colors.white70,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: AppColors.mainColor[900],
+      primary: AppColors.mainColor[700],
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(15)),
       ),
       textStyle: TextStyle(fontSize: 14),
     ),
+  ),
+  iconTheme: IconThemeData(
+      color: Colors.white60
   ),
 );

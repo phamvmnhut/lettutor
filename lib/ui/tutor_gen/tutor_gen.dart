@@ -37,7 +37,11 @@ class TutorGenUI extends StatelessWidget {
                           TextButton(
                               onPressed: () {
                                 tutorCtrl.navigateSearch("");
-                              }, child: Text("Search more"))
+                              },
+                              child: Text(
+                                "Search more",
+                                style: Theme.of(context).textTheme.caption,
+                              ))
                         ],
                       ),
                       SizedBox(height: 10),

@@ -31,12 +31,14 @@ class _HomeUIState extends State<HomeUI> {
 
   @override
   Widget build(BuildContext context) {
+    Color disabledColor = Theme.of(context).disabledColor;
+    Color primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       body: Center(
         child:_widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -59,7 +61,8 @@ class _HomeUIState extends State<HomeUI> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        unselectedItemColor: disabledColor,
+        selectedItemColor: primaryColor,
         onTap: _onItemTapped,
       ),
     );

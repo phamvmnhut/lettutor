@@ -10,7 +10,7 @@ class TutorGenHeader extends StatelessWidget {
     Color priColor = Theme.of(context).primaryColor;
     TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
-      color: priColor.lighter(lightness: 70),
+      color: priColor,
       height: 200,
       width: double.infinity,
       child: Center(

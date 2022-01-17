@@ -15,9 +15,7 @@ mixin CacheManager {
     final token = box.read(CacheManagerKey.TOKEN.toString());
     if (token != null) {
       try {
-        dev.log(token, name: 'get token');
         final tokenDecode = json.decode(token);
-        dev.log(tokenDecode.toString(), name: 'decode token');
         return TokenModel.fromJson(tokenDecode);
       } catch (err) {
         print(err);

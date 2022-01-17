@@ -13,20 +13,22 @@ class LoadingAuthUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: initializeSettings(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return waitingView();
-        } else {
-          if (snapshot.hasError)
-            return errorView(snapshot);
-          else
-            return Obx(() {
-              return _authCtrl.isLogged.value ? HomeUI() : SignInUI();
-            });
-        }
-      },
+    return SafeArea(
+      child: FutureBuilder(
+        future: initializeSettings(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return waitingView();
+          } else {
+            if (snapshot.hasError)
+              return errorView(snapshot);
+            else
+              return Obx(() {
+                return _authCtrl.isLogged.value ? HomeUI() : SignInUI();
+              });
+          }
+        },
+      ),
     );
   }
 

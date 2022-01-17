@@ -97,7 +97,7 @@ class _ProfileUIState extends State<ProfileUI> {
                                       height: 100,
                                       width: 100,
                                       placeholder: 'assets/images/indicator.gif',
-                                      image: currentUser.avatar ?? "",
+                                      image: currentUser.avatar,
                                       imageErrorBuilder:
                                           (context, intance, strace) => Image.asset(
                                               "assets/images/indicator.gif",

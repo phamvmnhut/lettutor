@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import 'package:lettutor/features/tutor.dart';
+import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 
-class TutorCard extends StatelessWidget  {
-  TutorCard({Key? key, required this.tutorIndex}) : super(key: key);
-  final int tutorIndex;
+import "dart:developer" as dev;
+
+class TutorCard extends StatelessWidget {
+  TutorCard({Key? key, required this.tutor}) : super(key: key);
+  final TutorModel tutor;
+  final TutorCtrl _tutorCtrl = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    final TutorCtrl _tutorCtrl = Get.find();
-
     Color priColor = Theme.of(context).primaryColor;
     Color bgColor = Theme.of(context).backgroundColor;
     Color cardColor = Theme.of(context).cardColor;
@@ -31,14 +33,14 @@ class TutorCard extends StatelessWidget  {
             right: 0,
             top: 0,
             child: IconButton(
-              icon: Obx(()=>Icon(
+              icon: Icon(
                 Icons.favorite_border_outlined,
-                color: _tutorCtrl.tutors[tutorIndex].isFav ? Colors.red : null,
-              ),),
+                color: tutor.isFav ? Colors.red : null,
+              ),
               tooltip: 'Favorite',
               onPressed: () {
                 print("favorite click");
-                _tutorCtrl.toggleFav(tutorIndex);
+                _tutorCtrl.toggleFav(tutor.userId);
               },
             ),
           ),
@@ -57,63 +59,63 @@ class TutorCard extends StatelessWidget  {
                       height: 50,
                       width: 50,
                       placeholder: 'assets/images/indicator.gif',
-                      image: _tutorCtrl.tutors[tutorIndex].avtUrl,
-                      imageErrorBuilder: (context, intance, strace) =>
-                          Image.asset("assets/images/indicator.gif",
-                              height: 50, width: 50, fit: BoxFit.cover),
+                      image: tutor.avatar,
+                      imageErrorBuilder: (context, _, strace) => Image.asset(
+                          "assets/images/indicator.gif",
+                          height: 50,
+                          width: 50,
+                          fit: BoxFit.cover),
                     ),
                   ),
                   title: TextButton(
                     onPressed: () {
-                      _tutorCtrl.navigateDetail(tutorIndex);
+                      _tutorCtrl.navigateDetail(tutor.id);
                     },
+
                     child: Text(
-                      _tutorCtrl.tutors[tutorIndex].name,
+                      tutor.name,
                       style: textTheme.headline3,
                     ),
                   ),
                 ),
                 SizedBox(height: 10),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 20,
                       width: 30,
                       child: SvgPicture.asset(
-                          flagString.replaceAll("vn", _tutorCtrl.tutors[tutorIndex].country.code),
+                          flagString.replaceAll(
+                              "vn", tutor.country.toLowerCase()),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      _tutorCtrl.tutors[tutorIndex].country.name,
+                      tutor.country,
                       style: textTheme.caption
                           ?.copyWith(fontStyle: FontStyle.italic),
                     ),
                     Spacer(),
-                    RatingBar.builder(
-                      initialRating: _tutorCtrl.tutors[tutorIndex].rate,
+                    RatingBarIndicator(
                       direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                      itemSize: 20,
-                      itemBuilder: (context, _) => Icon(
+                      rating: tutor.rating,
+                      itemBuilder: (context, index) => Icon(
                         Icons.star,
                         color: Colors.amber,
                       ),
-                      onRatingUpdate: (double value) {
-                        print("rating update");
-                      },
+                      itemCount: 5,
+                      itemSize: 15.0,
                     ),
                   ],
                 ),
                 SizedBox(height: 10),
                 Row(
-                  children: [SpecicalitiesList()..listSpec = _tutorCtrl.tutors[tutorIndex].specList],
+                  // children: [SpecicalitiesList()],
                 ),
                 SizedBox(height: 10),
                 Text(
-                  _tutorCtrl.tutors[tutorIndex].des,
+                  tutor.bio,
                   style: Theme.of(context).textTheme.caption,
                   maxLines: 5,
                 ),

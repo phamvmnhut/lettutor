@@ -24,7 +24,6 @@ class MessageChatUI extends StatelessWidget {
     _MessageModel(text: "OkE, i can help you"),
   ];
 
-  TutorModel tutor = LocalData.tutorDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +46,13 @@ class MessageChatUI extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                 ),
-                Flexible(
-                  child: MessageTutorItem(
-                    tutor: tutor,
-                    trailing:
-                        Icon(Icons.settings_applications, color: priColor),
-                  ),
-                ),
+                // Flexible(
+                //   child: MessageTutorItem(
+                //     tutor: tutor,
+                //     trailing:
+                //         Icon(Icons.settings_applications, color: priColor),
+                //   ),
+                // ),
               ],
             ),
             Expanded(

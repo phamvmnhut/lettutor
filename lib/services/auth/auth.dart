@@ -1,7 +1,7 @@
 import 'package:get/get_connect.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:lettutor/constants/strings.dart';
-import 'dart:developer' as developer;
+import 'dart:developer' as dev;
 
 import 'model.dart';
 

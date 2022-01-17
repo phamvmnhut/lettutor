@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/features/tutor.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:lettutor/ui/tutor_gen/comp/tutor_card.dart';
 
 import 'comp/tutor_gen_header.dart';
-import 'comp/tutor_grid.dart';
 import 'comp/specialities_list.dart';
 
 class TutorGenUI extends StatelessWidget {
@@ -13,6 +14,15 @@ class TutorGenUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    tutorCtrl.getListTutor();
+    double withSize = MediaQuery.of(context).size.width;
+    int count = withSize > 700
+        ? withSize > 1100
+            ? withSize > 1400
+                ? 4
+                : 3
+            : 2
+        : 1;
     return Material(
       child: CustomScrollView(
         slivers: [
@@ -56,7 +66,15 @@ class TutorGenUI extends StatelessWidget {
               ],
             ),
           ),
-          TutorGrid(),
+          Obx(() => SliverStaggeredGrid.countBuilder(
+                crossAxisCount: count,
+                staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
+                itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: TutorCard(tutor: tutorCtrl.tutors[index])),
+                itemCount: tutorCtrl.tutors.length,
+                mainAxisSpacing: 16,
+              ))
         ],
       ),
     );

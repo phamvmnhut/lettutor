@@ -17,9 +17,9 @@ class _HomeUIState extends State<HomeUI> {
 
   static List<Widget>_widgetOptions= <Widget>[
     TutorGenUI(),
-    MessageGenUI(),
-    ScheduleUI(),
-    CourseGenUI(),
+    SettingUI(),
+    SettingUI(),
+    SettingUI(),
     SettingUI(),
   ];
 

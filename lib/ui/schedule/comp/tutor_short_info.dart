@@ -32,7 +32,7 @@ class TutorShortInfo extends StatelessWidget {
                 height: 40,
                 width: 40,
                 placeholder: 'assets/images/indicator.gif',
-                image: tutor.avtUrl,
+                image: tutor.avatar,
                 imageErrorBuilder: (context, intance, strace) => Image.asset(
                     "assets/images/indicator.gif",
                     height: 40,
@@ -54,23 +54,23 @@ class TutorShortInfo extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              height: 15,
-              width: 27.5,
-              child: SvgPicture.asset(
-                  flagString.replaceAll("vn", tutor.country.code),
-                  package: 'country_icons'),
-            ),
-            SizedBox(width: 5),
-            Text(
-              tutor.country.name,
-              style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
-            ),
-          ],
-        ),
+        // Row(
+        //   mainAxisSize: MainAxisSize.min,
+        //   children: [
+        //     SizedBox(
+        //       height: 15,
+        //       width: 27.5,
+        //       child: SvgPicture.asset(
+        //           flagString.replaceAll("vn", tutor.country.code),
+        //           package: 'country_icons'),
+        //     ),
+        //     SizedBox(width: 5),
+        //     Text(
+        //       tutor.country.name,
+        //       style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
+        //     ),
+        //   ],
+        // ),
       ],
     );
   }

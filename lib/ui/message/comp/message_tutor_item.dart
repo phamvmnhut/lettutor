@@ -26,7 +26,7 @@ class MessageTutorItem extends StatelessWidget {
           height: 40,
           width: 40,
           placeholder: 'assets/images/indicator.gif',
-          image: tutor.avtUrl,
+          image: tutor.avatar,
           imageErrorBuilder: (context, intance, strace) =>
               Image.asset("assets/images/indicator.gif", fit: BoxFit.cover),
         ),

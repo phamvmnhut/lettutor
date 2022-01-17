@@ -7,6 +7,7 @@ import './cache_manager.dart';
 
 class AuthCtrl extends GetxController with CacheManager{
   final isLogged = false.obs;
+  final token = Rxn<TokenModel>();
 
   late final AuthService _loginService;
 
@@ -24,6 +25,7 @@ class AuthCtrl extends GetxController with CacheManager{
   void login(TokenModel token) async {
     isLogged.value = true;
     //Token is cached
+    this.token.value = token;
     await saveToken(token);
   }
 
@@ -36,6 +38,7 @@ class AuthCtrl extends GetxController with CacheManager{
     if (token.refreshToken.expires.difference(DateTime.now()).inSeconds > 0){
       if (token.accessToken.expires.difference(DateTime.now()).inSeconds > 0){
         isLogged.value = true;
+        this.token.value = token;
         return;
       }
       refreshToken(token.refreshToken.token);

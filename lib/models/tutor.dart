@@ -1,6 +1,7 @@
 import 'package:lettutor/models/index.dart';
 import "dart:developer" as dev;
 import 'feedback.dart';
+import 'package:get/get.dart';
 
 class TutorModel {
   String id;
@@ -35,54 +36,80 @@ class TutorModel {
   List<Feedback> feedbacks;
   double rating;
 
-  bool isFav = false;
-  TutorModel(
-      {
-        required this.id,
-        required this.createdAt,
-        required this.updatedAt,
-        required this.email,
-        required this.avatar,
-        required this.video,
-        required this.name,
-        required this.country,
-        required this.bio,
-        required this.education,
-        required this.experience,
-        required this.profession,
-        required this.targetStudent,
-        required this.interests,
-        required this.price,
-        required this.userId,
-        required this.rating,
-        required this.feedbacks,
-      });
+  final isFav = false.obs ;
+
+  TutorModel({
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.email,
+    required this.avatar,
+    required this.video,
+    required this.name,
+    required this.country,
+    required this.bio,
+    required this.education,
+    required this.experience,
+    required this.profession,
+    required this.targetStudent,
+    required this.interests,
+    required this.price,
+    required this.userId,
+    required this.rating,
+    required this.feedbacks,
+  });
 
   factory TutorModel.fromJson(Map<String, dynamic> json) {
     var listFb = json["feedbacks"] as List;
     List<Feedback> rows = listFb.map((i) => Feedback.fromJson(i)).toList();
     double sumRate = 0;
-    rows.forEach((element) {sumRate += element.rating;});
+    rows.forEach((element) {
+      sumRate += element.rating;
+    });
     return TutorModel(
-      id: json['id'],
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
-      email: json['email'],
-      avatar: json['avatar'],
-      video: json['video'],
-      name: json['name'],
-      country: json['country'],
-      bio: json['bio'],
-      education: json['education'],
-      experience: json['experience'],
-      profession: json['profession'],
-      targetStudent: json['targetStudent'],
-      interests: json['interests'],
-      price: json['price'],
-      userId: json['userId'],
-      feedbacks: rows,
-      rating: sumRate/rows.length
+        id: json['id'],
+        createdAt: DateTime.parse(json['createdAt']),
+        updatedAt: DateTime.parse(json['updatedAt']),
+        email: json['email'],
+        avatar: json['avatar'],
+        video: json['video'],
+        name: json['name'],
+        country: json['country'],
+        bio: json['bio'],
+        education: json['education'],
+        experience: json['experience'],
+        profession: json['profession'],
+        targetStudent: json['targetStudent'],
+        interests: json['interests'],
+        price: json['price'],
+        userId: json['userId'],
+        feedbacks: rows,
+        rating: sumRate / rows.length);
+  }
+
+  factory TutorModel.fromAnother(TutorModel tutor) {
+    var temp = TutorModel(
+        id: tutor.id,
+        createdAt: tutor.createdAt,
+        updatedAt: tutor.updatedAt,
+        email: tutor.email,
+        avatar: tutor.avatar,
+        video: tutor.video,
+        name: tutor.name,
+        country: tutor.country,
+        bio: tutor.bio,
+        education: tutor.education,
+        experience: tutor.experience,
+        profession: tutor.profession,
+        targetStudent: tutor.targetStudent,
+        interests: tutor.interests,
+        price: tutor.price,
+        userId: tutor.userId,
+        rating: tutor.rating,
+        feedbacks: tutor.feedbacks
     );
+    temp.isFav.value = tutor.isFav.value;
+    return temp;
   }
 }
 

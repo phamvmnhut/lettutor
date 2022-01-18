@@ -20,7 +20,7 @@ class GetListTutorResponseModel {
     List rows = list.map((i) => i["secondId"]).toList();
     var listTutorResp = listTutor.map((e) {
       if (rows.indexWhere((element) => element.toString() == e.userId) != -1){
-        e.isFav = true;
+        e.isFav.value = true;
       }
       return e;
     }).toList();

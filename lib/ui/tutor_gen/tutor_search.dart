@@ -6,6 +6,8 @@ import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 import 'package:lettutor/ui/tutor_gen/comp/tutor_grid.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
+import 'comp/tutor_card.dart';
+
 class TutorSearchUI extends StatefulWidget {
   @override
   _TutorSearchUIState createState() => _TutorSearchUIState();
@@ -117,7 +119,7 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
                             children: [
                               Text("Search Result", style: textTheme.headline3),
                               SizedBox(width: 10),
-                              Obx(() => Text("{_tutorCtrl.tutors.length} make",
+                              Obx(() => Text("${_tutorCtrl.tutors.length} make",
                                   style: textTheme.headline4
                                       ?.copyWith(fontStyle: FontStyle.italic)))
                             ],
@@ -129,18 +131,19 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
                   ],
                 ),
               ),
-              // Obx(() => SliverStaggeredGrid.countBuilder(
-              //       crossAxisCount: count,
-              //       staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
-              //       itemBuilder: (context, index) => Padding(
-              //         padding: const EdgeInsets.symmetric(horizontal: 8),
-              //         // child: new TutorCard(tutorIndex: index),
-              //         child: Text("anc"),
-              //       ),
-              //       itemCount: _tutorCtrl.tutors.length,
-              //       mainAxisSpacing: 16,
-              //     ))
-              // Text("asdf"),
+              Obx(
+                () => SliverStaggeredGrid.countBuilder(
+                  crossAxisCount: count,
+                  staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    // child: new TutorCard(tutorIndex: index),
+                    child: TutorCard(tutor: _tutorCtrl.tutors[index]),
+                  ),
+                  itemCount: _tutorCtrl.tutors.length,
+                  mainAxisSpacing: 16,
+                ),
+              )
             ],
           ),
         ),

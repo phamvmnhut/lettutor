@@ -35,7 +35,7 @@ class TutorCard extends StatelessWidget {
             child: IconButton(
               icon: Icon(
                 Icons.favorite_border_outlined,
-                color: tutor.isFav ? Colors.red : null,
+                color: tutor.isFav.value ? Colors.red : null,
               ),
               tooltip: 'Favorite',
               onPressed: () {

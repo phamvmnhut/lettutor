@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/features/tutor.dart';
-import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 
 class InfoMoreTutor extends StatelessWidget {
   InfoMoreTutor({Key? key}) : super(key: key);
@@ -43,7 +42,7 @@ class InfoMoreTutor extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              _tutorCtrl.tutorSelected.value!.experience,
+              _tutorCtrl.tutorSelected.experience,
               style: textTheme.caption,
             ),
           )

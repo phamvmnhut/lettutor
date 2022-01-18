@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:lettutor/models/tutor.dart';
+import 'package:get/get.dart';
+import 'package:lettutor/features/tutor.dart';
 import 'package:lettutor/ui/tutor_detail/comp/tutor_calendar_dialog.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
-import 'comp/info_more_tutor.dart';
 import 'comp/intro_tutor_info.dart';
 import 'comp/intro_tutor_video.dart';
 
 class TutorDetailUI extends StatelessWidget {
   TutorDetailUI({Key? key}) : super(key: key);
+  final tutorDetailCtrl = Get.put(TutorCtrl());
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,8 @@ class TutorDetailUI extends StatelessWidget {
       context: context,
       builder: (context) => TutorCalendarDialog(),
     );
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return Material(
       child: SafeArea(
         child: CustomScrollView(
@@ -55,7 +58,46 @@ class TutorDetailUI extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(
-              child: InfoMoreTutor(),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 10),
+                    Text("Language", style: textTheme.headline3),
+                    SizedBox(height: 10),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: SpecicalitiesList()..listSpec = _tutorCtrl.tutors[tutorIndex].langs,
+                    // ),
+                    SizedBox(height: 10),
+                    Text("Major", style: textTheme.headline3),
+                    SizedBox(height: 10),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: SpecicalitiesList()..listSpec = _tutorCtrl.tutors[tutorIndex].majors,
+                    // ),
+                    SizedBox(height: 10),
+                    Text("Hobby", style: textTheme.headline3),
+                    SizedBox(height: 10),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: Text(_tutorCtrl.tutors[tutorIndex].hobby, style: textTheme.caption),
+                    // ),
+                    SizedBox(height: 10),
+                    Text("Work Experience", style: textTheme.headline3),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        tutorDetailCtrl.tutorSelected.experience,
+                        style: textTheme.caption,
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
           ],
         ),

@@ -14,7 +14,6 @@ class TutorGenUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    tutorCtrl.getListTutor();
     double withSize = MediaQuery.of(context).size.width;
     int count = withSize > 700
         ? withSize > 1100
@@ -66,15 +65,17 @@ class TutorGenUI extends StatelessWidget {
               ],
             ),
           ),
-          Obx(() => SliverStaggeredGrid.countBuilder(
-                crossAxisCount: count,
-                staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
-                itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: TutorCard(tutor: tutorCtrl.tutors[index])),
-                itemCount: tutorCtrl.tutors.length,
-                mainAxisSpacing: 16,
-              ))
+          Obx(
+            () => SliverStaggeredGrid.countBuilder(
+              crossAxisCount: count,
+              staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
+              itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: TutorCard(tutor: tutorCtrl.tutors[index])),
+              itemCount: tutorCtrl.tutors.length,
+              mainAxisSpacing: 16,
+            ),
+          )
         ],
       ),
     );

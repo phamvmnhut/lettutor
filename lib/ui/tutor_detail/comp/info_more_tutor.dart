@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/features/tutor.dart';
+import 'package:lettutor/controller//tutor.dart';
 import 'package:lettutor/models/tutor_detail.dart';
 
 class InfoMoreTutor extends StatelessWidget {

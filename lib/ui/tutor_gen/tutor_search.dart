@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/features/tutor.dart';
+import 'package:lettutor/controller//tutor.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'dart:developer' as dev;

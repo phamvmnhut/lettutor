@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/features/tutor.dart';
+import 'package:lettutor/controller//tutor.dart';
 import 'package:lettutor/models/tutor_detail.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 

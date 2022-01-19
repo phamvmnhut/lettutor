@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/datas/local.dart';
-import 'package:lettutor/features/schedule.dart';
+import 'package:lettutor/controller//schedule.dart';
 import 'package:lettutor/models/schedule.dart';
 import 'package:lettutor/ui/schedule/comp/tutor_short_info.dart';
 import 'package:lettutor/utils/time_format.dart';

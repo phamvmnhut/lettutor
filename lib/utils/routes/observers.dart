@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/features/tutor.dart';
 import 'routes.dart';
 import "dart:developer" as dev;
 

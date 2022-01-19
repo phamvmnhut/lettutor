@@ -3,7 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import 'package:lettutor/features/tutor.dart';
+import 'package:lettutor/controller//tutor.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 

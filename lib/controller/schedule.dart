@@ -14,12 +14,19 @@ class ScheduleCtrl extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    // add server
+  }
 
+  @override
+  void onReady() {
+    super.onReady();
     schedules.addAll(LocalData.scheduleList);
-
-    isLoading.listen((loading) {
-      if (loading) {
-        Get.dialog(Center(child: CircularProgressIndicator()),
+    isLoading.listen((loadingState) {
+      if (loadingState) {
+        Get.dialog(
+            Center(
+              child: CircularProgressIndicator(),
+            ),
             barrierDismissible: false);
       } else {
         Get.back();

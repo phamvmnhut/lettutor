@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/features/auth.dart';
-import 'package:lettutor/features/setting.dart';
+import 'package:lettutor/controller//auth.dart';
+import 'package:lettutor/controller//setting.dart';
 import 'package:lettutor/ui/components/background.dart';
 
 class _ItemSetting {

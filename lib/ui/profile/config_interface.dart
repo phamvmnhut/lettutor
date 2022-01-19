@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/features/setting.dart';
+import 'package:lettutor/controller//setting.dart';
 
 class ConfigInterfaceUI extends StatelessWidget {
   ConfigInterfaceUI({Key? key}) : super(key: key);

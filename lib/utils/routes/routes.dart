@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:lettutor/features/binding/home_binding.dart';
+import 'package:lettutor/controller//binding/home_binding.dart';
 import 'package:lettutor/ui/course/course_gen.dart';
 import 'package:lettutor/ui/home/home.dart';
 import 'package:lettutor/ui/auth/sign_in.dart';

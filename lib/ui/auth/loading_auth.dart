@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/features/auth.dart';
+import 'package:lettutor/controller//auth.dart';
 import 'package:lettutor/ui/auth/sign_in.dart';
 import 'package:lettutor/ui/home/home.dart';
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:lettutor/features/binding/home_binding.dart';
 import 'package:lettutor/ui/course/course_gen.dart';
 import 'package:lettutor/ui/home/home.dart';
 import 'package:lettutor/ui/auth/sign_in.dart';
@@ -18,11 +20,14 @@ import 'package:lettutor/ui/tutor_gen/tutor_gen.dart';
 import 'package:lettutor/ui/tutor_gen/tutor_reg.dart';
 import 'package:lettutor/ui/tutor_gen/tutor_search.dart';
 
+import 'observers.dart';
+
 class Routes {
   Routes._();
+  static final RouteObserver<Route> observer = RouteObservers();
 
   //static variables
-  static const String home = '/home';
+  static const String HOME = '/';
   static const String test = '/test';
   static const String sign_up = '/sign_up';
   static const String sign_in = '/sign_in';
@@ -41,23 +46,39 @@ class Routes {
   static const String message_gen = '/message_gen';
   static const String message_chat = '/message_chat';
 
-  static final routes = <String, WidgetBuilder>{
-    sign_in: (BuildContext context) => SignInUI(),
-    home: (BuildContext context) => HomeUI(),
-    test: (BuildContext context) => TestUI(),
-    sign_up: (BuildContext context) => SignUpUI(),
-    forgot_pw: (BuildContext context) => ForgotPwUI(),
-    tutor_gen: (BuildContext context) => TutorGenUI(),
-    tutor_reg: (BuildContext context) => TutorRegUI(),
-    tutor_search: (BuildContext context) => TutorSearchUI(),
-    tutor_calendar: (BuildContext context) => TutorCalendarUI(),
-    user_profile: (BuildContext context) => ProfileUI(),
-    schedule: (BuildContext context) => ScheduleUI(),
-    course: (BuildContext context) => CourseGenUI(),
-    setting: (BuildContext context) => SettingUI(),
-    waiting_room: (BuildContext context) => WaitingRoomUI(),
-    video_learning: (BuildContext context) => VideoLearingUI(),
-    message_gen: (BuildContext context) => MessageGenUI(),
-    message_chat: (BuildContext context) => MessageChatUI(),
-  };
+  static final List<GetPage> routes = [
+    // 免登陆
+    GetPage(
+      name: Routes.HOME,
+      page: () => HomeUI(),
+      binding: HomeBinding(),
+    ),
+    // GetPage(
+    //   name: AppRoutes.SIGN_IN,
+    //   page: () => SignInPage(),
+    //   binding: SignInBinding(),
+    // ),
+    // GetPage(
+    //   name: AppRoutes.SIGN_UP,
+    //   page: () => SignUpPage(),
+    //   binding: SignUpBinding(),
+    // ),
+    //
+    // // 需要登录
+    // GetPage(
+    //   name: AppRoutes.Application,
+    //   page: () => ApplicationPage(),
+    //   binding: ApplicationBinding(),
+    //   middlewares: [
+    //     RouteAuthMiddleware(priority: 1),
+    //   ],
+    // ),
+    //
+    // // 分类列表
+    // GetPage(
+    //   name: AppRoutes.Category,
+    //   page: () => CategoryPage(),
+    //   binding: CategoryBinding(),
+    // ),
+  ];
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/features/tutor.dart';
+import 'package:lettutor/models/tutor_detail.dart';
 
 class InfoMoreTutor extends StatelessWidget {
-  InfoMoreTutor({Key? key}) : super(key: key);
-  final TutorCtrl _tutorCtrl = Get.find();
+  InfoMoreTutor({Key? key, required this.data}) : super(key: key);
+
+  final TutorDetailModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class InfoMoreTutor extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              _tutorCtrl.tutorSelected.experience,
+              data.experience ?? "",
               style: textTheme.caption,
             ),
           )

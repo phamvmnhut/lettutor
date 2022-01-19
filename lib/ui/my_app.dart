@@ -22,9 +22,11 @@ class MyApp extends StatelessWidget {
         theme: themeData,
         darkTheme: themeDataDark,
         themeMode: ThemeService().theme,
-        routes: Routes.routes,
+        getPages: Routes.routes,
         home: LoadingAuthUI(),
         // initialBinding: HomeBinding(),
+        navigatorObservers: [Routes.observer],
+        // initialRoute: ,
       ),
     );
   }

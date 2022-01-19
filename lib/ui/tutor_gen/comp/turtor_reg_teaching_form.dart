@@ -101,7 +101,7 @@ class _TutorRegTeachingFormState extends State<TutorRegTeachingForm> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Flexible(child: SpecicalitiesList()..listSpec = specList),
+                  Flexible(child: SpecicalitiesList(listSpec: [],)),
                 ],
               ),
               SizedBox(height: 10),

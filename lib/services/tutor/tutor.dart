@@ -5,6 +5,7 @@ import 'package:lettutor/constants/strings.dart';
 import 'package:lettutor/features/auth.dart';
 import 'package:lettutor/features/cache_manager.dart';
 import 'package:lettutor/models/auth.dart';
+import 'package:lettutor/models/tutor_detail.dart';
 import 'dart:developer' as dev;
 
 import 'model.dart';
@@ -21,6 +22,8 @@ class TutorService extends GetConnect with CacheManager{
   }
   final String getListUrl = "/tutor/more";
   final String manageFavoriteTutorUrl = "/user/manageFavoriteTutor";
+  final String getTutorInformationByIdUrl = "/tutor";
+  final String searchTutorUrl = "/tutor/search";
 
   Future<GetListTutorResponseModel> fetchListTutor() async {
     String tokenAccess = authCtrl.token.value!.accessToken.token;
@@ -38,9 +41,30 @@ class TutorService extends GetConnect with CacheManager{
     if (response.statusCode == HttpStatus.ok) {
       return "";
     } else {
-      dev.log(response.toString(), name: "manageFavoriteTutor::services");
       var json = response.body as Map<String, dynamic>;
       return json["message"];
     }
   }
+
+  Future<GetTutorInformationByIdResponseModel> getTutorInformationById(String tutorId) async {
+    String tokenAccess = authCtrl.token.value!.accessToken.token;
+    String url = "$getTutorInformationByIdUrl/$tutorId";
+    final response = await get(url, headers: {"Authorization": "Bearer $tokenAccess"});
+    if (response.statusCode == HttpStatus.ok && response.body["id"] != null) {
+      return GetTutorInformationByIdResponseModel.fromJson(response.body);
+    } else {
+      return GetTutorInformationByIdResponseModel.fromError(response.body);
+    }
+  }
+
+  Future<GetListTutorResponseModel> searchListTutor(SearchTutorRequestModel data) async {
+    String tokenAccess = authCtrl.token.value!.accessToken.token;
+    final response = await post(searchTutorUrl, data.toJson(), headers: {"Authorization": "Bearer $tokenAccess"});
+    if (response.statusCode == HttpStatus.ok) {
+      return GetListTutorResponseModel.fromSearchJson(response.body);
+    } else {
+      return GetListTutorResponseModel.fromError(response.body);
+    }
+  }
+
 }

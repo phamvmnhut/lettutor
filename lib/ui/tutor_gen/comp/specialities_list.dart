@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lettutor/datas/local.dart';
+import 'package:lettutor/features/tutor.dart';
 import 'package:lettutor/utils/ex.dart';
 
 class _SpecicalityItem extends StatelessWidget {
@@ -8,6 +10,7 @@ class _SpecicalityItem extends StatelessWidget {
   final String text;
   final VoidCallback press;
   bool isSelected = false;
+  final TutorCtrl _tutorCtrl = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,9 @@ class _SpecicalityItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2),
       child: ElevatedButton(
-        onPressed: press,
+        onPressed: (){
+          _tutorCtrl.filterBySpecify(text);
+        },
         style: ElevatedButton.styleFrom(
           elevation: 0.0,
           primary: Theme.of(context)
@@ -32,8 +37,9 @@ class _SpecicalityItem extends StatelessWidget {
 }
 
 class SpecicalitiesList extends StatelessWidget {
-  SpecicalitiesList({Key? key}) : super(key: key);
-  List<String> listSpec = LocalData.Specialities;
+  SpecicalitiesList({Key? key, required this.listSpec}) : super(key: key);
+
+  final List<String> listSpec;
   String isSelected = "PET";
 
   @override
@@ -41,7 +47,9 @@ class SpecicalitiesList extends StatelessWidget {
     return Wrap(
       children: [
         for (var i in listSpec)
-          _SpecicalityItem(text: i, press: () {})..isSelected = isSelected == i
+          _SpecicalityItem(text: i, press: () {
+
+          })..isSelected = isSelected == i
       ],
     );
   }

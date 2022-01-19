@@ -33,7 +33,7 @@ class TutorModel {
   bool? isNative;
   int price;
   bool isOnline = false;
-  List<Feedback> feedbacks;
+  List<FeedbackModel> feedbacks;
   double rating;
 
   final isFav = false.obs ;
@@ -57,11 +57,12 @@ class TutorModel {
     required this.userId,
     required this.rating,
     required this.feedbacks,
+    this.specialties,
   });
 
   factory TutorModel.fromJson(Map<String, dynamic> json) {
     var listFb = json["feedbacks"] as List;
-    List<Feedback> rows = listFb.map((i) => Feedback.fromJson(i)).toList();
+    List<FeedbackModel> rows = listFb.map((i) => FeedbackModel.fromJson(i)).toList();
     double sumRate = 0;
     rows.forEach((element) {
       sumRate += element.rating;
@@ -84,7 +85,9 @@ class TutorModel {
         price: json['price'],
         userId: json['userId'],
         feedbacks: rows,
-        rating: sumRate / rows.length);
+        rating: sumRate / rows.length,
+        specialties: json["specialties"],
+    );
   }
 
   factory TutorModel.fromAnother(TutorModel tutor) {
@@ -106,7 +109,8 @@ class TutorModel {
         price: tutor.price,
         userId: tutor.userId,
         rating: tutor.rating,
-        feedbacks: tutor.feedbacks
+        feedbacks: tutor.feedbacks,
+        specialties: tutor.specialties
     );
     temp.isFav.value = tutor.isFav.value;
     return temp;

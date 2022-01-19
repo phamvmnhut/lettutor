@@ -13,6 +13,10 @@ class LocalData {
         'https://media.istockphoto.com/photos/funny-raccoon-in-green-sunglasses-showing-a-rock-gesture-isolated-on-picture-id1154370446?k=20&m=1154370446&s=612x612&w=0&h=2AWvof66ovB87P3b7C_cu0pCZlZhDDFYUFr2KQ2UnwQ=',
     birthday: DateTime.utc(2000, 11, 5),
     phone: "0338473427",
+    // roles: [""],
+    timezone: 7,
+    // isPhoneActivated: true,
+    // isActivated: true,
   );
 
   static List<String> Specialities = [
@@ -24,8 +28,7 @@ class LocalData {
     "TOIEC"
   ];
 
-  static List<TutorModel> TutorListExample = [
-  ];
+  static List<TutorModel> TutorListExample = [];
 
   static List<ReviewModel> reviewList = [
     ReviewModel(

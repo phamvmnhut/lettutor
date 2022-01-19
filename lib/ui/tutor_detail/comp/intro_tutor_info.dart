@@ -3,21 +3,26 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/features/tutor.dart';
+import 'package:lettutor/models/tutor_detail.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 import 'report_dialog.dart';
 import 'review_dialog.dart';
 
 class IntroTutorInfo extends StatelessWidget {
-  IntroTutorInfo({Key? key}) : super(key: key);
+  IntroTutorInfo({Key? key, required this.data}) : super(key: key);
+
+  final TutorDetailModel data;
+  final TutorCtrl _tutorCtrl = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    final TutorCtrl _tutorCtrl = Get.find();
+    final isFav = data.isFavorite.obs;
+
     TextTheme textTheme = Theme.of(context).textTheme;
     String flagString = 'icons/flags/svg/vn.svg';
     void _onPressReviewBtn() =>
-        showDialog(context: context, builder: (context) => ReviewDialog());
+        showDialog(context: context, builder: (context) => ReviewDialog(listFb: data.feedbacks));
     void _onPressReportBtn() => showDialog(
           context: context,
           builder: (context) => ReportDialog(),
@@ -44,7 +49,7 @@ class IntroTutorInfo extends StatelessWidget {
                 height: 100,
                 width: 100,
                 placeholder: 'assets/images/indicator.gif',
-                image: _tutorCtrl.tutorSelected.avatar,
+                image: data.user.avatar,
                 imageErrorBuilder: (context, intance, strace) => Image.asset(
                     "assets/images/indicator.gif",
                     height: 100,
@@ -57,10 +62,10 @@ class IntroTutorInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(_tutorCtrl.tutorSelected.name, style: textTheme.headline2),
+                Text(data.user.name, style: textTheme.headline2),
                 RatingBarIndicator(
                   direction: Axis.horizontal,
-                  rating: _tutorCtrl.tutorSelected.rating,
+                  rating: data.avgRating,
                   itemBuilder: (context, index) => Icon(
                     Icons.star,
                     color: Colors.amber,
@@ -76,14 +81,13 @@ class IntroTutorInfo extends StatelessWidget {
                       width: 30,
                       child: SvgPicture.asset(
                           flagString.replaceAll("vn",
-                              _tutorCtrl.tutorSelected.country.toLowerCase()),
+                              data.user.country.toLowerCase()),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      _tutorCtrl.tutorSelected.country,
-                      style: textTheme.caption
-                          ?.copyWith(fontStyle: FontStyle.italic),
+                      data.user.country,
+                      style: textTheme.caption!.copyWith(fontStyle: FontStyle.italic),
                     ),
                   ],
                 )
@@ -94,7 +98,7 @@ class IntroTutorInfo extends StatelessWidget {
         SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(_tutorCtrl.tutorSelected.bio, style: textTheme.caption),
+          child: Text(data.bio, style: textTheme.caption),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -118,11 +122,12 @@ class IntroTutorInfo extends StatelessWidget {
                   () => ElevatedButton.icon(
                     onPressed: () {
                       print("Love");
-                      _tutorCtrl.toggleFav(_tutorCtrl.tutorSelected.userId);
+                      _tutorCtrl.toggleFav(data.userId);
+                      isFav.toggle();
                     },
                     icon: Icon(
                       Icons.favorite_border_outlined,
-                      color: _tutorCtrl.tutorSelected.isFav.value ? Colors.red : null,
+                      color: isFav.value ? Colors.red : null,
                     ),
                     label: Text(
                       "Love",

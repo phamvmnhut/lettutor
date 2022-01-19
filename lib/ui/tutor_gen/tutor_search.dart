@@ -3,9 +3,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/features/tutor.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
-import 'package:lettutor/ui/tutor_gen/comp/tutor_grid.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-
+import 'dart:developer' as dev;
 import 'comp/tutor_card.dart';
 
 class TutorSearchUI extends StatefulWidget {
@@ -113,7 +112,12 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SpecicalitiesList(),
+                          SizedBox(height: 20,),
+                          Obx(
+                            () => SpecicalitiesList(
+                              listSpec: _tutorCtrl.listSpec.toList(),
+                            ),
+                          ),
                           SizedBox(height: 20),
                           Row(
                             children: [
@@ -161,14 +165,14 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
           setState(() {
             filteredSearchHistory = filterSearchTerms(filter: query);
           });
-          print("filtered $query");
+          dev.log("filtered $query", name: "SearchPage");
         },
         onSubmitted: (query) {
           setState(() {
             addSearchTerm(query);
             selectedTerm = query;
           });
-          print("search: $query");
+          dev.log("search $query", name: "SearchPage");
           _tutorCtrl.searchTutor(query);
           controller.close();
         },

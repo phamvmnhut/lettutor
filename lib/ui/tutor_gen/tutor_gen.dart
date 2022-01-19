@@ -22,6 +22,15 @@ class TutorGenUI extends StatelessWidget {
                 : 3
             : 2
         : 1;
+
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      print("WidgetsBinding");
+    });
+
+    Future.delayed(Duration.zero, () => {
+    print("delayed")
+    });
+
     return Material(
       child: CustomScrollView(
         slivers: [
@@ -54,7 +63,9 @@ class TutorGenUI extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 10),
-                      SpecicalitiesList(),
+                      Obx(
+                        () => SpecicalitiesList(listSpec: tutorCtrl.listSpec.toList()),
+                      ),
                       SizedBox(height: 10),
                       Text("Recommend Tutor",
                           style: Theme.of(context).textTheme.headline3),

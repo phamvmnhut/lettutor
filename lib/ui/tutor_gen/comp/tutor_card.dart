@@ -69,9 +69,8 @@ class TutorCard extends StatelessWidget {
                   ),
                   title: TextButton(
                     onPressed: () {
-                      _tutorCtrl.navigateDetail(tutor.id);
+                      _tutorCtrl.navigateDetail(tutor.userId);
                     },
-
                     child: Text(
                       tutor.name,
                       style: textTheme.headline3,
@@ -110,9 +109,12 @@ class TutorCard extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 10),
-                Row(
-                  // children: [SpecicalitiesList()],
-                ),
+                Row(children: [
+                  Expanded(
+                      child: SpecicalitiesList(
+                    listSpec: (tutor.specialties ?? "").split(","),
+                  ))
+                ]),
                 SizedBox(height: 10),
                 Text(
                   tutor.bio,

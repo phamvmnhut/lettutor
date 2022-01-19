@@ -19,7 +19,7 @@ class _HomeUIState extends State<HomeUI> {
     TutorGenUI(),
     SettingUI(),
     SettingUI(),
-    SettingUI(),
+    CourseGenUI(),
     SettingUI(),
   ];
 

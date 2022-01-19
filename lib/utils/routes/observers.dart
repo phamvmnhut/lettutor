@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lettutor/controller/tutor.dart';
 import 'routes.dart';
 import "dart:developer" as dev;
 
@@ -16,13 +17,6 @@ class RouteObservers<R extends Route<dynamic>> extends RouteObserver<R> {
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPop(route, previousRoute);
-    if (route.settings.name != null && previousRoute != null && previousRoute.settings.name != null) {
-      if (route.settings.name == "/TutorSearchUI" && previousRoute.settings.name == "/") {
-        dev.log("do did", name: "DID_ME");
-        // final TutorCtrl _tutorCtrl = Get.find();
-        // _tutorCtrl.getListTutor();
-      }
-    }
   }
 
   // @override

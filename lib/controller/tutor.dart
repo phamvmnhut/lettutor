@@ -9,6 +9,8 @@ import 'package:lettutor/ui/tutor_gen/tutor_search.dart';
 import 'dart:developer' as dev;
 
 class TutorCtrl extends GetxController {
+  static TutorCtrl get to => Get.find();
+
   late final TutorService _service;
   var loading = false.obs;
   var tutors = <TutorModel>[].obs;
@@ -167,6 +169,28 @@ class TutorCtrl extends GetxController {
 
   navigateSearch(String s) {
     Get.to(() => TutorSearchUI(), preventDuplicates: false);
-    getListTutor();
   }
+
+  navigateHome() async {
+    final response = await _service.fetchListTutor();
+    if (response.error != null) {
+      tutors = <TutorModel>[].obs;
+      listSpec = <String>[].obs;
+    } else {
+      if (response.tutors != null) {
+        List<TutorModel> tutorList = response.tutors!;
+        String tempCap = '';
+        tutorList.forEach((item) {
+          if (item.specialties != null) {
+            tempCap = tempCap + item.specialties! + ",";
+          }
+        });
+        tempCap = tempCap.substring(0, tempCap.length - 1);
+        listSpec.assignAll(tempCap.split(",").toSet().toList());
+        tutors.assignAll(tutorList);
+        _listTutorsTempt.assignAll(tutorList);
+      }
+    }
+  }
+
 }

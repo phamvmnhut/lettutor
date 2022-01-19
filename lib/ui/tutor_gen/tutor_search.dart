@@ -76,6 +76,7 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
   @override
   void dispose() {
     controller.dispose();
+    _tutorCtrl.navigateHome();
     super.dispose();
   }
 

@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:lettutor/controller/home.dart';
-import 'package:lettutor/controller/tutor.dart';
 import 'package:lettutor/controller/user.dart';
+import 'package:lettutor/controller/tutor.dart';
+import 'package:lettutor/controller/message.dart';
 import 'package:lettutor/controller/setting.dart';
 
 import 'dart:developer' as dev;
@@ -14,6 +15,7 @@ class HomeBinding extends Bindings {
     Get.put<HomeCtrl>(HomeCtrl());
     Get.put<UserCtrl>(UserCtrl());
     Get.put<TutorCtrl>(TutorCtrl());
+    Get.put<MessageCtrl>(MessageCtrl());
     Get.put<SettingCtrl>(SettingCtrl());
   }
 }

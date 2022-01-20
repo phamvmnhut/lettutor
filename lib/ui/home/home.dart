@@ -22,7 +22,7 @@ class HomeUI extends StatelessWidget {
               index: controller.tabIndex,
               children: [
                 TutorGenUI(),
-                CourseGenUI(),
+                MessageGenUI(),
                 CourseGenUI(),
                 CourseGenUI(),
                 SettingUI(),

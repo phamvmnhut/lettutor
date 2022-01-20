@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/controller/message.dart';
 import 'package:lettutor/datas/local.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/ui/message/comp/message_tutor_item.dart';
-import 'package:lettutor/utils/routes/routes.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class MessageGenUI extends StatefulWidget {
@@ -27,7 +27,7 @@ class _MessageGenUIState extends State<MessageGenUI> {
   List<String> filterSearchTerms({
     required String filter,
   }) {
-    if (filter != null && filter.isNotEmpty) {
+    if (filter.isNotEmpty) {
       return _searchHistory.reversed
           .where((term) => term.startsWith(filter))
           .toList();
@@ -75,7 +75,7 @@ class _MessageGenUIState extends State<MessageGenUI> {
     super.dispose();
   }
 
-  final List<TutorModel> listTutor = LocalData.TutorListExample.sublist(3);
+  final MessageCtrl _messageCtrl = MessageCtrl.to;
 
   @override
   Widget build(BuildContext context) {
@@ -91,12 +91,12 @@ class _MessageGenUIState extends State<MessageGenUI> {
           padding: EdgeInsets.only(top: fsb?.widget.height ?? 70),
           child: SingleChildScrollView(
             child: Column(
-              children: listTutor
+              children: _messageCtrl.tutors.toList()
                   .map((e) => MessageTutorItem(
                         tutor: e,
                         trailing: Icon(Icons.check_circle_outline_outlined),
                         onTap: () {
-                          Navigator.pushNamed(context, Routes.message_chat);
+                          MessageCtrl.to.navigateDetail("");
                         },
                       ))
                   .toList(),

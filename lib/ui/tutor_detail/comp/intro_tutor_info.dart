@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import 'package:lettutor/controller/message.dart';
 import 'package:lettutor/controller/tutor.dart';
+
 import 'package:lettutor/models/tutor_detail.dart';
-import 'package:lettutor/utils/routes/routes.dart';
 
 import 'report_dialog.dart';
 import 'review_dialog.dart';
@@ -109,7 +111,7 @@ class IntroTutorInfo extends StatelessWidget {
                 padding: const EdgeInsets.all(2.0),
                 child: ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.message_chat);
+                      MessageCtrl.to.navigateDetail("");
                     },
                     icon: Icon(Icons.chat_outlined, size: 16),
                     label: Text(

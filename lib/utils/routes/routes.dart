@@ -48,8 +48,8 @@ class Routes {
   static const String SETTING = '/setting';
   static const String waiting_room = '/waiting_room';
   static const String video_learning = '/video_learning';
-  static const String message_gen = '/message_gen';
-  static const String message_chat = '/message_chat';
+  static const String MESSAGE_GEN = '/message_gen';
+  static const String MESSAGE_CHAT = '/message_chat';
 
   static final List<GetPage> routes = [
     GetPage(
@@ -78,6 +78,10 @@ class Routes {
     GetPage(
       name: Routes.SETTING,
       page: () => SettingUI(),
+    ),
+    GetPage(
+      name: Routes.MESSAGE_GEN,
+      page: () => MessageGenUI(),
     ),
 
     // GetPage(

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get.dart';
-import 'package:lettutor/controller//tutor.dart';
-import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import 'dart:developer' as dev;
+import 'package:get/get.dart';
+
+import 'package:lettutor/controller/tutor.dart';
+
+import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 import 'comp/tutor_card.dart';
+
+import 'dart:developer' as dev;
 
 class TutorSearchUI extends StatefulWidget {
   @override
@@ -29,7 +32,7 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
   List<String> filterSearchTerms({
     required String filter,
   }) {
-    if (filter != null && filter.isNotEmpty) {
+    if (filter.isNotEmpty) {
       return _searchHistory.reversed
           .where((term) => term.startsWith(filter))
           .toList();

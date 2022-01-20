@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:lettutor/controller//auth.dart';
+
+import 'package:lettutor/controller/auth.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 import '../components/background.dart';
@@ -16,7 +16,7 @@ class SignUpUI extends StatefulWidget {
 }
 
 class _SignUpUIState extends State<SignUpUI> {
-  AuthCtrl _viewCtrl = Get.put(AuthCtrl());
+  AuthCtrl _viewCtrl = AuthCtrl.to;
   
   final TextEditingController _pwdCtrl = TextEditingController();
   final TextEditingController _emailCtrl = TextEditingController();
@@ -85,8 +85,7 @@ class _SignUpUIState extends State<SignUpUI> {
                       color: Colors.transparent,
                       child: InkWell(
                         onTap: () {
-                          print("For got PW");
-                          Navigator.pushNamed(context, Routes.sign_in);
+                          _viewCtrl.navigateSignIn();
                         },
                         child: Text(
                           "Already have an Account ? ",

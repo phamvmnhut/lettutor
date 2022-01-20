@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:lettutor/ui/profile/config_interface.dart';
 import 'package:lettutor/ui/profile/user_profile.dart';
 import 'package:lettutor/ui/tutor_gen/tutor_reg.dart';
@@ -7,6 +8,8 @@ import 'package:lettutor/ui/tutor_gen/tutor_reg.dart';
 import 'cache_manager.dart';
 
 class SettingCtrl extends GetxController with CacheManager{
+  static SettingCtrl get to => Get.find();
+
   var isLoading = false.obs;
 
   navigateProfile() {
@@ -26,5 +29,4 @@ class SettingCtrl extends GetxController with CacheManager{
     saveDarkMode(isDarkMode);
     Get.changeThemeMode( isDarkMode ? ThemeMode.dark : ThemeMode.light);
   }
-
 }

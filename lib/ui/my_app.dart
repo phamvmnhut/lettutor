@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/constants/app_theme.dart';
 import 'package:lettutor/constants/strings.dart';
+import 'package:lettutor/controller/loading.dart';
 import 'package:lettutor/services/theme.dart';
-import 'package:lettutor/ui/auth/loading_auth.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 class MyApp extends StatelessWidget {
@@ -23,10 +23,8 @@ class MyApp extends StatelessWidget {
         darkTheme: themeDataDark,
         themeMode: ThemeService().theme,
         getPages: Routes.routes,
-        home: LoadingAuthUI(),
-        // initialBinding: HomeBinding(),
         navigatorObservers: [Routes.observer],
-        // initialRoute: ,
+        initialRoute: Routes.LOADING_AUTH,
       ),
     );
   }

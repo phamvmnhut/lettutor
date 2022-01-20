@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/models/tutor.dart';
-import 'package:lettutor/models/tutor_detail.dart';
 import 'package:lettutor/services/tutor/model.dart';
 import 'package:lettutor/services/tutor/tutor.dart';
 import 'package:lettutor/ui/tutor_detail/tutor_detail.dart';

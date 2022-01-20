@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/controller//tutor.dart';
+import 'package:lettutor/controller/tutor.dart';
 import 'package:lettutor/utils/ex.dart';
 
 class _SpecicalityItem extends StatelessWidget {

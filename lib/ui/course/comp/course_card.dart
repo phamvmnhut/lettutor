@@ -58,7 +58,7 @@ class _State extends State<CourseCard> {
               SizedBox(height: 5),
               Row(
                 children: [
-                  SpecicalitiesList(listSpec: [widget.course.level],)
+                  // SpecicalitiesList(listSpec: [widget.course.level],)
                 ],
               ),
               SizedBox(height: 10),

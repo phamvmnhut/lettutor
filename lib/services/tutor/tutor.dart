@@ -2,21 +2,16 @@ import 'package:get/get.dart';
 import 'package:get/get_connect.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:lettutor/constants/strings.dart';
-import 'package:lettutor/controller//auth.dart';
-import 'package:lettutor/controller//cache_manager.dart';
-import 'package:lettutor/models/auth.dart';
-import 'package:lettutor/models/tutor_detail.dart';
+import 'package:lettutor/controller/user.dart';
 import 'dart:developer' as dev;
 
 import 'model.dart';
 
-class TutorService extends GetConnect with CacheManager{
-  late final AuthCtrl authCtrl;
+class TutorService extends GetConnect {
 
   @override
   void onInit() {
     super.onInit();
-    authCtrl = Get.find();
     httpClient.defaultContentType = "application/json";
     httpClient.baseUrl = Strings.apiUrl;
   }
@@ -26,7 +21,7 @@ class TutorService extends GetConnect with CacheManager{
   final String searchTutorUrl = "/tutor/search";
 
   Future<GetListTutorResponseModel> fetchListTutor() async {
-    String tokenAccess = authCtrl.token.value!.accessToken.token;
+    String tokenAccess = UserCtrl.to.accessToken;
     final response = await get(getListUrl, headers: {"Authorization": "Bearer $tokenAccess"});
     if (response.statusCode == HttpStatus.ok) {
       return GetListTutorResponseModel.fromJson(response.body);
@@ -36,7 +31,7 @@ class TutorService extends GetConnect with CacheManager{
   }
 
   Future<String> manageFavoriteTutor(ManageFavoriteTutorRequestModel data) async {
-    String tokenAccess = authCtrl.token.value!.accessToken.token;
+    String tokenAccess = UserCtrl.to.accessToken;
     final response = await post(manageFavoriteTutorUrl, data.toJson() ,headers: {"Authorization": "Bearer $tokenAccess"});
     if (response.statusCode == HttpStatus.ok) {
       return "";
@@ -47,7 +42,7 @@ class TutorService extends GetConnect with CacheManager{
   }
 
   Future<GetTutorInformationByIdResponseModel> getTutorInformationById(String tutorId) async {
-    String tokenAccess = authCtrl.token.value!.accessToken.token;
+    String tokenAccess = UserCtrl.to.accessToken;
     String url = "$getTutorInformationByIdUrl/$tutorId";
     final response = await get(url, headers: {"Authorization": "Bearer $tokenAccess"});
     if (response.statusCode == HttpStatus.ok && response.body["id"] != null) {
@@ -58,7 +53,7 @@ class TutorService extends GetConnect with CacheManager{
   }
 
   Future<GetListTutorResponseModel> searchListTutor(SearchTutorRequestModel data) async {
-    String tokenAccess = authCtrl.token.value!.accessToken.token;
+    String tokenAccess = UserCtrl.to.accessToken;
     final response = await post(searchTutorUrl, data.toJson(), headers: {"Authorization": "Bearer $tokenAccess"});
     if (response.statusCode == HttpStatus.ok) {
       return GetListTutorResponseModel.fromSearchJson(response.body);

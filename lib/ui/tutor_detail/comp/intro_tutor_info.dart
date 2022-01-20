@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/controller//tutor.dart';
+import 'package:lettutor/controller/tutor.dart';
 import 'package:lettutor/models/tutor_detail.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
@@ -13,7 +13,8 @@ class IntroTutorInfo extends StatelessWidget {
   IntroTutorInfo({Key? key, required this.data}) : super(key: key);
 
   final TutorDetailModel data;
-  final TutorCtrl _tutorCtrl = Get.find();
+
+  final TutorCtrl _tutorCtrl = TutorCtrl.to;
 
   @override
   Widget build(BuildContext context) {

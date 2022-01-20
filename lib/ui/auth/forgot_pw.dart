@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:lettutor/utils/routes/routes.dart';
+
+import 'package:lettutor/controller/auth.dart';
 
 import '../components/background.dart';
 import '../components/custom_text_form_field.dart';
 
 class ForgotPwUI extends StatelessWidget {
-  final TextEditingController _pwdController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
 
-  //final snackBar = SnackBar(content: Text('email ou mot de passe incorrect'));
+  final TextEditingController _emailCtrl = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
-
+  final AuthCtrl _authCtrl = AuthCtrl.to;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,7 +44,7 @@ class ForgotPwUI extends StatelessWidget {
           child: Column(
             children: [
               CustomTextFormField(
-                  controller: _emailController,
+                  controller: _emailCtrl,
                   labelText: "Email address",
                   icon: Icons.email,
                   obscureText: false,
@@ -58,8 +57,7 @@ class ForgotPwUI extends StatelessWidget {
                       color: Colors.transparent,
                       child: InkWell(
                         onTap: () {
-                          print("You just remind");
-                          Navigator.pushNamed(context, Routes.sign_in);
+                          _authCtrl.navigateSignIn();
                         },
                         child: Text(
                           "You just remind ",
@@ -77,7 +75,7 @@ class ForgotPwUI extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    print("Sign Up is not validated");
+                    _authCtrl.forgotPassword(_emailCtrl.text);
                   }
                 },
 

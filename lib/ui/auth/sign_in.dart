@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:lettutor/controller//auth.dart';
+import 'package:lettutor/controller//loading.dart';
+import 'package:lettutor/controller/auth.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 import '../components/background.dart';
@@ -17,13 +18,12 @@ class SignInUI extends StatefulWidget {
 }
 
 class _SignInUIState extends State<SignInUI> {
-  AuthCtrl _viewCtrl = Get.put(AuthCtrl());
-  
+
   final TextEditingController _pwdCtrl = TextEditingController();
   final TextEditingController _emailCtrl = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-
+  final _viewCtrl = AuthCtrl.to;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -89,8 +89,7 @@ class _SignInUIState extends State<SignInUI> {
                         children: [
                           InkWell(
                             onTap: () {
-                              print("For got PW");
-                              Navigator.pushNamed(context, Routes.forgot_pw);
+                              _viewCtrl.navigateForgotPassword();
                             },
                             child: Text(
                               "Forgot password ?",
@@ -102,8 +101,7 @@ class _SignInUIState extends State<SignInUI> {
                           ),
                           InkWell(
                             onTap: () {
-                              print("Create new account");
-                              Navigator.pushNamed(context, Routes.sign_up);
+                              _viewCtrl.navigateSignUp();
                             },
                             child: Text(
                               "Create new account",

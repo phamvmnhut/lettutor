@@ -36,7 +36,7 @@ class FeedbackModel {
     content: json["content"],
     createdAt: DateTime.parse(json["createdAt"]),
     updatedAt: DateTime.parse(json["updatedAt"]),
-    firstInfo: FirstIdInfoModel.fromJson(json["firstInfo"]),
+    firstInfo:  json["firstInfo"] == null ? null :  FirstIdInfoModel.fromJson(json["firstInfo"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -117,7 +117,7 @@ class FirstIdInfoModel {
     country: json["country"] == null ? null : json["country"],
     phone: json["phone"] == null ? null : json["phone"],
     language: json["language"] == null ? null : json["language"],
-    birthday: json["birthday"] == null ? null : DateTime.parse(json["birthday"]),
+    // birthday: json["birthday"] == null ? null : DateTime.parse(json["birthday"]),
     requestPassword: json["requestPassword"] == null ? null : json["requestPassword"],
     isActivated: json["isActivated"] == null ? null : json["isActivated"],
     isPhoneActivated: json["isPhoneActivated"] == null ? null : json["isPhoneActivated"],

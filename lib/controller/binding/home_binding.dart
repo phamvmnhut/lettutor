@@ -1,9 +1,19 @@
 import 'package:get/get.dart';
-import '../tutor.dart';
+import 'package:lettutor/controller/home.dart';
+import 'package:lettutor/controller/tutor.dart';
+import 'package:lettutor/controller/user.dart';
+import 'package:lettutor/controller/setting.dart';
+
+import 'dart:developer' as dev;
 
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(()=>TutorCtrl());
+    dev.log("check", name: "Home Binding");
+
+    Get.put<HomeCtrl>(HomeCtrl());
+    Get.put<UserCtrl>(UserCtrl());
+    Get.put<TutorCtrl>(TutorCtrl());
+    Get.put<SettingCtrl>(SettingCtrl());
   }
 }

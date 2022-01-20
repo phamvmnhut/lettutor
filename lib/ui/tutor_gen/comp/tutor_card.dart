@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
-import 'package:lettutor/controller//tutor.dart';
+import 'package:lettutor/controller/tutor.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
 
@@ -12,7 +11,6 @@ import "dart:developer" as dev;
 class TutorCard extends StatelessWidget {
   TutorCard({Key? key, required this.tutor}) : super(key: key);
   final TutorModel tutor;
-  final TutorCtrl _tutorCtrl = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +19,8 @@ class TutorCard extends StatelessWidget {
     Color cardColor = Theme.of(context).cardColor;
     String flagString = 'icons/flags/svg/vn.svg';
     TextTheme textTheme = Theme.of(context).textTheme;
+    final TutorCtrl _tutorCtrl = TutorCtrl.to;
+
     return Card(
       color: cardColor,
       shape: RoundedRectangleBorder(

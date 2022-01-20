@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:get/get.dart';
+import 'package:lettutor/controller/loading.dart';
 import 'package:lettutor/ui/my_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:lettutor/controller//binding/home_binding.dart';
+import 'package:lettutor/controller/binding/home_binding.dart';
+import 'package:lettutor/controller/binding/loading_binding.dart';
+import 'package:lettutor/controller/binding/auth_binding.dart';
+import 'package:lettutor/ui/auth/loading_auth.dart';
 import 'package:lettutor/ui/course/course_gen.dart';
 import 'package:lettutor/ui/home/home.dart';
 import 'package:lettutor/ui/auth/sign_in.dart';
@@ -24,35 +27,59 @@ import 'observers.dart';
 
 class Routes {
   Routes._();
+
   static final RouteObserver<Route> observer = RouteObservers();
 
-  //static variables
-  static const String HOME = '/';
+  // static variables
+  static const String LOADING_AUTH = '/loading_auth';
+  static const String HOME = '/home';
   static const String test = '/test';
-  static const String sign_up = '/sign_up';
-  static const String sign_in = '/sign_in';
-  static const String forgot_pw = '/forgot_pw';
-  static const String tutor_gen = '/tutor_gen';
+  static const String SIGN_UP = '/sign_up';
+  static const String SIGN_IN = '/sign_in';
+  static const String FORGOT_PW = '/forgot_pw';
+  static const String TUTOR_GEN = '/tutor_gen';
   static const String tutor_reg = '/tutor_reg';
   static const String tutor_search = '/tutor_search';
   static const String tutor_detail = '/tutor_detail';
   static const String tutor_calendar = '/tutor_calendar';
-  static const String user_profile = '/user_profile';
+  static const String USER_PROFILE = '/user_profile';
   static const String schedule = '/schedule';
   static const String course = '/course';
-  static const String setting = '/setting';
+  static const String SETTING = '/setting';
   static const String waiting_room = '/waiting_room';
   static const String video_learning = '/video_learning';
   static const String message_gen = '/message_gen';
   static const String message_chat = '/message_chat';
 
   static final List<GetPage> routes = [
-    // 免登陆
     GetPage(
       name: Routes.HOME,
       page: () => HomeUI(),
       binding: HomeBinding(),
     ),
+    GetPage(
+      name: Routes.LOADING_AUTH,
+      page: () => LoadingAuthUI(),
+      binding: LoadingBinding(),
+    ),
+    GetPage(
+      name: Routes.SIGN_IN,
+      page: () => SignInUI(),
+      binding: AuthBinding(),
+    ),
+    GetPage(
+      name: Routes.SIGN_UP,
+      page: () => SignUpUI(),
+    ),
+    GetPage(
+      name: Routes.FORGOT_PW,
+      page: () => ForgotPwUI(),
+    ),
+    GetPage(
+      name: Routes.SETTING,
+      page: () => SettingUI(),
+    ),
+
     // GetPage(
     //   name: AppRoutes.SIGN_IN,
     //   page: () => SignInPage(),

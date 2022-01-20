@@ -5,8 +5,6 @@ import 'dart:developer' as dev;
 
 import 'model.dart';
 
-/// LoginService responsible to communicate with web-server
-/// via authentication related APIs
 class AuthService extends GetConnect {
   @override
   void onInit() {
@@ -14,12 +12,14 @@ class AuthService extends GetConnect {
     httpClient.defaultContentType = "application/json";
     httpClient.baseUrl = Strings.apiUrl;
   }
-  final String loginUrl = "/auth/login";
-  final String refreshTokenUrl = "/auth/refresh-token";
-  final String registerUrl = "${Strings.apiUrl}/sign-up";
+  
+  final String _loginUrl = "/auth/login";
+  final String _refreshTokenUrl = "/auth/refresh-token";
+  final String _forgotPWUrl = "/user/forgotPassword";
+  final String _registerUrl = "/auth/register";
 
   Future<LoginResponseModel> fetchLogin(LoginRequestModel model) async {
-    final response = await post(loginUrl, model.toJson());
+    final response = await post(_loginUrl, model.toJson());
     if (response.statusCode == HttpStatus.ok) {
       return LoginResponseModel.fromJson(response.body);
     } else {
@@ -27,26 +27,38 @@ class AuthService extends GetConnect {
     }
   }
 
-  Future<RegisterResponseModel?> fetchRegister(
-      RegisterRequestModel model) async {
-    return RegisterResponseModel(token: "token", id: "id_123");
-    // TODO get api register response
-    // final response = await post(registerUrl, model.toJson());
-
-    // if (response.statusCode == HttpStatus.ok) {
-    //   return RegisterResponseModel.fromJson(response.body);
-    // } else {
-    //   return null;
-    // }
+  Future<String> fetchRegister(RegisterRequestModel model) async {
+    final response = await post(_registerUrl, model.toJson());
+    if (response.statusCode == HttpStatus.created) {
+      return "";
+    } else {
+      try {
+        var json = response.body as Map<String, dynamic>;
+        return json["message"];
+      } catch (e) {
+        return "some thing went wrong";
+      }
+    }
   }
 
   Future<LoginResponseModel> fetchRefreshToken(String refreshToken) async {
     final model = RefreshTokenRequestModel(refreshToken: refreshToken);
-    final response = await post(refreshTokenUrl, model.toJson());
+    final response = await post(_refreshTokenUrl, model.toJson());
     if (response.statusCode == HttpStatus.ok) {
       return LoginResponseModel.fromJson(response.body);
     } else {
       return LoginResponseModel.fromError(response.body);
+    }
+  }
+
+  Future<String> fetchForgotPW(String email) async {
+    final model = ForgotPWRequestModel(email: email);
+    final response = await post(_forgotPWUrl, model.toJson());
+    if (response.statusCode == HttpStatus.ok) {
+      return "";
+    } else {
+      var json = response.body as Map<String, dynamic>;
+      return json["message"];
     }
   }
 

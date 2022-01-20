@@ -1,120 +1,111 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/models/auth.dart';
+
 import 'package:lettutor/services/auth/auth.dart';
 import 'package:lettutor/services/auth/model.dart';
+import 'package:lettutor/utils/routes/routes.dart';
 import './cache_manager.dart';
 
-class AuthCtrl extends GetxController with CacheManager{
-  final isLogged = false.obs;
-  final token = Rxn<TokenModel>();
+import 'dart:developer' as dev;
 
-  late final AuthService _loginService;
+class AuthCtrl extends GetxController with CacheManager {
+  static AuthCtrl get to => Get.find();
+  var loading = false.obs;
+
+  late final AuthService _authService;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    _loginService = Get.put(AuthService());
+    _authService = Get.put(AuthService());
   }
 
-  void logOut() {
-    isLogged.value = false;
-    removeToken();
-  }
-
-  void login(TokenModel token) async {
-    isLogged.value = true;
-    //Token is cached
-    this.token.value = token;
-    await saveToken(token);
-  }
-
-  void checkLoginStatus() {
-    final token = getToken();
-    if (token == null) {
-      isLogged.value = false;
-      return;
-    }
-    if (token.refreshToken.expires.difference(DateTime.now()).inSeconds > 0){
-      if (token.accessToken.expires.difference(DateTime.now()).inSeconds > 0){
-        isLogged.value = true;
-        this.token.value = token;
-        return;
+  @override
+  void onReady() {
+    super.onReady();
+    loading.listen((loadingState) {
+      if (loadingState) {
+        Get.dialog(
+            Center(
+              child: CircularProgressIndicator(),
+            ),
+            barrierDismissible: false);
+      } else {
+        Get.back();
       }
-      refreshToken(token.refreshToken.token);
-      return;
-    }
+    });
   }
 
   Future<void> loginUser(String email, String password) async {
-    final response = await _loginService
+    loading.value = true;
+    final response = await _authService
         .fetchLogin(LoginRequestModel(email: email, password: password));
-
+    loading.value = false;
+    String errMess = "";
     if (response.error == null) {
-      /// Set isLogin to true
       if (response.token != null) {
-        this.login(response.token!);
+        await saveToken(response.token!);
+        return Get.offAndToNamed(Routes.HOME);
+      } else {
+        errMess = "token null";
       }
     } else {
-      /// Show user a dialog about the error response
-      Get.defaultDialog(
-          middleText: response.error!,
-          textConfirm: 'OK',
-          confirmTextColor: Colors.white,
-          onConfirm: () {
-            Get.back();
-          });
-      return;
+      errMess = response.error!;
     }
+
+    /// Show user a dialog about the error response
+    return Get.defaultDialog(
+        middleText: errMess,
+        textConfirm: 'OK',
+        confirmTextColor: Colors.white,
+        onConfirm: () {
+          Get.back();
+        });
   }
 
   Future<void> registerUser(String email, String password) async {
-    final response = await _loginService
-        .fetchRegister(RegisterRequestModel(email: email, password: password));
-
-    if (response != null) {
-      /// Set isLogin to true
-      // this.login(response.token);
-    } else {
-      /// Show user a dialog about the error response
-      Get.defaultDialog(
-          middleText: 'Register Error',
-          textConfirm: 'OK',
-          confirmTextColor: Colors.white,
-          onConfirm: () {
-            Get.back();
-          });
-      return;
+    loading.value = true;
+    final response = await _authService.fetchRegister(RegisterRequestModel(email: email, password: password));
+    loading.value = false;
+    if (response == "") {
+      return navigateSignIn();
     }
+
+    /// Show user a dialog about the error response
+    return Get.defaultDialog(
+        middleText: response,
+        textConfirm: 'OK',
+        confirmTextColor: Colors.white,
+        onConfirm: () {
+          Get.back();
+        });
   }
 
-  Future<void> refreshToken(String refreshToken) async {
-    final response = await _loginService
-        .fetchRefreshToken(refreshToken);
-
-    if (response.error == null) {
-      /// Set isLogin to true
-      if (response.token != null) {
-        this.login(response.token!);
-      }
-    } else {
-      /// Show user a dialog about the error response
-      Get.defaultDialog(
-          middleText: response.error!,
-          textConfirm: 'OK',
-          confirmTextColor: Colors.white,
-          onConfirm: () {
-            Get.back();
-          });
-      isLogged.value = false;
+  Future<void> forgotPassword(String email) async {
+    loading.value = true;
+    final response = await _authService.fetchForgotPW(email);
+    loading.value = false;
+    if (response == "") {
+      return navigateSignIn();
     }
+
+    /// Show user a dialog about the error response
+    return Get.defaultDialog(
+        middleText: response,
+        textConfirm: 'OK',
+        confirmTextColor: Colors.white,
+        onConfirm: () {
+          Get.back();
+        });
   }
 
-  Future<void> loginByGoogle() async {
-
+  navigateSignIn() {
+    Get.toNamed(Routes.SIGN_IN);
   }
-
-  Future<void> loginByFacebook() async {
-
+  navigateForgotPassword() {
+    Get.toNamed(Routes.FORGOT_PW);
+  }
+  navigateSignUp() {
+    Get.toNamed(Routes.SIGN_UP);
   }
 }

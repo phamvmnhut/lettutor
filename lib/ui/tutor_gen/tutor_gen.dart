@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/controller//tutor.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:lettutor/ui/tutor_gen/comp/tutor_card.dart';
+import 'package:lettutor/controller/tutor.dart';
+import './comp/tutor_card.dart';
 
 import 'comp/tutor_gen_header.dart';
 import 'comp/specialities_list.dart';
 
 class TutorGenUI extends StatelessWidget {
   TutorGenUI({Key? key}) : super(key: key);
-
-  final tutorCtrl = Get.put(TutorCtrl());
+  final TutorCtrl tutorCtrl = TutorCtrl.to;
 
   @override
   Widget build(BuildContext context) {

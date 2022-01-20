@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:lettutor/controller//auth.dart';
-import 'package:lettutor/controller//setting.dart';
+
+import 'package:lettutor/controller/setting.dart';
+import 'package:lettutor/controller/user.dart';
 import 'package:lettutor/ui/components/background.dart';
 
 class _ItemSetting {
@@ -16,8 +16,8 @@ class _ItemSetting {
 class SettingUI extends StatelessWidget {
   SettingUI({Key? key}) : super(key: key);
 
-  final AuthCtrl _authCtrl = Get.find();
-  final SettingCtrl _settingCtrl = Get.put(SettingCtrl());
+  final SettingCtrl _settingCtrl = SettingCtrl.to;
+  final UserCtrl _userCtrl = UserCtrl.to;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class SettingUI extends StatelessWidget {
           name: "Sign Out",
           iconData: Icons.call_missed_outgoing_outlined,
           onPress: () {
-            _authCtrl.logOut();
+            _userCtrl.signOut();
           }),
     ];
 

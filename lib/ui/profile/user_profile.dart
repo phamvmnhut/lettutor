@@ -1,7 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+
+import 'package:lettutor/controller/user.dart';
 import 'package:lettutor/datas/local.dart';
 import 'package:lettutor/models/user.dart';
 import 'package:lettutor/ui/components/background.dart';
@@ -23,12 +23,13 @@ class _ProfileUIState extends State<ProfileUI> {
   final _phoneController = TextEditingController();
   late DateTime selectedDate;
   final UserModel currentUser = LocalData.currentUser;
+  final UserCtrl _userCtrl = UserCtrl.to;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _nameController.text = currentUser.name;
+    _nameController.text = _userCtrl.user.value!.name;
     // selectedDate = currentUser.birthday ?? DateTime.now();
     // _phoneController.text = currentUser.phone ?? '';
     selectedDate = DateTime.now();
@@ -44,11 +45,11 @@ class _ProfileUIState extends State<ProfileUI> {
   }
 
   void _onPressChangeAvatar() {
-    log('on press change avatar button');
+    // log('on press change avatar button');
   }
 
   void _onPressSaveBtn() {
-    log('on press save button');
+    // log('on press save button');
   }
 
   Future<void> _selectDate(BuildContext context) async {

@@ -9,7 +9,7 @@ import 'comp/specialities_list.dart';
 
 class TutorGenUI extends StatelessWidget {
   TutorGenUI({Key? key}) : super(key: key);
-  final TutorCtrl tutorCtrl = TutorCtrl.to;
+  final TutorCtrl _tutorCtrl = TutorCtrl.to;
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +42,14 @@ class TutorGenUI extends StatelessWidget {
                         children: [
                           TextButton(
                             onPressed: () {
-                              tutorCtrl.getListTutor();
+                              _tutorCtrl.getListTutor();
                             },
                             child: Text("Find Tutor",
                                 style: Theme.of(context).textTheme.headline2),
                           ),
                           TextButton(
                               onPressed: () {
-                                tutorCtrl.navigateSearch("");
+                                _tutorCtrl.navigateSearch("");
                               },
                               child: Text(
                                 "Search more",
@@ -60,7 +60,10 @@ class TutorGenUI extends StatelessWidget {
                       SizedBox(height: 10),
                       Obx(
                         () => SpecicalitiesList(
-                            listSpec: tutorCtrl.listSpec.toList()),
+                          listSpec: _tutorCtrl.listSpec.toList(),
+                        )..selectClick = (text) {
+                            _tutorCtrl.filterBySpecify(text);
+                          },
                       ),
                       SizedBox(height: 10),
                       Text("Recommend Tutor",
@@ -78,8 +81,8 @@ class TutorGenUI extends StatelessWidget {
               staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
               itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: TutorCard(tutor: tutorCtrl.tutors[index])),
-              itemCount: tutorCtrl.tutors.length,
+                  child: TutorCard(tutor: _tutorCtrl.tutors[index])),
+              itemCount: _tutorCtrl.tutors.length,
               mainAxisSpacing: 16,
             ),
           )

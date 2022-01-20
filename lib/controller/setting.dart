@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:lettutor/ui/profile/config_interface.dart';
 import 'package:lettutor/ui/profile/user_profile.dart';
-import 'package:lettutor/ui/tutor_gen/tutor_reg.dart';
+import 'package:lettutor/ui/profile/tutor_reg.dart';
 
 import 'cache_manager.dart';
 
@@ -11,14 +11,6 @@ class SettingCtrl extends GetxController with CacheManager{
   static SettingCtrl get to => Get.find();
 
   var isLoading = false.obs;
-
-  navigateProfile() {
-    Get.to(() => ProfileUI(), preventDuplicates: false);
-  }
-
-  navigateRegisterTutor() {
-    Get.to(() => TutorRegUI(), preventDuplicates: false);
-  }
 
   navigateConfigUI() {
     Get.to(() => ConfigInterfaceUI(), preventDuplicates: false);

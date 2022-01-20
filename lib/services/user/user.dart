@@ -21,8 +21,17 @@ class UserService extends GetConnect{
   final String getTutorInformationByIdUrl = "/tutor";
   final String searchTutorUrl = "/tutor/search";
 
-  Future<dynamic> getMe() async {
+  Future<UserMeResponseModel> getMe() async {
     final response = await get(getMeUrl, headers: {"Authorization": "Bearer $token"});
+    if (response.statusCode == HttpStatus.ok) {
+      return UserMeResponseModel.fromJson(response.body);
+    } else {
+      return UserMeResponseModel.fromError(response.body);
+    }
+  }
+
+  Future<UserMeResponseModel> updateMe(UserUpdateRequestModel model) async {
+    final response = await put(getMeUrl, model.toJson(), headers: {"Authorization": "Bearer $token"});
     if (response.statusCode == HttpStatus.ok) {
       return UserMeResponseModel.fromJson(response.body);
     } else {

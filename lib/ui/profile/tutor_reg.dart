@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:lettutor/ui/tutor_gen/comp/turtor_reg_cv_form.dart';
-import 'package:lettutor/ui/tutor_gen/comp/turtor_reg_teaching_form.dart';
-import 'package:lettutor/utils/routes/routes.dart';
+
+import './comp/turtor_reg_cv_form.dart';
+import './comp/turtor_reg_teaching_form.dart';
+import './comp/tutor_reg_header.dart';
 
 import 'package:lettutor/ui/components/background.dart';
-
-import 'comp/tutor_reg_header.dart';
 
 class TutorRegUI extends StatelessWidget {
   @override

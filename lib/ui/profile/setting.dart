@@ -30,13 +30,13 @@ class SettingUI extends StatelessWidget {
           name: "Account",
           iconData: Icons.account_circle_outlined,
           onPress: () {
-            _settingCtrl.navigateProfile();
+            _userCtrl.navigateUserProfile();
           }),
       _ItemSetting(
           name: "Tutor",
           iconData: Icons.assignment_ind_outlined,
           onPress: () {
-            _settingCtrl.navigateRegisterTutor();
+            _userCtrl.navigateTutorProfile();
           }),
     ];
     List<_ItemSetting> genSettingList = [

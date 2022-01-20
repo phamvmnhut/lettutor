@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/models/user.dart';
 
 class LevelSelection extends StatefulWidget {
   const LevelSelection({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class LevelSelection extends StatefulWidget {
 
 class _LevelSelectionState extends State<LevelSelection> {
   String? level;
-  List<String> levels = ["Level 1", "Level 2"];
+  List<String> levels = UserEnum.UserLevel;
 
   @override
   Widget build(BuildContext context) {

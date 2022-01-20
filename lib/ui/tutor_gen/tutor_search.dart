@@ -116,11 +116,15 @@ class _TutorSearchUIState extends State<TutorSearchUI> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(height: 20,),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Obx(
-                            () => SpecicalitiesList(
+                                () => SpecicalitiesList(
                               listSpec: _tutorCtrl.listSpec.toList(),
-                            ),
+                            )..selectClick = (text) {
+                              _tutorCtrl.filterBySpecify(text);
+                            },
                           ),
                           SizedBox(height: 20),
                           Row(

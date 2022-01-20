@@ -52,7 +52,7 @@ class IntroTutorInfo extends StatelessWidget {
                 height: 100,
                 width: 100,
                 placeholder: 'assets/images/indicator.gif',
-                image: data.user.avatar,
+                image: data.user.avatar ?? "",
                 imageErrorBuilder: (context, intance, strace) => Image.asset(
                     "assets/images/indicator.gif",
                     height: 100,
@@ -65,7 +65,7 @@ class IntroTutorInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(data.user.name, style: textTheme.headline2),
+                Text(data.user.name ?? "", style: textTheme.headline2),
                 RatingBarIndicator(
                   direction: Axis.horizontal,
                   rating: data.avgRating,
@@ -84,12 +84,12 @@ class IntroTutorInfo extends StatelessWidget {
                       width: 30,
                       child: SvgPicture.asset(
                           flagString.replaceAll("vn",
-                              data.user.country.toLowerCase()),
+                              (data.user.country ?? "").toLowerCase()),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      data.user.country,
+                      data.user.country ?? "",
                       style: textTheme.caption!.copyWith(fontStyle: FontStyle.italic),
                     ),
                   ],

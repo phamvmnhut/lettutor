@@ -20,7 +20,7 @@ import 'package:lettutor/ui/test/test.dart';
 import 'package:lettutor/ui/tutor_detail/tutor_calendar.dart';
 import 'package:lettutor/ui/tutor_detail/tutor_detail.dart';
 import 'package:lettutor/ui/tutor_gen/tutor_gen.dart';
-import 'package:lettutor/ui/tutor_gen/tutor_reg.dart';
+import 'package:lettutor/ui/profile/tutor_reg.dart';
 import 'package:lettutor/ui/tutor_gen/tutor_search.dart';
 
 import 'observers.dart';

@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-import 'comp/course_grid.dart';
+import 'package:lettutor/controller/course.dart';
+
+import 'comp/course_card.dart';
 import 'comp/course_gen_header.dart';
 
-class CourseGenUI extends StatefulWidget {
-  const CourseGenUI({Key? key}) : super(key: key);
-
-  @override
-  _CourseGenUIState createState() => _CourseGenUIState();
-}
-
-class _CourseGenUIState extends State<CourseGenUI> {
+class CourseGenUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double withSize = MediaQuery.of(context).size.width;
+    int count = withSize > 700
+        ? withSize > 1100
+            ? withSize > 1400
+                ? 4
+                : 3
+            : 2
+        : 1;
+    final CourseCtrl _courseCtrl = CourseCtrl.to;
     return Material(
       child: CustomScrollView(
         slivers: [
@@ -38,7 +44,18 @@ class _CourseGenUIState extends State<CourseGenUI> {
               ],
             ),
           ),
-          CourseGrid(),
+          Obx(
+            () => SliverStaggeredGrid.countBuilder(
+              crossAxisCount: count,
+              staggeredTileBuilder: (_) => const StaggeredTile.fit(1),
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: CourseCard(course: _courseCtrl.courses[index]),
+              ),
+              itemCount: _courseCtrl.courses.length,
+              mainAxisSpacing: 16,
+            ),
+          )
         ],
       ),
     );

@@ -99,33 +99,4 @@ class LocalData {
     ),
   ];
 
-  static List<CourseModel> courseListExample = [
-    CourseModel(
-      id: "1",
-      image:
-          "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80",
-      title: "This is title ebook",
-      des:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus orci, auctor a metus vitae, ullamcorper molestie lacus. Maecenas tristique.",
-      level: "beginner",
-    ),
-    CourseModel(
-      id: "2",
-      image:
-          "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=388&q=80",
-      title: "E",
-      des: "Lorem ipsum dolor sit amet,",
-      level: "beginner",
-    )
-  ];
-
-  static CourseDetailModel coureDetailEx = CourseDetailModel(
-      course: courseListExample[0],
-      overview: [
-        CourseDetailOverviewModel(title: "Why", ans: "This is answer"),
-        CourseDetailOverviewModel(title: "What", ans: "Answered"),
-        CourseDetailOverviewModel(title: "When", ans: "This is answer"),
-      ],
-      length: 6,
-      listTopic: ["Topic 1", "Topic 2"]);
 }

@@ -42,7 +42,7 @@ class _State extends State<CourseCard> {
                   height: 200,
                   width: double.infinity,
                   placeholder: 'assets/images/indicator.gif',
-                  image: widget.course.image,
+                  image: widget.course.imageUrl ?? "",
                   imageErrorBuilder: (context, intance, strace) => Image.asset(
                       "assets/images/indicator.gif",
                       height: 200,
@@ -52,7 +52,7 @@ class _State extends State<CourseCard> {
               ),
               SizedBox(height: 10),
               Flexible(
-                child: Text(widget.course.title,
+                child: Text(widget.course.name ?? "",
                     style: textTheme.headline3, maxLines: 2),
               ),
               SizedBox(height: 5),
@@ -64,7 +64,7 @@ class _State extends State<CourseCard> {
               SizedBox(height: 10),
               Flexible(
                 child: Text(
-                  widget.course.des,
+                  widget.course.description ?? "",
                   style: textTheme.caption,
                 ),
               ),
@@ -100,7 +100,7 @@ class _State extends State<CourseCard> {
                 child: Expandable(
                     collapsed: Container(),
                     expanded: CourseMoreInfo(
-                      courseId: widget.course.id,
+                      course: widget.course,
                     )),
               )
             ],

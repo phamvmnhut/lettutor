@@ -41,6 +41,8 @@ dependencies:
   get: ^4.5.1
   get_storage: ^2.0.3
   country_picker: ^2.0.10
+  chewie: ^1.2.2
+  video_player: ^2.2.3
 
 dev_dependencies:
   flutter_test:

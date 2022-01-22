@@ -31,6 +31,7 @@ class GetListTutorResponseModel {
   GetListTutorResponseModel.fromJson(Map<String, dynamic> json) {
     error = null;
     TutorsResponse tutorsResp = TutorsResponse.fromJson(json['tutors']);
+    dev.log(tutorsResp.rows.length.toString(), name: "ListTutor");
     List<TutorModel> rowsUpdate = _updateFavoriteTutor(tutorsResp.rows, json['favoriteTutor']);
     count = tutorsResp.count;
     tutors = rowsUpdate;

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lettutor/constants/app_theme.dart';
 import 'package:lettutor/constants/strings.dart';
-import 'package:lettutor/controller/loading.dart';
 import 'package:lettutor/services/theme.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 

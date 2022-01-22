@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/controller/binding/home_binding.dart';
 import 'package:lettutor/controller/home.dart';
-import 'package:lettutor/controller/tutor.dart';
-import 'package:lettutor/controller/user.dart';
+import 'package:lettutor/ui/booking/booking.dart';
 import 'package:lettutor/ui/course/course_gen.dart';
 import 'package:lettutor/ui/message/message_gen.dart';
 import 'package:lettutor/ui/profile/setting.dart';
-import 'package:lettutor/ui/schedule/schedule.dart';
 import 'package:lettutor/ui/tutor_gen/tutor_gen.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +20,7 @@ class HomeUI extends StatelessWidget {
               children: [
                 TutorGenUI(),
                 MessageGenUI(),
-                CourseGenUI(),
+                BookingUI(),
                 CourseGenUI(),
                 SettingUI(),
               ],

@@ -1,92 +1,101 @@
-import 'package:lettutor/models/index.dart';
 import "dart:developer" as dev;
 import 'feedback.dart';
 import 'package:get/get.dart';
 
 class TutorModel {
-  String id;
-  String userId;
+  String? id;
+  String? userId;
   String? firstId;
   String? secondId;
-  DateTime createdAt;
-  DateTime updatedAt;
-  String email;
-  String avatar;
-  String video;
-  String name;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? email;
+  String? avatar;
+  String? video;
+  String? name;
 
   String? google;
   String? facebook;
   String? apple;
-  String country;
+  String? country;
   String? phone;
   String? language;
   DateTime? birthday;
-  int timezone = 7;
-  String bio;
-  String education;
-  String experience;
-  String profession;
-  String targetStudent;
-  String interests;
+  int? timezone;
+  String? bio;
+  String? education;
+  String? experience;
+  String? profession;
+  String? targetStudent;
+  String? interests;
   String? specialties;
   bool? isNative;
-  int price;
-  bool isOnline = false;
-  List<FeedbackModel> feedbacks;
-  double rating;
+  int? price;
+  bool? isOnline = false;
+  List<FeedbackModel>? feedbacks;
+  double? rating;
 
   final isFav = false.obs ;
 
   TutorModel({
-    required this.id,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.email,
-    required this.avatar,
-    required this.video,
-    required this.name,
-    required this.country,
-    required this.bio,
-    required this.education,
-    required this.experience,
-    required this.profession,
-    required this.targetStudent,
-    required this.interests,
-    required this.price,
-    required this.userId,
-    required this.rating,
-    required this.feedbacks,
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.email,
+    this.avatar,
+    this.video,
+    this.name,
+    this.country,
+    this.bio,
+    this.education,
+    this.experience,
+    this.targetStudent,
+    this.profession,
+    this.interests,
+    this.price,
+    this.userId,
+    this.rating,
+    this.feedbacks,
     this.specialties,
   });
 
   factory TutorModel.fromJson(Map<String, dynamic> json) {
-    var listFb = json["feedbacks"] as List;
-    List<FeedbackModel> rows = listFb.map((i) => FeedbackModel.fromJson(i)).toList();
-    double sumRate = 0;
-    rows.forEach((element) {
-      sumRate += element.rating;
-    });
+    List<FeedbackModel>? rows = json["feedbacks"] == null
+        ? null
+        : List<FeedbackModel>.from(json["feedbacks"]
+        .map((x) => FeedbackModel.fromJson(x)));
+    double avaRating = 0;
+    if (rows != null) {
+      double sumRate = 0;
+      rows.forEach((element) {
+        sumRate += element.rating;
+      });
+      avaRating = sumRate / rows.length;
+    }
     return TutorModel(
-        id: json['id'],
-        createdAt: DateTime.parse(json['createdAt']),
-        updatedAt: DateTime.parse(json['updatedAt']),
-        email: json['email'],
-        avatar: json['avatar'],
-        video: json['video'],
-        name: json['name'],
-        country: json['country'],
-        bio: json['bio'],
-        education: json['education'],
-        experience: json['experience'],
-        profession: json['profession'],
-        targetStudent: json['targetStudent'],
-        interests: json['interests'],
-        price: json['price'],
-        userId: json['userId'],
+        id: json["id"] == null ? null : json["id"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        email: json["email"] == null ? null : json["email"],
+        avatar: json["avatar"] == null ? null : json["avatar"],
+        video: json["video"] == null ? null : json["video"],
+        name: json["name"] == null ? null : json["name"],
+        country: json["country"] == null ? null : json["country"],
+        bio: json["bio"] == null ? null : json["bio"],
+        education: json["education"] == null ? null : json["education"],
+        experience: json["experience"] == null ? null : json["experience"],
+        profession: json["profession"] == null ? null : json["profession"],
+        targetStudent: json["targetStudent"] == null ? null : json["targetStudent"],
+        interests: json["interests"] == null ? null : json["interests"],
+        price: json["price"] == null ? null : json["price"],
+        userId: json["userId"] == null ? null : json["userId"],
         feedbacks: rows,
-        rating: sumRate / rows.length,
-        specialties: json["specialties"],
+        rating: avaRating,
+        specialties: json["specialties"] == null ? null : json["specialties"],
     );
   }
 
@@ -104,7 +113,7 @@ class TutorModel {
         education: tutor.education,
         experience: tutor.experience,
         profession: tutor.profession,
-        targetStudent: tutor.targetStudent,
+        // targetStudent: tutor.targetStudent,
         interests: tutor.interests,
         price: tutor.price,
         userId: tutor.userId,

@@ -41,7 +41,7 @@ class TutorCard extends StatelessWidget {
               tooltip: 'Favorite',
               onPressed: () {
                 print("favorite click");
-                _tutorCtrl.toggleFav(tutor.userId);
+                _tutorCtrl.toggleFav(tutor.userId ?? "");
               },
             ),
           ),
@@ -60,7 +60,7 @@ class TutorCard extends StatelessWidget {
                       height: 50,
                       width: 50,
                       placeholder: 'assets/images/indicator.gif',
-                      image: tutor.avatar,
+                      image: tutor.avatar ?? "",
                       imageErrorBuilder: (context, _, strace) => Image.asset(
                           "assets/images/indicator.gif",
                           height: 50,
@@ -70,10 +70,10 @@ class TutorCard extends StatelessWidget {
                   ),
                   title: TextButton(
                     onPressed: () {
-                      _tutorCtrl.navigateDetail(tutor.userId);
+                      _tutorCtrl.navigateDetail(tutor.userId ?? "");
                     },
                     child: Text(
-                      tutor.name,
+                      tutor.name ?? "",
                       style: textTheme.headline3,
                     ),
                   ),
@@ -87,19 +87,19 @@ class TutorCard extends StatelessWidget {
                       width: 30,
                       child: SvgPicture.asset(
                           flagString.replaceAll(
-                              "vn", tutor.country.toLowerCase()),
+                              "vn", (tutor.country ?? "").toLowerCase()),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      tutor.country,
+                      tutor.country ?? "",
                       style: textTheme.caption
                           ?.copyWith(fontStyle: FontStyle.italic),
                     ),
                     Spacer(),
                     RatingBarIndicator(
                       direction: Axis.horizontal,
-                      rating: tutor.rating,
+                      rating: tutor.rating ?? 0,
                       itemBuilder: (context, index) => Icon(
                         Icons.star,
                         color: Colors.amber,
@@ -118,7 +118,7 @@ class TutorCard extends StatelessWidget {
                 ]),
                 SizedBox(height: 10),
                 Text(
-                  tutor.bio,
+                  tutor.bio ?? "",
                   style: Theme.of(context).textTheme.caption,
                   maxLines: 5,
                 ),
@@ -143,7 +143,7 @@ class TutorCard extends StatelessWidget {
                       ),
                       label: Text('Chat'),
                       onPressed: () {
-                       MessageCtrl.to.navigateDetail(tutor.userId);
+                       MessageCtrl.to.navigateDetail(tutor.userId ?? "");
                       },
                     ),
                     const SizedBox(width: 8),

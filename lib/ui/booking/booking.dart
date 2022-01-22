@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lettutor/datas/local.dart';
-import 'package:lettutor/controller//schedule.dart';
-import 'package:lettutor/models/schedule.dart';
-import 'package:lettutor/ui/schedule/comp/tutor_short_info.dart';
-import 'package:lettutor/utils/time_format.dart';
+import 'package:lettutor/controller/booking.dart';
+import 'package:lettutor/models/booking.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import 'comp/schedule_row.dart';
@@ -16,10 +13,8 @@ class _AppointmentDataSource extends CalendarDataSource {
   }
 }
 
-class ScheduleUI extends StatelessWidget {
-  ScheduleUI({Key? key}) : super(key: key);
-
-  final ScheduleCtrl _scheduleCtrl = Get.put(ScheduleCtrl());
+class BookingUI extends StatelessWidget {
+  BookingUI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +22,7 @@ class ScheduleUI extends StatelessWidget {
     Color cardColor = Theme.of(context).cardColor;
     Color priColor = Theme.of(context).primaryColor;
     Color hlColor = Theme.of(context).highlightColor;
+    final BookingCtrl _bookingCtrl = BookingCtrl.to;
     return Material(
       child: Column(
         children: [
@@ -53,28 +49,31 @@ class ScheduleUI extends StatelessWidget {
                       monthTextStyle: textTheme.headline3,
                     )),
                 dataSource: _AppointmentDataSource(
-                  _scheduleCtrl.schedules
-                      .map(
-                        (element) => Appointment(
-                            startTime: element.startTime,
-                            endTime: element.endTime,
-                            subject: element.id,
-                            id: element),
-                      )
-                      .toList(),
+                  _bookingCtrl.bookings.map((element) {
+                    int startTime =
+                        element.scheduleDetailInfo!.startPeriodTimestamp!;
+                    int endTime =
+                        element.scheduleDetailInfo!.endPeriodTimestamp!;
+                    return Appointment(
+                        startTime:
+                            DateTime.fromMicrosecondsSinceEpoch(startTime),
+                        endTime: DateTime.fromMicrosecondsSinceEpoch(endTime),
+                        subject: element.id ?? "",
+                        id: element.studentRequest ?? "");
+                  }).toList(),
                 ),
-                appointmentBuilder:
-                    (BuildContext context, CalendarAppointmentDetails details) {
-                  final Appointment meeting = details.appointments.first;
-                  ScheduleModel ele = meeting.id as ScheduleModel;
-                  return ele.isHistory
-                      ? Banner(
-                          message: 'Learned',
-                          location: BannerLocation.bottomStart,
-                          color: Colors.transparent,
-                          child: ScheduleRow(sche: ele))
-                      : ScheduleRow(sche: ele);
-                },
+                // appointmentBuilder:
+                //     (BuildContext context, CalendarAppointmentDetails details) {
+                //   final Appointment meeting = details.appointments.first;
+                //   BookingModel ele = meeting.id as BookingModel;
+                //   return ele.scheduleDetailInfo!.isBooked!
+                //       ? Banner(
+                //           message: 'Learned',
+                //           location: BannerLocation.bottomStart,
+                //           color: Colors.transparent,
+                //           child: ScheduleRow(sche: ele))
+                //       : ScheduleRow(sche: ele);
+                // },
               ),
             ),
           ),

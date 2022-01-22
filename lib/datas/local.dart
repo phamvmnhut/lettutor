@@ -1,6 +1,6 @@
 import 'package:lettutor/models/course.dart';
 import 'package:lettutor/models/index.dart';
-import 'package:lettutor/models/schedule.dart';
+import 'package:lettutor/models/booking.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/models/user.dart';
 
@@ -69,34 +69,34 @@ class LocalData {
     )
   ];
 
-  static List<ScheduleModel> scheduleList = [
-    ScheduleModel(
-      id: "1",
-      tutor: TutorListExample[0],
-      startTime: DateTime.now().add(Duration(hours: 1)),
-      endTime: DateTime.now().add(Duration(hours: 1, minutes: 30)),
-      requirement: "Chủ đề: anh văn giao tiếp xã hội",
-      rate: "Rate cho buoi hoc nay",
-      isHistory: true,
-    ),
-    ScheduleModel(
-      id: "2",
-      tutor: TutorListExample[1],
-      startTime: DateTime.now().add(Duration(hours: 2)),
-      endTime: DateTime.now().add(Duration(hours: 2, minutes: 30)),
-      requirement: "Tôi muốn buổi học thật hấp dẫn",
-      rate: "Rate cho buoi hoc nay",
-      isHistory: false,
-    ),
-    ScheduleModel(
-      id: "2",
-      tutor: TutorListExample[2],
-      startTime: DateTime.now().add(Duration(hours: 4)),
-      endTime: DateTime.now().add(Duration(hours: 4, minutes: 30)),
-      requirement: "Tôi muốn buổi học thật hấp dẫn",
-      rate: "Reviewed cho buổi học này",
-      isHistory: false,
-    ),
-  ];
+  // static List<ScheduleModel> scheduleList = [
+  //   ScheduleModel(
+  //     id: "1",
+  //     tutor: TutorListExample[0],
+  //     startTime: DateTime.now().add(Duration(hours: 1)),
+  //     endTime: DateTime.now().add(Duration(hours: 1, minutes: 30)),
+  //     requirement: "Chủ đề: anh văn giao tiếp xã hội",
+  //     rate: "Rate cho buoi hoc nay",
+  //     isHistory: true,
+  //   ),
+  //   ScheduleModel(
+  //     id: "2",
+  //     tutor: TutorListExample[1],
+  //     startTime: DateTime.now().add(Duration(hours: 2)),
+  //     endTime: DateTime.now().add(Duration(hours: 2, minutes: 30)),
+  //     requirement: "Tôi muốn buổi học thật hấp dẫn",
+  //     rate: "Rate cho buoi hoc nay",
+  //     isHistory: false,
+  //   ),
+  //   ScheduleModel(
+  //     id: "2",
+  //     tutor: TutorListExample[2],
+  //     startTime: DateTime.now().add(Duration(hours: 4)),
+  //     endTime: DateTime.now().add(Duration(hours: 4, minutes: 30)),
+  //     requirement: "Tôi muốn buổi học thật hấp dẫn",
+  //     rate: "Reviewed cho buổi học này",
+  //     isHistory: false,
+  //   ),
+  // ];
 
 }

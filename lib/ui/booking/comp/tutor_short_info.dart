@@ -32,7 +32,7 @@ class TutorShortInfo extends StatelessWidget {
                 height: 40,
                 width: 40,
                 placeholder: 'assets/images/indicator.gif',
-                image: tutor.avatar,
+                image: tutor.avatar ?? "",
                 imageErrorBuilder: (context, intance, strace) => Image.asset(
                     "assets/images/indicator.gif",
                     height: 40,
@@ -47,7 +47,7 @@ class TutorShortInfo extends StatelessWidget {
                 Navigator.pushNamed(context, Routes.tutor_detail);
               },
               child: Text(
-                tutor.name,
+                tutor.name ?? "",
                 style: textTheme.headline4,
                 maxLines: 2,
               ),

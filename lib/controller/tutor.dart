@@ -184,12 +184,13 @@ class TutorCtrl extends GetxController {
             tempCap = tempCap + item.specialties! + ",";
           }
         });
-        tempCap = tempCap.substring(0, tempCap.length - 1);
-        listSpec.assignAll(tempCap.split(",").toSet().toList());
+        if (tempCap != "") {
+          tempCap = tempCap.substring(0, tempCap.length - 1);
+          listSpec.assignAll(tempCap.split(",").toSet().toList());
+        }
         tutors.assignAll(tutorList);
         _listTutorsTempt.assignAll(tutorList);
       }
     }
   }
-
 }

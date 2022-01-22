@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:lettutor/datas/local.dart';
-import 'package:lettutor/models/schedule.dart';
+import 'package:lettutor/models/booking.dart';
 import 'package:lettutor/ui/components/background.dart';
 
 class WaitingRoomUI extends StatefulWidget {
@@ -12,7 +12,7 @@ class WaitingRoomUI extends StatefulWidget {
 
 class _WaitingRoomUIState extends State<WaitingRoomUI> with TickerProviderStateMixin {
   late AnimationController controller;
-  final ScheduleModel sche = LocalData.scheduleList[2];
+  // final ScheduleModel sche = LocalData.scheduleList[2];
 
   String get timerString {
     Duration duration = controller.duration! * controller.value;
@@ -22,11 +22,11 @@ class _WaitingRoomUIState extends State<WaitingRoomUI> with TickerProviderStateM
   @override
   void initState() {
     super.initState();
-    var dif = sche.startTime.difference(DateTime.now());
+    // var dif = sche.startTime.difference(DateTime.now());
     controller = AnimationController(
       vsync: this,
       duration: Duration(
-          seconds: dif.inSeconds, minutes: dif.inMinutes, hours: dif.inHours),
+          seconds: 5, minutes: 1, hours: 0),
     );
   }
 

@@ -26,12 +26,12 @@ class MessageTutorItem extends StatelessWidget {
           height: 40,
           width: 40,
           placeholder: 'assets/images/indicator.gif',
-          image: tutor.avatar,
+          image: tutor.avatar ?? "",
           imageErrorBuilder: (context, intance, strace) =>
               Image.asset("assets/images/indicator.gif", fit: BoxFit.cover),
         ),
       ),
-      title: Text(tutor.name, style: textTheme.headline4),
+      title: Text(tutor.name ?? "", style: textTheme.headline4),
       trailing: trailing,
       onTap: onTap,
     );

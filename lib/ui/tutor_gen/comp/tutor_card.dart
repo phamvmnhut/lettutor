@@ -131,7 +131,7 @@ class TutorCard extends StatelessWidget {
                           size: 16.0, color: bgColor),
                       label: Text('Book'),
                       onPressed: () {
-                        /* ... */
+                        _tutorCtrl.navigateBook(tutor.userId ?? "");
                       },
                     ),
                     const SizedBox(width: 8),

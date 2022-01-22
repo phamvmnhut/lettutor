@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/services/tutor/model.dart';
 import 'package:lettutor/services/tutor/tutor.dart';
+import 'package:lettutor/ui/tutor_detail/tutor_calendar.dart';
 import 'package:lettutor/ui/tutor_detail/tutor_detail.dart';
 import 'package:lettutor/ui/tutor_gen/tutor_search.dart';
 import 'dart:developer' as dev;
@@ -73,15 +74,6 @@ class TutorCtrl extends GetxController {
     loading.value = false;
   }
 
-  Future<GetTutorInformationByIdResponseModel> getTutorDetail(
-      String tutorId) async {
-    loading.value = true;
-    final response = await _service.getTutorInformationById(tutorId);
-    loading.value = false;
-
-    return response;
-  }
-
   Future<void> toggleFav(String tutorId) async {
     loading.value = true;
     final response = await _service
@@ -148,7 +140,10 @@ class TutorCtrl extends GetxController {
 
   navigateDetail(String tutorId) async {
     // selected
-    var data = await getTutorDetail(tutorId);
+    loading.value = true;
+    final data = await _service.getTutorInformationById(tutorId);
+    loading.value = false;
+
     if (data.error != null) {
       Get.defaultDialog(
           middleText: "Fetch data fail",
@@ -163,6 +158,25 @@ class TutorCtrl extends GetxController {
                 data: data.tutorDetail!,
               ),
           preventDuplicates: false);
+    }
+  }
+
+  navigateBook(String tutorId) async {
+    // selected
+    loading.value = true;
+    var data = await _service.getTutorScheduleById(tutorId);
+    loading.value = false;
+
+    if (data.error != null) {
+      Get.defaultDialog(
+          middleText: "Fetch data fail",
+          textConfirm: 'OK',
+          confirmTextColor: Colors.red,
+          onConfirm: () {
+            Get.back();
+          });
+    } else {
+      Get.bottomSheet(TutorCalendarUI(schedules: data.scheduleList!));
     }
   }
 

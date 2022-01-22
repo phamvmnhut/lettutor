@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:lettutor/controller/tutor.dart';
 import 'package:lettutor/models/tutor_detail.dart';
 import 'package:lettutor/ui/tutor_detail/comp/tutor_calendar_dialog.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
@@ -44,7 +45,7 @@ class TutorDetailUI extends StatelessWidget {
                 child: Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.tutor_calendar);
+                      TutorCtrl.to.navigateBook(data.userId);
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),

@@ -22,10 +22,10 @@ class _TutorCalendarDialogState extends State<TutorCalendarDialog> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final Color priColor = Theme.of(context).primaryColor;
-    void _onPressBookingBtn({required DateTime time}) => showDialog(
-      context: context,
-      builder: (context) => BookingDialog(time: time),
-    );
+    // void _onPressBookingBtn({required DateTime time}) => showDialog(
+    //   context: context,
+    //   builder: (context) => BookingDialog(time: time),
+    // );
     return CustomDialog(
       title: "Schedule",
       child: Material(
@@ -58,7 +58,7 @@ class _TutorCalendarDialogState extends State<TutorCalendarDialog> {
               child: IconButton(
                 onPressed: (){
                   log(meeting.startTime.toString());
-                  _onPressBookingBtn(time: meeting.startTime);
+                  // _onPressBookingBtn(time: meeting.startTime);
                 },
                 icon: Icon(
                   Icons.bookmark,

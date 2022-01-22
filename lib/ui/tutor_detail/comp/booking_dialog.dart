@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/models/booking.dart';
 import 'package:lettutor/ui/components/custom_dialog.dart';
 import 'package:lettutor/utils/time_format.dart';
 
 class BookingDialog extends StatefulWidget {
-  BookingDialog({Key? key, required this.time}) : super(key: key);
-  final DateTime time;
+  BookingDialog({Key? key, required this.scheduleTutor}) : super(key: key);
+  final ScheduleTutorModel scheduleTutor;
   @override
   State<BookingDialog> createState() => _ReportDialogState();
 }
@@ -35,7 +36,7 @@ class _ReportDialogState extends State<BookingDialog> {
         Text("Time", style: textTheme.headline4),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(fullDayWithTimeDetail(widget.time), style: textTheme.caption),
+          child: Text(fullDayWithTimeDetail(widget.scheduleTutor.createdAt!), style: textTheme.caption),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,17 +1,16 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:lettutor/models/booking.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:collection/collection.dart';
 
 import 'comp/booking_dialog.dart';
 
-class _AppointmentDataSource extends CalendarDataSource {
-  _AppointmentDataSource(List<Appointment> source) {
-    appointments = source;
-  }
-}
+import 'dart:developer' as dev;
 
 class TutorCalendarUI extends StatefulWidget {
-  const TutorCalendarUI({Key? key}) : super(key: key);
+  TutorCalendarUI({Key? key, required this.schedules}) : super(key: key);
+  final List<ScheduleTutorModel> schedules;
 
   @override
   _TutorCalendarUIState createState() => _TutorCalendarUIState();
@@ -22,9 +21,9 @@ class _TutorCalendarUIState extends State<TutorCalendarUI> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final Color priColor = Theme.of(context).primaryColor;
-    void _onPressBookingBtn({required DateTime time}) => showDialog(
+    void _onPressBookingBtn({required int index}) => showDialog(
       context: context,
-      builder: (context) => BookingDialog(time: time),
+      builder: (context) => BookingDialog(scheduleTutor: widget.schedules.elementAt(index)),
     );
     return Material(
       child: SfCalendar(
@@ -34,18 +33,6 @@ class _TutorCalendarUIState extends State<TutorCalendarUI> {
           CalendarView.day,
           CalendarView.week,
         ],
-        specialRegions: _getTimeRegions(context),
-        timeRegionBuilder:
-            (BuildContext context, TimeRegionDetails timeRegionDetails) {
-          return Container(
-            color: timeRegionDetails.region.color,
-            alignment: Alignment.center,
-            child: Icon(
-              Icons.restaurant,
-              color: Colors.grey.withOpacity(0.5),
-            ),
-          );
-        },
         dataSource: _getCalendarDataSource(),
         appointmentBuilder:
             (BuildContext context, CalendarAppointmentDetails details) {
@@ -53,16 +40,22 @@ class _TutorCalendarUIState extends State<TutorCalendarUI> {
               details.appointments.first;
           return Container(
             alignment: Alignment.center,
-            child: IconButton(
+            child: meeting.subject == "booked" ? Container(
+              alignment: Alignment.center,
+              child: Icon(
+                Icons.restaurant,
+                color: Colors.grey.withOpacity(0.5),
+              ),
+            ) : IconButton(
               onPressed: (){
-                log(meeting.startTime.toString());
-                _onPressBookingBtn(time: meeting.startTime);
+                int index = int.parse(meeting.subject);
+                _onPressBookingBtn(index: index);
               },
               icon: Icon(
                 Icons.bookmark,
                 color: priColor ,
               ),
-            ),
+            )
           );
         },
         timeSlotViewSettings: TimeSlotViewSettings(
@@ -74,37 +67,22 @@ class _TutorCalendarUIState extends State<TutorCalendarUI> {
     );
   }
 
-  List<TimeRegion> _getTimeRegions(BuildContext context) {
-    final List<TimeRegion> regions = <TimeRegion>[];
-    final DateTime current = DateTime(DateTime.now().year, DateTime.now().month,
-        DateTime.now().day, DateTime.now().hour);
-    regions.add(
-      TimeRegion(
-        startTime: current,
-        endTime: current.add(Duration(minutes: 30)),
-        enablePointerInteraction: false,
-        color: Colors.grey.withOpacity(0.2),
-        text: 'Booked',),
-    );
-    regions.add(TimeRegion(
-      startTime: current.add(Duration(hours: 1)),
-      endTime: current.add(Duration(hours: 1, minutes: 30)),
-      enablePointerInteraction: false,
-      color: Colors.grey.withOpacity(0.2),
-      text: 'Booked',));
-    return regions;
-  }
-
   _AppointmentDataSource _getCalendarDataSource() {
-    List<Appointment> appointments = <Appointment>[];
-    final DateTime current = DateTime(DateTime.now().year, DateTime.now().month,
-        DateTime.now().day, DateTime.now().hour);
-    appointments.add(Appointment(
-      startTime: current.add(Duration(minutes: 30)),
-      endTime: current.add(Duration(hours: 1)),
-      subject: 'Can Book',
-    ));
-
+    List<Appointment> appointments = widget.schedules.mapIndexed((index, e) {
+      DateTime endTime = DateTime.fromMillisecondsSinceEpoch(e.endTimestamp!);
+      DateTime now = DateTime.now();
+      return Appointment(
+        startTime: DateTime.fromMillisecondsSinceEpoch(e.startTimestamp!),
+        endTime: DateTime.fromMillisecondsSinceEpoch(e.endTimestamp!),
+        subject: (e.isBooked == false && now.difference(endTime).inMinutes < 10) ? index.toString() : 'booked',
+      );
+    }).toList();
     return _AppointmentDataSource(appointments);
+  }
+}
+
+class _AppointmentDataSource extends CalendarDataSource {
+  _AppointmentDataSource(List<Appointment> source) {
+    appointments = source;
   }
 }

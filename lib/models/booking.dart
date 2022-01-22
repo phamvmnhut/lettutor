@@ -66,7 +66,7 @@ class ScheduleTutorModel {
         "isBooked": isBooked == null ? null : isBooked,
         "scheduleDetails": scheduleDetails == null
             ? null
-            : List<dynamic>.from(scheduleDetails!.map((x) => x.toJson())),
+            : List<ScheduleDetailModel>.from(scheduleDetails!.map((x) => x.toJson())),
       };
 }
 
@@ -176,7 +176,7 @@ class BookingModel {
   String? studentMeetingLink;
   String? studentRequest;
   String? tutorReview;
-  String? scoreByTutor;
+  int? scoreByTutor;
   DateTime? createdAt;
   DateTime? updatedAt;
   String? recordUrl;

@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:collection/collection.dart';
+
 import 'package:lettutor/controller/booking.dart';
 import 'package:lettutor/models/booking.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import 'comp/schedule_row.dart';
 import 'comp/schedule_header.dart';
-
-class _AppointmentDataSource extends CalendarDataSource {
-  _AppointmentDataSource(List<Appointment> source) {
-    appointments = source;
-  }
-}
 
 class BookingUI extends StatelessWidget {
   BookingUI({Key? key}) : super(key: key);
@@ -34,7 +30,7 @@ class BookingUI extends StatelessWidget {
                 view: CalendarView.schedule,
                 showDatePickerButton: true,
                 scheduleViewSettings: ScheduleViewSettings(
-                    appointmentItemHeight: 120,
+                    appointmentItemHeight: 70,
                     hideEmptyScheduleWeek: true,
                     dayHeaderSettings: DayHeaderSettings(
                       dayFormat: 'EEE',
@@ -49,7 +45,7 @@ class BookingUI extends StatelessWidget {
                       monthTextStyle: textTheme.headline3,
                     )),
                 dataSource: _AppointmentDataSource(
-                  _bookingCtrl.bookings.map((element) {
+                  _bookingCtrl.bookings.mapIndexed((index, element) {
                     int startTime =
                         element.scheduleDetailInfo!.startPeriodTimestamp!;
                     int endTime =
@@ -58,27 +54,33 @@ class BookingUI extends StatelessWidget {
                         startTime:
                             DateTime.fromMicrosecondsSinceEpoch(startTime),
                         endTime: DateTime.fromMicrosecondsSinceEpoch(endTime),
-                        subject: element.id ?? "",
-                        id: element.studentRequest ?? "");
+                        subject: index.toString());
                   }).toList(),
                 ),
-                // appointmentBuilder:
-                //     (BuildContext context, CalendarAppointmentDetails details) {
-                //   final Appointment meeting = details.appointments.first;
-                //   BookingModel ele = meeting.id as BookingModel;
-                //   return ele.scheduleDetailInfo!.isBooked!
-                //       ? Banner(
-                //           message: 'Learned',
-                //           location: BannerLocation.bottomStart,
-                //           color: Colors.transparent,
-                //           child: ScheduleRow(sche: ele))
-                //       : ScheduleRow(sche: ele);
-                // },
+                appointmentBuilder:
+                    (BuildContext context, CalendarAppointmentDetails details) {
+                  final Appointment meeting = details.appointments.first;
+                  BookingModel ele = _bookingCtrl.bookings[int.parse(meeting.subject)];
+                  return ScheduleRow(sche: ele);
+                  // return ele.scheduleDetailInfo!.isBooked!
+                  //     ? Banner(
+                  //         message: 'Learned',
+                  //         location: BannerLocation.bottomStart,
+                  //         color: Colors.transparent,
+                  //         child: ScheduleRow(sche: ele))
+                  //     :
+                },
               ),
             ),
           ),
         ],
       ),
     );
+  }
+}
+
+class _AppointmentDataSource extends CalendarDataSource {
+  _AppointmentDataSource(List<Appointment> source) {
+    appointments = source;
   }
 }

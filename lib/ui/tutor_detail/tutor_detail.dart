@@ -4,7 +4,6 @@ import 'package:lettutor/controller/tutor.dart';
 import 'package:lettutor/models/tutor_detail.dart';
 import 'package:lettutor/ui/tutor_detail/comp/tutor_calendar_dialog.dart';
 import 'package:lettutor/ui/tutor_gen/comp/specialities_list.dart';
-import 'package:lettutor/utils/routes/routes.dart';
 
 import 'comp/intro_tutor_info.dart';
 import 'comp/intro_tutor_video.dart';

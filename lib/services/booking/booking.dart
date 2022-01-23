@@ -8,18 +8,22 @@ import 'dart:developer' as dev;
 import 'model.dart';
 
 class BookingService extends GetConnect {
-
   @override
   void onInit() {
     super.onInit();
     httpClient.defaultContentType = "application/json";
     httpClient.baseUrl = Strings.apiUrl;
   }
-  final String getListUrl = "/booking/list/student";
+
+  final String _getListUrl = "/booking/list/student";
+  final String _cancelBookedClassUrl = "/booking";
+  final String _bookClassUrl = "/booking";
+  final String _editClassUrl = "/booking/student-request/";
 
   Future<GetListBookingResponseModel> fetchListBooking() async {
     String tokenAccess = UserCtrl.to.accessToken;
-    final response = await get(getListUrl, headers: {"Authorization": "Bearer $tokenAccess"});
+    final response = await get(_getListUrl,
+        headers: {"Authorization": "Bearer $tokenAccess"});
     if (response.statusCode == HttpStatus.ok) {
       return GetListBookingResponseModel.fromJson(response.body);
     } else {
@@ -27,4 +31,42 @@ class BookingService extends GetConnect {
     }
   }
 
+  Future<String> cancelBookedClass(CancelBookedClassRequestModel data) async {
+    String tokenAccess = UserCtrl.to.accessToken;
+    //TODO make it complete
+    // final response = await delete(_cancelBookedClassUrl,
+    //     headers: {"Authorization": "Bearer $tokenAccess"});
+    // if (response.statusCode == HttpStatus.ok) {
+    //   return "";
+    // } else {
+    //   var json = response.body as Map<String, dynamic>;
+    //   return json["message"];
+    // }
+    return "";
+  }
+
+  Future<String> bookClass(BookClassRequestModel data) async {
+    String tokenAccess = UserCtrl.to.accessToken;
+    final response = await post(_bookClassUrl, data.toJson(),
+        headers: {"Authorization": "Bearer $tokenAccess"});
+    if (response.statusCode == HttpStatus.ok) {
+      return "";
+    } else {
+      var json = response.body as Map<String, dynamic>;
+      return json["message"];
+    }
+  }
+
+  Future<String> editBookedClass({required String bookedId, required String note}) async {
+    String tokenAccess = UserCtrl.to.accessToken;
+    String url = "$_editClassUrl$bookedId";
+    final response = await post(url, EditBookedClassRequestModel(studentRequest: note).toJson(),
+        headers: {"Authorization": "Bearer $tokenAccess"});
+    if (response.statusCode == HttpStatus.ok) {
+      return "";
+    } else {
+      var json = response.body as Map<String, dynamic>;
+      return json["message"];
+    }
+  }
 }

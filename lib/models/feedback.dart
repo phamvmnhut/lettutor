@@ -17,7 +17,7 @@ class FeedbackModel {
   String? bookingId;
   String firstId;
   String secondId;
-  int rating;
+  double rating;
   String content;
   DateTime createdAt;
   DateTime updatedAt;
@@ -32,7 +32,7 @@ class FeedbackModel {
     bookingId: json["bookingId"],
     firstId: json["firstId"],
     secondId: json["secondId"],
-    rating: json["rating"],
+    rating: double.parse(json["rating"].toString()),
     content: json["content"],
     createdAt: DateTime.parse(json["createdAt"]),
     updatedAt: DateTime.parse(json["updatedAt"]),

@@ -65,7 +65,8 @@ class AuthCtrl extends GetxController with CacheManager {
 
   Future<void> registerUser(String email, String password) async {
     loading.value = true;
-    final response = await _authService.fetchRegister(RegisterRequestModel(email: email, password: password));
+    final response = await _authService
+        .fetchRegister(RegisterRequestModel(email: email, password: password));
     loading.value = false;
     if (response == "") {
       return navigateSignIn();
@@ -99,13 +100,38 @@ class AuthCtrl extends GetxController with CacheManager {
         });
   }
 
+  Future<void> confirmEmail(String token) async {
+    loading.value = true;
+    final response = await _authService.confirmEmail(token);
+    loading.value = false;
+    if (response == "") {
+      return navigateSignIn();
+    }
+
+    /// Show user a dialog about the error response
+    return Get.defaultDialog(
+      middleText: response,
+      textConfirm: 'OK',
+      confirmTextColor: Colors.white,
+      onConfirm: () {
+        Get.back();
+      },
+    );
+  }
+
   navigateSignIn() {
     Get.toNamed(Routes.SIGN_IN);
   }
+
   navigateForgotPassword() {
     Get.toNamed(Routes.FORGOT_PW);
   }
+
   navigateSignUp() {
     Get.toNamed(Routes.SIGN_UP);
+  }
+
+  navigateConfirmEmail() {
+    Get.toNamed(Routes.CONFIRM_EMAIL);
   }
 }

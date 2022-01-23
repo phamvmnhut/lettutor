@@ -84,7 +84,7 @@ class UserModel {
             : List<String>.from(json["roles"].map((x) => x)),
         language: json["language"],
         birthday:
-            json["birthday"] == null ? null : DateTime.parse(json["birthday"]),
+            json["birthday"] == null ? null : DateTime.tryParse(json["birthday"]),
         isActivated: json["isActivated"] == null ? null : json["isActivated"],
         // tutorInfo: json["tutorInfo"],
         // walletInfo: json["walletInfo"] == null ? null : WalletInfo.fromJson(json["walletInfo"]),

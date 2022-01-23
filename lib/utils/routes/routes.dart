@@ -3,6 +3,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:lettutor/controller/binding/home_binding.dart';
 import 'package:lettutor/controller/binding/loading_binding.dart';
 import 'package:lettutor/controller/binding/auth_binding.dart';
+import 'package:lettutor/ui/auth/confirm_email.dart';
 import 'package:lettutor/ui/auth/loading_auth.dart';
 import 'package:lettutor/ui/course/course_gen.dart';
 import 'package:lettutor/ui/home/home.dart';
@@ -37,6 +38,7 @@ class Routes {
   static const String SIGN_UP = '/sign_up';
   static const String SIGN_IN = '/sign_in';
   static const String FORGOT_PW = '/forgot_pw';
+  static const String CONFIRM_EMAIL = '/confirm_email';
   static const String TUTOR_GEN = '/tutor_gen';
   static const String tutor_reg = '/tutor_reg';
   static const String tutor_search = '/tutor_search';
@@ -74,6 +76,10 @@ class Routes {
     GetPage(
       name: Routes.FORGOT_PW,
       page: () => ForgotPwUI(),
+    ),
+    GetPage(
+      name: Routes.CONFIRM_EMAIL,
+      page: () => ConfirmEmailUI(),
     ),
     GetPage(
       name: Routes.SETTING,

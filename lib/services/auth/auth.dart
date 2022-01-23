@@ -17,6 +17,7 @@ class AuthService extends GetConnect {
   final String _refreshTokenUrl = "/auth/refresh-token";
   final String _forgotPWUrl = "/user/forgotPassword";
   final String _registerUrl = "/auth/register";
+  final String _confirm_email = "/auth/verifyAccount?token=";
 
   Future<LoginResponseModel> fetchLogin(LoginRequestModel model) async {
     final response = await post(_loginUrl, model.toJson());
@@ -62,4 +63,14 @@ class AuthService extends GetConnect {
     }
   }
 
+  Future<String> confirmEmail(String token) async {
+    String url = "$_confirm_email$token";
+    final response = await get(url);
+    if (response.statusCode == HttpStatus.ok) {
+      return "";
+    } else {
+      var json = response.body as Map<String, dynamic>;
+      return json["message"];
+    }
+  }
 }

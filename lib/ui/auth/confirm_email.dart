@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 import 'package:lettutor/controller/auth.dart';
 
 import '../components/background.dart';
-import 'comp/or_divider.dart';
-import 'comp/social_network.dart';
 import '../components/custom_text_form_field.dart';
 
-class SignUpUI extends StatefulWidget {
-  @override
-  _SignUpUIState createState() => _SignUpUIState();
-}
+class ConfirmEmailUI extends StatelessWidget {
 
-class _SignUpUIState extends State<SignUpUI> {
-  AuthCtrl _viewCtrl = AuthCtrl.to;
-  
-  final TextEditingController _pwdCtrl = TextEditingController();
-  final TextEditingController _emailCtrl = TextEditingController();
+  final TextEditingController _tokenCtrl = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-
+  final AuthCtrl _authCtrl = AuthCtrl.to;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,18 +24,11 @@ class _SignUpUIState extends State<SignUpUI> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "SIGN UP",
+                    "CONFIRM EMAIL",
                     style: Theme.of(context).textTheme.headline2,
                   ),
                   SizedBox(height: size.height * 0.03),
-                  SvgPicture.asset(
-                    "assets/icons/signup.svg",
-                    height: size.height * 0.35,
-                  ),
-                  SizedBox(height: size.height * 0.03),
-                  _buildSignUpForm(context),
-                  OrDivider(),
-                  SocialNetWork()
+                  _buildForgotPwForm(context),
                 ],
               ),
             ),
@@ -55,7 +38,7 @@ class _SignUpUIState extends State<SignUpUI> {
     );
   }
 
-  Form _buildSignUpForm(BuildContext context) {
+  Form _buildForgotPwForm(BuildContext context) {
     return Form(
         key: _formKey,
         child: Padding(
@@ -63,20 +46,11 @@ class _SignUpUIState extends State<SignUpUI> {
           child: Column(
             children: [
               CustomTextFormField(
-                  controller: _emailCtrl,
-                  labelText: "Email address",
+                  controller: _tokenCtrl,
+                  labelText: "Token",
                   icon: Icons.email,
                   obscureText: false,
                   keyboardType: TextInputType.emailAddress),
-              SizedBox(
-                height: 12.0,
-              ),
-              CustomTextFormField(
-                  controller: _pwdCtrl,
-                  labelText: "Password",
-                  icon: Icons.lock,
-                  obscureText: true,
-                  keyboardType: TextInputType.text),
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, top: 10.0),
                 child: Align(
@@ -85,10 +59,10 @@ class _SignUpUIState extends State<SignUpUI> {
                       color: Colors.transparent,
                       child: InkWell(
                         onTap: () {
-                          _viewCtrl.navigateSignIn();
+                          _authCtrl.navigateSignIn();
                         },
                         child: Text(
-                          "Already have an Account ? ",
+                          "Sign In now",
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -103,14 +77,14 @@ class _SignUpUIState extends State<SignUpUI> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    print("Sign Up is not validated");
+                    _authCtrl.forgotPassword(_tokenCtrl.text);
                   }
-                  await _viewCtrl.registerUser(_emailCtrl.text, _pwdCtrl.text);
                 },
+
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                   child: Text(
-                    "Sign Up",
+                    "Send",
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline3,
                   ),

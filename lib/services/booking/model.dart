@@ -70,12 +70,12 @@ class GetListBookingQueryModel {
   int? page;
   DateTime? dateTimeGte;
   DateTime? dateTimeLte;
+  bool? sortBy;
 
-  GetListBookingQueryModel({ this.page, this.dateTimeGte, this.dateTimeLte});
+  GetListBookingQueryModel({ this.page, this.dateTimeGte, this.dateTimeLte, this.sortBy});
   String toString() {
     Map<String, String> queryParameters = {
       'orderBy': 'meeting',
-      'sortBy': 'desc',
       'perPage': '100',
       'page': page == null ? '1' : page.toString()
     };
@@ -83,6 +83,11 @@ class GetListBookingQueryModel {
     queryParameters.forEach((key, value) {
       url = url + key + "=" + value + "&";
     });
+    if (sortBy == null || sortBy == false) {
+      url = url + "sortBy=desc&";
+    } else {
+      url = url + "sortBy=asc&";
+    }
     if (dateTimeGte !=null) {
       url = url + "dateTimeGte" + "=" + dateTimeGte!.millisecondsSinceEpoch.toString() + "&";
     }

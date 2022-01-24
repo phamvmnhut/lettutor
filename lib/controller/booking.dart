@@ -43,7 +43,7 @@ class BookingCtrl extends GetxController {
   Future<void> getListBooking() async {
     isLoading.value = true;
     final response = await _service.fetchListBooking(
-      query: GetListBookingQueryModel(dateTimeGte: DateTime.now()),
+      query: GetListBookingQueryModel(dateTimeGte: DateTime.now(), sortBy: true),
     );
     if (response.error != null) {
       bookings = <BookingModel>[].obs;

@@ -26,17 +26,6 @@ class ScheduleHeader extends StatelessWidget {
             "You have done 9 hours in Let Tutor",
             style: textTheme.headline4,
           ),
-          Text(
-            "Lesson upcoming is ",
-            style: textTheme.headline4,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              "Go now",
-              style: textTheme.bodyText2,
-            ),
-          ),
           SizedBox(height: 50),
         ],
       ),

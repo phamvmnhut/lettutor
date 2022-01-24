@@ -1,3 +1,4 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
@@ -52,7 +53,7 @@ class TutorCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 ListTile(
-                  horizontalTitleGap: 0,
+                  horizontalTitleGap: 10,
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: FadeInImage.assetNetwork(
@@ -68,8 +69,8 @@ class TutorCard extends StatelessWidget {
                           fit: BoxFit.cover),
                     ),
                   ),
-                  title: TextButton(
-                    onPressed: () {
+                  title: InkWell(
+                    onTap: () {
                       _tutorCtrl.navigateDetail(tutor.userId ?? "");
                     },
                     child: Text(
@@ -92,11 +93,12 @@ class TutorCard extends StatelessWidget {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      tutor.country ?? "",
+                      CountryParser.tryParse(tutor.country ?? "")!.name,
+                      // tutor.country ?? "",
                       style: textTheme.caption
                           ?.copyWith(fontStyle: FontStyle.italic),
                     ),
-                    Spacer(),
+                    SizedBox(width: 10),
                     RatingBarIndicator(
                       direction: Axis.horizontal,
                       rating: tutor.rating ?? 0,

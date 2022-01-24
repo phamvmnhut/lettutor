@@ -19,10 +19,6 @@ class TutorDetailUI extends StatelessWidget {
 
     List<Widget> listW1 = [IntroTutorInfo(data: data), IntroTutorVideo(data: data)];
 
-    void _onPressBookBtn() => showDialog(
-      context: context,
-      builder: (context) => TutorCalendarDialog(),
-    );
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Material(

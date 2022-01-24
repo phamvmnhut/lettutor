@@ -9,7 +9,7 @@ import 'package:lettutor/controller/tutor.dart';
 import 'package:lettutor/models/tutor_detail.dart';
 
 import 'report_dialog.dart';
-import 'review_dialog.dart';
+import 'tutor_review.dart';
 
 class IntroTutorInfo extends StatelessWidget {
   IntroTutorInfo({Key? key, required this.data}) : super(key: key);
@@ -24,12 +24,8 @@ class IntroTutorInfo extends StatelessWidget {
 
     TextTheme textTheme = Theme.of(context).textTheme;
     String flagString = 'icons/flags/svg/vn.svg';
-    void _onPressReviewBtn() =>
-        showDialog(context: context, builder: (context) => ReviewDialog(listFb: data.feedbacks));
-    void _onPressReportBtn() => showDialog(
-          context: context,
-          builder: (context) => ReportDialog(),
-        );
+    Color cardColor = Theme.of(context).cardColor;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -53,7 +49,7 @@ class IntroTutorInfo extends StatelessWidget {
                 width: 100,
                 placeholder: 'assets/images/indicator.gif',
                 image: data.user.avatar ?? "",
-                imageErrorBuilder: (context, intance, strace) => Image.asset(
+                imageErrorBuilder: (context, _, strace) => Image.asset(
                     "assets/images/indicator.gif",
                     height: 100,
                     width: 100,
@@ -83,14 +79,15 @@ class IntroTutorInfo extends StatelessWidget {
                       height: 20,
                       width: 30,
                       child: SvgPicture.asset(
-                          flagString.replaceAll("vn",
-                              (data.user.country ?? "").toLowerCase()),
+                          flagString.replaceAll(
+                              "vn", (data.user.country ?? "").toLowerCase()),
                           package: 'country_icons'),
                     ),
                     SizedBox(width: 5),
                     Text(
                       data.user.country ?? "",
-                      style: textTheme.caption!.copyWith(fontStyle: FontStyle.italic),
+                      style: textTheme.caption!
+                          .copyWith(fontStyle: FontStyle.italic),
                     ),
                   ],
                 )
@@ -124,7 +121,6 @@ class IntroTutorInfo extends StatelessWidget {
                 child: Obx(
                   () => ElevatedButton.icon(
                     onPressed: () {
-                      print("Love");
                       _tutorCtrl.toggleFav(data.userId);
                       isFav.toggle();
                     },
@@ -143,7 +139,7 @@ class IntroTutorInfo extends StatelessWidget {
                 padding: const EdgeInsets.all(2.0),
                 child: ElevatedButton.icon(
                     onPressed: () {
-                      _onPressReportBtn();
+                      Get.dialog(ReportDialog());
                     },
                     icon: Icon(Icons.report_gmailerrorred_outlined, size: 16),
                     label: Text(
@@ -154,14 +150,29 @@ class IntroTutorInfo extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: ElevatedButton.icon(
-                    onPressed: () {
-                      _onPressReviewBtn();
-                    },
-                    icon: Icon(Icons.star_border_outlined, size: 16),
-                    label: Text(
-                      "Rate",
-                      style: textTheme.bodyText2,
-                    )),
+                  onPressed: () {
+                    Get.bottomSheet(
+                      TutorReviewList(
+                        listFb: data.feedbacks,
+                      ),
+                      elevation: 1.0,
+                      settings: RouteSettings(name: "Choose Topic to learn"),
+                      enableDrag: true,
+                      backgroundColor: cardColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30.0),
+                          topRight: Radius.circular(30.0),
+                        ),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.star_border_outlined, size: 16),
+                  label: Text(
+                    "Rate",
+                    style: textTheme.bodyText2,
+                  ),
+                ),
               ),
             ],
           ),

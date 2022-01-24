@@ -7,6 +7,8 @@ import 'package:lettutor/services/booking/model.dart';
 
 import 'dart:developer' as dev;
 
+import 'package:lettutor/ui/learn/wating_room.dart';
+
 class BookingCtrl extends GetxController {
   static BookingCtrl get to => Get.find();
 
@@ -51,16 +53,8 @@ class BookingCtrl extends GetxController {
     isLoading.value = false;
   }
 
-  navigateLearn(String scheduleId) {
-    //   DateTime current = DateTime.now();
-    //   // TODO
-    //   // demo is using id = index
-    //   int index = int.parse(scheduleId);
-    //   if (schedules[index].startTime.isAfter(current)) {
-    //     Get.to(() => WaitingRoomUI(), preventDuplicates: true);
-    //   } else {
-    //     Get.to(() => VideoLearingUI(), preventDuplicates: true);
-    //   }
+  navigateLearn({required BookingModel booking}) {
+      Get.to(() => WaitingRoomUI(booking: booking), preventDuplicates: true);
   }
 
   Future<bool> bookClass({required ScheduleTutorModel schedule, required String note}) async {

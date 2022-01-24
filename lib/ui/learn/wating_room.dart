@@ -1,18 +1,24 @@
 import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
-import 'package:lettutor/datas/local.dart';
+import 'package:get/get.dart';
+
 import 'package:lettutor/models/booking.dart';
+
 import 'package:lettutor/ui/components/background.dart';
+import 'package:lettutor/ui/learn/video_learning.dart';
 
 class WaitingRoomUI extends StatefulWidget {
+  WaitingRoomUI({Key? key, required this.booking});
+
+  final BookingModel booking;
+
   @override
   _WaitingRoomUIState createState() => _WaitingRoomUIState();
 }
 
-class _WaitingRoomUIState extends State<WaitingRoomUI> with TickerProviderStateMixin {
+class _WaitingRoomUIState extends State<WaitingRoomUI>
+    with TickerProviderStateMixin {
   late AnimationController controller;
-  // final ScheduleModel sche = LocalData.scheduleList[2];
 
   String get timerString {
     Duration duration = controller.duration! * controller.value;
@@ -22,28 +28,36 @@ class _WaitingRoomUIState extends State<WaitingRoomUI> with TickerProviderStateM
   @override
   void initState() {
     super.initState();
-    // var dif = sche.startTime.difference(DateTime.now());
-    controller = AnimationController(
-      vsync: this,
-      duration: Duration(
-          seconds: 5, minutes: 1, hours: 0),
-    );
+    DateTime startTime = DateTime.fromMillisecondsSinceEpoch(
+        widget.booking.scheduleDetailInfo!.startPeriodTimestamp!);
+    var dif = startTime.difference(DateTime.now());
+    if (dif.inSeconds < 0) dif = Duration(seconds: 1);
+    controller = AnimationController(vsync: this, duration: dif);
+    controller
+        .reverse(from: controller.value == 0.0 ? 1.0 : controller.value)
+        .whenComplete(() {
+      // put here the stuff you wanna do when animation completed!
+      Get.off(() => VideoLearningUI(booking: widget.booking));
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    controller.reverse(from: controller.value == 0.0 ? 1.0 : controller.value);
-    if (controller.isCompleted) {
-      print("Oke");
-    }
     TextTheme textTheme = Theme.of(context).textTheme;
     Color cardColor = Theme.of(context).cardColor;
     Color priColor = Theme.of(context).primaryColor;
     Color hlColor = Theme.of(context).highlightColor;
     Color indiColor = Theme.of(context).indicatorColor;
     return Material(
-      child: Background(
-        child: AnimatedBuilder(
+      child: SafeArea(
+        child: Background(
+          child: AnimatedBuilder(
             animation: controller,
             builder: (context, child) {
               return Padding(
@@ -61,16 +75,16 @@ class _WaitingRoomUIState extends State<WaitingRoomUI> with TickerProviderStateM
                               Positioned.fill(
                                 child: CustomPaint(
                                     painter: CustomTimerPainter(
-                                      animation: controller,
-                                      backgroundColor: indiColor,
-                                      color: cardColor,
-                                    )),
+                                  animation: controller,
+                                  backgroundColor: indiColor,
+                                  color: cardColor,
+                                )),
                               ),
                               Align(
                                 alignment: FractionalOffset.center,
                                 child: Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     Text("Join lesson with",
@@ -93,7 +107,9 @@ class _WaitingRoomUIState extends State<WaitingRoomUI> with TickerProviderStateM
                   ],
                 ),
               );
-            }),
+            },
+          ),
+        ),
       ),
     );
   }

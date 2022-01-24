@@ -126,8 +126,8 @@ class ScheduleRow extends StatelessWidget {
                     ),
                     Text(
                       CountryParser.tryParse(
-                                  _scheduleInfo.tutorInfo!.country ?? "")!
-                              .name,
+                              _scheduleInfo.tutorInfo!.country ?? "")!
+                          .name,
                       style: textTheme.caption
                           ?.copyWith(fontStyle: FontStyle.italic),
                     ),
@@ -164,8 +164,7 @@ class ScheduleRow extends StatelessWidget {
                               ),
                               onTap: () {
                                 Get.dialog(
-                                  ScheduleEdit(
-                                      booking: sche),
+                                  ScheduleEdit(booking: sche),
                                 );
                               },
                             )
@@ -177,8 +176,7 @@ class ScheduleRow extends StatelessWidget {
                               ),
                               onTap: () {
                                 Get.dialog(
-                                  ScheduleView(
-                                      booking: sche),
+                                  ScheduleView(booking: sche),
                                 );
                               },
                             ),
@@ -187,7 +185,9 @@ class ScheduleRow extends StatelessWidget {
                   ),
                   isHistory == false
                       ? ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _bookingCtrl.navigateLearn(booking: sche);
+                          },
                           child: Text(
                             "Start",
                             style: textTheme.caption,

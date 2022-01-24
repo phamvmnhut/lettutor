@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lettutor/constants/app_theme.dart';
 import 'package:lettutor/constants/strings.dart';
 import 'package:lettutor/services/theme.dart';
+import 'package:lettutor/services/localization.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 class MyApp extends StatelessWidget {
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         getPages: Routes.routes,
         navigatorObservers: [Routes.observer],
         initialRoute: Routes.LOADING_AUTH,
+        locale: LocalizationService().local,
+        fallbackLocale: LocalizationService.fallbackLocale,
+        translations: LocalizationService(),
       ),
     );
   }

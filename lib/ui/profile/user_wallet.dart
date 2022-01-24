@@ -11,6 +11,7 @@ class UserWalletUI extends StatelessWidget {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     UserModel _user = UserCtrl.to.user.value!;
+    Color cardCol = Theme.of(context).cardColor;
     return Material(
       child: SafeArea(
         child: Background(
@@ -39,7 +40,7 @@ class UserWalletUI extends StatelessWidget {
                       EdgeInsets.only(left: 18, right: 18, top: 22, bottom: 22),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffF1F3F6)),
+                      color: cardCol),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -78,7 +79,7 @@ class UserWalletUI extends StatelessWidget {
                       EdgeInsets.only(left: 18, right: 18, top: 22, bottom: 22),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffF1F3F6)),
+                      color: cardCol),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -90,12 +91,6 @@ class UserWalletUI extends StatelessWidget {
                                         100000)
                                     .toString() +
                                 " lessons",
-                          ),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          Text(
-                            "Current Balance",
                           ),
                         ],
                       ),

@@ -36,10 +36,21 @@ mixin CacheManager {
     return box.read<bool>(CacheManagerKey.DARK_MODE.toString()) ?? false;
   }
 
+  Future<bool> saveLanguage(String langCode) async {
+    final box = GetStorage();
+    await box.write(CacheManagerKey.LANG_LOCAL.toString(), langCode);
+    return true;
+  }
+
+  String getLanguage() {
+    final box = GetStorage();
+    return box.read<String>(CacheManagerKey.LANG_LOCAL.toString()) ?? "vi";
+  }
+
   Future<void> removeToken() async {
     final box = GetStorage();
     await box.remove(CacheManagerKey.TOKEN.toString());
   }
 }
 
-enum CacheManagerKey { TOKEN, DARK_MODE }
+enum CacheManagerKey { TOKEN, DARK_MODE, LANG_LOCAL }

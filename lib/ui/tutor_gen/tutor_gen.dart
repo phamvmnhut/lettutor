@@ -44,7 +44,7 @@ class TutorGenUI extends StatelessWidget {
                             onPressed: () {
                               _tutorCtrl.getListTutor();
                             },
-                            child: Text("Find Tutor",
+                            child: Text("find_tutor".tr,
                                 style: Theme.of(context).textTheme.headline2),
                           ),
                           TextButton(

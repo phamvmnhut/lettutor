@@ -143,7 +143,7 @@ class ScheduleDetailModel {
         "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
         "bookingInfo": bookingInfo == null
             ? null
-            : List<dynamic>.from(bookingInfo!.map((x) => x.toJson())),
+            : List<BookingModel>.from(bookingInfo!.map((x) => x.toJson())),
         "isBooked": isBooked == null ? null : isBooked,
       };
 }

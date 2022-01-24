@@ -38,6 +38,12 @@ class SettingUI extends StatelessWidget {
           onPress: () {
             _userCtrl.navigateTutorProfile();
           }),
+      _ItemSetting(
+          name: "Wallet",
+          iconData: Icons.account_balance_wallet,
+          onPress: () {
+            _userCtrl.navigateWallet();
+          }),
     ];
     List<_ItemSetting> genSettingList = [
       _ItemSetting(

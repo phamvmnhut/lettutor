@@ -5,6 +5,8 @@ import 'package:lettutor/models/booking.dart';
 import 'package:lettutor/services/booking/booking.dart';
 import 'package:lettutor/services/booking/model.dart';
 
+import 'dart:developer' as dev;
+
 class BookingCtrl extends GetxController {
   static BookingCtrl get to => Get.find();
 
@@ -61,8 +63,9 @@ class BookingCtrl extends GetxController {
     //   }
   }
 
-  bookClass({required String scheduleDetailIds, required String note}) async {
+  Future<bool> bookClass({required ScheduleTutorModel schedule, required String note}) async {
     isLoading.value = true;
+    List<String> scheduleDetailIds = schedule.scheduleDetails!.map((e) => e.id!).toList();
     final response = await _service.bookClass(
       BookClassRequestModel(scheduleDetailIds: scheduleDetailIds, note: note),
     );
@@ -74,10 +77,11 @@ class BookingCtrl extends GetxController {
         confirmTextColor: Colors.red,
         onConfirm: () {
           Get.back();
-        },
+        }
       );
+      return false;
     } else {
-      Get.back();
+      return true;
     }
   }
 

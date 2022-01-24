@@ -1,12 +1,11 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:lettutor/models/booking.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:collection/collection.dart';
 
-import 'comp/booking_dialog.dart';
+import 'package:lettutor/models/booking.dart';
 
-import 'dart:developer' as dev;
+import 'comp/booking_dialog.dart';
 
 class TutorCalendarUI extends StatefulWidget {
   TutorCalendarUI({Key? key, required this.schedules}) : super(key: key);
@@ -21,10 +20,9 @@ class _TutorCalendarUIState extends State<TutorCalendarUI> {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final Color priColor = Theme.of(context).primaryColor;
-    void _onPressBookingBtn({required int index}) => showDialog(
-      context: context,
-      builder: (context) => BookingDialog(scheduleTutor: widget.schedules.elementAt(index)),
-    );
+    void _onPressBookingBtn({required int index}) {
+      Get.dialog(BookingDialog(schedule: widget.schedules.elementAt(index)));
+    }
     return Material(
       child: SfCalendar(
         view: CalendarView.week,

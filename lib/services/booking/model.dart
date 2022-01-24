@@ -54,13 +54,13 @@ class EditBookedClassRequestModel {
 }
 
 class BookClassRequestModel {
-  String scheduleDetailIds;
+  List<String> scheduleDetailIds;
   String note;
   BookClassRequestModel({required this.scheduleDetailIds, required this.note});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['scheduleDetailIds'] = this.scheduleDetailIds;
+    data['scheduleDetailIds'] = scheduleDetailIds;
     data['note'] = this.note;
     return data;
   }

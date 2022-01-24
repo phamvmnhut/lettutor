@@ -8,6 +8,7 @@ import 'package:lettutor/services/user/model.dart';
 import 'package:lettutor/services/user/user.dart';
 import 'package:lettutor/ui/profile/tutor_reg.dart';
 import 'package:lettutor/ui/profile/user_profile.dart';
+import 'package:lettutor/ui/profile/user_wallet.dart';
 import 'package:lettutor/utils/routes/routes.dart';
 
 import 'cache_manager.dart';
@@ -135,6 +136,10 @@ class UserCtrl extends GetxController with CacheManager {
           });
       return;
     }
+  }
+
+  void navigateWallet() {
+    Get.to(() => UserWalletUI());
   }
 
   void signOut() async {

@@ -25,7 +25,7 @@ class UserModel {
     this.birthday,
     this.isActivated,
     // this.tutorInfo,
-    // this.walletInfo,
+    this.walletInfo,
     // this.feedbacks,
     // this.courses,
     this.requireNote,
@@ -51,7 +51,7 @@ class UserModel {
   bool? isActivated;
 
   // dynamic tutorInfo;
-  // WalletInfo walletInfo;
+  WalletInfo? walletInfo;
   // List<dynamic> feedbacks;
   // List<dynamic> courses;
   String? requireNote;
@@ -87,7 +87,7 @@ class UserModel {
             json["birthday"] == null ? null : DateTime.tryParse(json["birthday"]),
         isActivated: json["isActivated"] == null ? null : json["isActivated"],
         // tutorInfo: json["tutorInfo"],
-        // walletInfo: json["walletInfo"] == null ? null : WalletInfo.fromJson(json["walletInfo"]),
+        walletInfo: json["walletInfo"] == null ? null : WalletInfo.fromJson(json["walletInfo"]),
         // feedbacks: json["feedbacks"] == null ? null : List<dynamic>.from(json["feedbacks"].map((x) => x)),
         // courses: json["courses"] == null ? null : List<dynamic>.from(json["courses"].map((x) => x)),
         requireNote: json["requireNote"],
@@ -118,7 +118,7 @@ class UserModel {
             : "${birthday!.year.toString().padLeft(4, '0')}-${birthday!.month.toString().padLeft(2, '0')}-${birthday!.day.toString().padLeft(2, '0')}",
         "isActivated": isActivated == null ? null : isActivated,
         // "tutorInfo": tutorInfo,
-        // "walletInfo": walletInfo == null ? null : walletInfo.toJson(),
+        "walletInfo": walletInfo == null ? null : walletInfo!.toJson(),
         // "feedbacks": feedbacks == null ? null : List<dynamic>.from(feedbacks.map((x) => x)),
         // "courses": courses == null ? null : List<dynamic>.from(courses.map((x) => x)),
         "requireNote": requireNote,
@@ -278,46 +278,46 @@ class LearnTopic {
 //   };
 // }
 //
-// class WalletInfo {
-//   WalletInfo({
-//     this.id,
-//     this.userId,
-//     this.amount,
-//     this.isBlocked,
-//     this.createdAt,
-//     this.updatedAt,
-//     this.bonus,
-//   });
-//
-//   String id;
-//   String userId;
-//   String amount;
-//   bool isBlocked;
-//   DateTime createdAt;
-//   DateTime updatedAt;
-//   int bonus;
-//
-//   factory WalletInfo.fromRawJson(String str) => WalletInfo.fromJson(json.decode(str));
-//
-//   String toRawJson() => json.encode(toJson());
-//
-//   factory WalletInfo.fromJson(Map<String, dynamic> json) => WalletInfo(
-//     id: json["id"] == null ? null : json["id"],
-//     userId: json["userId"] == null ? null : json["userId"],
-//     amount: json["amount"] == null ? null : json["amount"],
-//     isBlocked: json["isBlocked"] == null ? null : json["isBlocked"],
-//     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-//     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-//     bonus: json["bonus"] == null ? null : json["bonus"],
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "id": id == null ? null : id,
-//     "userId": userId == null ? null : userId,
-//     "amount": amount == null ? null : amount,
-//     "isBlocked": isBlocked == null ? null : isBlocked,
-//     "createdAt": createdAt == null ? null : createdAt.toIso8601String(),
-//     "updatedAt": updatedAt == null ? null : updatedAt.toIso8601String(),
-//     "bonus": bonus == null ? null : bonus,
-//   };
-// }
+class WalletInfo {
+  WalletInfo({
+    this.id,
+    this.userId,
+    this.amount,
+    this.isBlocked,
+    this.createdAt,
+    this.updatedAt,
+    this.bonus,
+  });
+
+  String? id;
+  String? userId;
+  int? amount;
+  bool? isBlocked;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? bonus;
+
+  factory WalletInfo.fromRawJson(String str) => WalletInfo.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory WalletInfo.fromJson(Map<String, dynamic> json) => WalletInfo(
+    id: json["id"] == null ? null : json["id"],
+    userId: json["userId"] == null ? null : json["userId"],
+    amount: json["amount"] == null ? null : int.tryParse(json["amount"]),
+    isBlocked: json["isBlocked"] == null ? null : json["isBlocked"],
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    bonus: json["bonus"] == null ? null : json["bonus"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id == null ? null : id,
+    "userId": userId == null ? null : userId,
+    "amount": amount == null ? null : amount,
+    "isBlocked": isBlocked == null ? null : isBlocked,
+    "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
+    "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
+    "bonus": bonus == null ? null : bonus,
+  };
+}

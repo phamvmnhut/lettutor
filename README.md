@@ -22,3 +22,6 @@ Danh sách cờ các quốc gia
 
 ### Reference
 - Parse Json : (link)[https://medium.com/flutter-community/parsing-complex-json-in-flutter-747c46655f51]
+
+### Đánh giá cuối kỳ   
+https://docs.google.com/document/d/1I4hYGcwpCZ9LCRcxacLo9p-SGwutke8p/edit?usp=sharing&ouid=106493688042257346915&rtpof=true&sd=true

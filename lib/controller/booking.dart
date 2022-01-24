@@ -42,7 +42,24 @@ class BookingCtrl extends GetxController {
 
   Future<void> getListBooking() async {
     isLoading.value = true;
-    final response = await _service.fetchListBooking();
+    final response = await _service.fetchListBooking(
+      query: GetListBookingQueryModel(dateTimeGte: DateTime.now()),
+    );
+    if (response.error != null) {
+      bookings = <BookingModel>[].obs;
+    } else {
+      if (response.bookings != null) {
+        bookings.assignAll(response.bookings!);
+      }
+    }
+    isLoading.value = false;
+  }
+
+  Future<void> getListHistory() async {
+    isLoading.value = true;
+    final response = await _service.fetchListBooking(
+      query: GetListBookingQueryModel(dateTimeLte: DateTime.now()),
+    );
     if (response.error != null) {
       bookings = <BookingModel>[].obs;
     } else {
@@ -54,25 +71,26 @@ class BookingCtrl extends GetxController {
   }
 
   navigateLearn({required BookingModel booking}) {
-      Get.to(() => WaitingRoomUI(booking: booking), preventDuplicates: true);
+    Get.to(() => WaitingRoomUI(booking: booking), preventDuplicates: true);
   }
 
-  Future<bool> bookClass({required ScheduleTutorModel schedule, required String note}) async {
+  Future<bool> bookClass(
+      {required ScheduleTutorModel schedule, required String note}) async {
     isLoading.value = true;
-    List<String> scheduleDetailIds = schedule.scheduleDetails!.map((e) => e.id!).toList();
+    List<String> scheduleDetailIds =
+        schedule.scheduleDetails!.map((e) => e.id!).toList();
     final response = await _service.bookClass(
       BookClassRequestModel(scheduleDetailIds: scheduleDetailIds, note: note),
     );
     isLoading.value = false;
     if (response != "") {
       Get.defaultDialog(
-        middleText: response,
-        textConfirm: 'OK',
-        confirmTextColor: Colors.red,
-        onConfirm: () {
-          Get.back();
-        }
-      );
+          middleText: response,
+          textConfirm: 'OK',
+          confirmTextColor: Colors.red,
+          onConfirm: () {
+            Get.back();
+          });
       return false;
     } else {
       return true;

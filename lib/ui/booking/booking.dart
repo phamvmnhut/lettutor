@@ -11,6 +11,7 @@ import 'comp/schedule_header.dart';
 
 class BookingUI extends StatelessWidget {
   BookingUI({Key? key}) : super(key: key);
+  final isHistory = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,31 @@ class BookingUI extends StatelessWidget {
       child: Column(
         children: [
           ScheduleHeader(),
-          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text("History"),
+              Obx(
+                () => Switch(
+                  value: isHistory.value,
+                  onChanged: (_) {
+                    isHistory.toggle();
+                    if (isHistory.value) {
+                      _bookingCtrl.getListHistory();
+                    } else {
+                      _bookingCtrl.getListBooking();
+                    }
+                  },
+                  activeTrackColor: Colors.lightGreenAccent,
+                  activeColor: Colors.green,
+                ),
+              ),
+            ],
+          ),
           Expanded(
             child: Obx(
               () => SfCalendar(
+                initialDisplayDate: DateTime.now(),
                 view: CalendarView.schedule,
                 showDatePickerButton: true,
                 scheduleViewSettings: ScheduleViewSettings(
@@ -46,21 +68,22 @@ class BookingUI extends StatelessWidget {
                     )),
                 dataSource: _AppointmentDataSource(
                   _bookingCtrl.bookings.mapIndexed((index, element) {
-                    int startTime =
-                        element.scheduleDetailInfo!.startPeriodTimestamp!;
+                    int startTime = element
+                        .scheduleDetailInfo!.scheduleInfo!.startTimestamp!;
                     int endTime =
-                        element.scheduleDetailInfo!.endPeriodTimestamp!;
+                        element.scheduleDetailInfo!.scheduleInfo!.endTimestamp!;
                     return Appointment(
                         startTime:
-                            DateTime.fromMicrosecondsSinceEpoch(startTime),
-                        endTime: DateTime.fromMicrosecondsSinceEpoch(endTime),
+                            DateTime.fromMillisecondsSinceEpoch(startTime),
+                        endTime: DateTime.fromMillisecondsSinceEpoch(endTime),
                         subject: index.toString());
                   }).toList(),
                 ),
                 appointmentBuilder:
                     (BuildContext context, CalendarAppointmentDetails details) {
                   final Appointment meeting = details.appointments.first;
-                  BookingModel ele = _bookingCtrl.bookings[int.parse(meeting.subject)];
+                  BookingModel ele =
+                      _bookingCtrl.bookings[int.parse(meeting.subject)];
                   return ScheduleRow(sche: ele);
                   // return ele.scheduleDetailInfo!.isBooked!
                   //     ? Banner(

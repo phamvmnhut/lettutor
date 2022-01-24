@@ -170,7 +170,7 @@ class UserBeCalledClass {
     country: json["country"] == null ? null : json["country"],
     phone: json["phone"] == null ? null : json["phone"],
     language: json["language"] == null ? null : json["language"],
-    birthday: json["birthday"] == null ? null : DateTime.parse(json["birthday"]),
+    birthday: json["birthday"] == null ? null : DateTime.tryParse(json["birthday"]),
     isActivated: json["isActivated"] == null ? null : json["isActivated"],
     tutorInfo: json["tutorInfo"] == null ? null : TutorModel.fromJson(json["tutorInfo"]),
     requireNote: json["requireNote"],

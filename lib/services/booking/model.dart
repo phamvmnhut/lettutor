@@ -65,3 +65,30 @@ class BookClassRequestModel {
     return data;
   }
 }
+
+class GetListBookingQueryModel {
+  int? page;
+  DateTime? dateTimeGte;
+  DateTime? dateTimeLte;
+
+  GetListBookingQueryModel({ this.page, this.dateTimeGte, this.dateTimeLte});
+  String toString() {
+    Map<String, String> queryParameters = {
+      'orderBy': 'meeting',
+      'sortBy': 'desc',
+      'perPage': '100',
+      'page': page == null ? '1' : page.toString()
+    };
+    String url = "?";
+    queryParameters.forEach((key, value) {
+      url = url + key + "=" + value + "&";
+    });
+    if (dateTimeGte !=null) {
+      url = url + "dateTimeGte" + "=" + dateTimeGte!.millisecondsSinceEpoch.toString() + "&";
+    }
+    if (dateTimeLte !=null) {
+      url = url + "dateTimeLte" + "=" + dateTimeLte!.millisecondsSinceEpoch.toString() + "&";
+    }
+    return url.substring(0, url.length - 1);
+  }
+}

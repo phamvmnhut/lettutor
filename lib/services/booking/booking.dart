@@ -20,9 +20,9 @@ class BookingService extends GetConnect {
   final String _bookClassUrl = "/booking";
   final String _editClassUrl = "/booking/student-request/";
 
-  Future<GetListBookingResponseModel> fetchListBooking() async {
+  Future<GetListBookingResponseModel> fetchListBooking({required GetListBookingQueryModel query}) async {
     String tokenAccess = UserCtrl.to.accessToken;
-    final response = await get(_getListUrl,
+    final response = await get( _getListUrl+ query.toString(),
         headers: {"Authorization": "Bearer $tokenAccess"});
     if (response.statusCode == HttpStatus.ok) {
       return GetListBookingResponseModel.fromJson(response.body);

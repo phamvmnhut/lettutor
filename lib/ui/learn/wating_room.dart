@@ -22,7 +22,7 @@ class _WaitingRoomUIState extends State<WaitingRoomUI>
 
   String get timerString {
     Duration duration = controller.duration! * controller.value;
-    return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+    return '${duration.inHours}h:${duration.inMinutes - duration.inHours * 60}m:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   @override

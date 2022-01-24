@@ -27,7 +27,7 @@ class ScheduleRow extends StatelessWidget {
     String flagString = 'icons/flags/svg/vn.svg';
     DateTime endTime = DateTime.fromMillisecondsSinceEpoch(
         sche.scheduleDetailInfo!.endPeriodTimestamp!);
-    bool isHistory = DateTime.now().difference(endTime).inMinutes > 5;
+    bool isHistory = DateTime.now().difference(endTime).inMinutes > 20;
 
     return Column(
       children: [

@@ -46,3 +46,15 @@ class UserUpdateRequestModel {
     // "testPreparations": testPreparations == null ? null : List<dynamic>.from(testPreparations.map((x) => x)),
   };
 }
+
+class UploadAvatarResponseModel {
+  UserModel? user;
+  String? error;
+
+  UploadAvatarResponseModel.fromJson(Map<String, dynamic> json) {
+    user = UserModel.fromJson(json);
+  }
+  UploadAvatarResponseModel.fromError(Map<String, dynamic> json){
+    error = json['message'];
+  }
+}

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -145,5 +147,24 @@ class UserCtrl extends GetxController with CacheManager {
   void signOut() async {
     await removeToken();
     Get.offAndToNamed(Routes.SIGN_IN);
+  }
+
+  Future<String> uploadAvatar(File image) async{
+      loading.value = true;
+      UploadAvatarResponseModel resp = await _userService.uploadAvatar(image);
+      loading.value = false;
+      if (resp.error != null) {
+        Get.defaultDialog(
+            middleText: resp.error!,
+            textConfirm: 'OK',
+            confirmTextColor: Colors.white,
+            onConfirm: () {
+              Get.back();
+            });
+        return "";
+      } else {
+        user.value!.avatar = resp.user!.avatar;
+        return resp.user!.avatar!;
+      }
   }
 }
